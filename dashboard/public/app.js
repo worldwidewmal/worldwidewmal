@@ -284,7 +284,7 @@ function renderLeadCards(id, leads, mode) {
     const hoursLabel = mode === 'pending'
       ? `<span class="hours-badge">${l.hours_until}h until due</span>`
       : mode === 'done' ? ''
-      : `<span class="hours-badge ${l.hours_since > 120 ? 'overdue' : ''}">${l.hours_since}h overdue</span>`;
+      : `<span class="hours-badge ${l.hours_since > 72 ? 'overdue' : ''}">${l.hours_since}h since sent</span>`;
     return `<div class="lead-card">
       <div class="lead-card-info">
         <div class="lead-company">${l.company}</div>
@@ -481,6 +481,7 @@ async function openAgentDrawer(id) {
     ${actionTypes.length ? `
     <div class="drawer-section">
       <div class="drawer-section-title">Trigger This Agent</div>
+      <div class="fu-rule" style="margin-bottom:10px">🔒 Safe mode: clicking logs a request only. No outreach is sent. Open Claude Code to execute.</div>
       <div class="drawer-actions">
         ${actionTypes.map(a => `<button class="btn-trigger" onclick="triggerAction('${a.id}')">${a.label}</button>`).join('')}
       </div>
@@ -536,10 +537,10 @@ document.getElementById('modal-confirm').addEventListener('click', async () => {
   else showToast('✗ Failed to log trigger', 'error');
 });
 
-// Full session trigger from overview
+// Full session trigger from overview — logs a daily-run request, does not auto-execute
 document.getElementById('trigger-all-btn').addEventListener('click', async () => {
   await loadActionTypes();
-  triggerAction('lead-hunt');
+  showToast('To run the full daily session, type /daily-run in Claude Code.', 'info');
 });
 
 async function loadActionTypes() {
@@ -549,15 +550,16 @@ async function loadActionTypes() {
 
 // ─── Toast ────────────────────────────────────────────────────────────────────
 function showToast(msg, type = 'success') {
+  const colors = { success: 'var(--green)', error: 'var(--red)', info: 'var(--gold)' };
   const t = document.createElement('div');
   t.style.cssText = `position:fixed;bottom:24px;right:24px;z-index:999;
-    background:${type === 'error' ? 'var(--red)' : 'var(--green)'};
+    background:${colors[type] || colors.success};
     color:#fff;font-size:13px;font-weight:500;padding:10px 16px;
-    border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.4);
+    border-radius:8px;box-shadow:0 4px 20px rgba(0,0,0,.4);max-width:360px;
     animation:slideIn .2s ease`;
   t.textContent = msg;
   document.body.appendChild(t);
-  setTimeout(() => t.remove(), 3500);
+  setTimeout(() => t.remove(), 4500);
 }
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────

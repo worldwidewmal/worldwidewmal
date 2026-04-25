@@ -50,6 +50,7 @@ const VALID_ACTIONS = [
   { id: 'eod-checklist',    label: '8 PM End-of-Day Checklist',     agent: 'daily-audit-reporter',     desc: 'Generate the 8 PM send checklist and end-of-day summary' },
   { id: 'portfolio-refresh',label: 'Portfolio / Proof Refresh',     agent: 'proof-portfolio-manager',  desc: 'Verify portfolio URL is live and assets match current verticals' },
   { id: 'retainer-review',  label: 'Retainer Expansion Review',     agent: 'expansion-retainer-manager', desc: 'Review all replied/booked leads and recommend next actions' },
+  { id: 'daily-run',        label: 'Full Daily Session',            agent: 'lead-conductor',             desc: 'Run the complete daily pipeline: research → outreach → follow-ups → audit. Use /daily-run in Claude Code.' },
 ];
 
 // ─── Helpers ────────────────────────────────────────────────────────────────

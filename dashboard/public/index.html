@@ -157,6 +157,8 @@
       <button class="btn-sm" onclick="triggerAction('daily-audit')">Generate Today's Audit</button>
     </div>
 
+    <div class="fu-rule">📋 Audit generation is fully offline — no Gmail or MCP connection required. Logs are written to <code>reports/audit-log-YYYY-MM-DD.md</code>. To execute, run <code>/end-of-day</code> in Claude Code.</div>
+
     <div class="audit-layout">
       <div class="audit-list" id="audit-list">
         <div class="loading">Loading reports…</div>
@@ -221,7 +223,13 @@
       <div class="modal-desc" id="modal-desc"></div>
       <div class="safe-note">
         🔒 <strong>Safe mode is ON.</strong> This writes a trigger request to <code>data/manual_actions/</code>.
-        No outreach will be sent. Open Claude Code and run the corresponding command to execute.
+        No outreach will be sent. To execute, open Claude Code and run the matching command:<br><br>
+        <code>Lead Hunt → /research-leads</code><br>
+        <code>Outreach Draft → /write-outreach</code><br>
+        <code>Follow-Up Queue → /send-followups</code><br>
+        <code>QA / Audit → /audit-pipeline</code><br>
+        <code>Daily Audit / 8 PM → /end-of-day</code><br>
+        <code>Full Session → /daily-run</code>
       </div>
       <label class="field-label" for="modal-notes">Notes (optional)</label>
       <textarea id="modal-notes" class="textarea" rows="3" placeholder="Add context for this trigger run…"></textarea>
