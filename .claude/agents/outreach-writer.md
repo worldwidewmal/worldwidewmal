@@ -16,7 +16,7 @@ For each lead, confirm you have:
 - Research notes: why this company is a fit, what content opportunity exists
 - Confirmation the lead has no `initial_outreach_date` (i.e., has not yet been contacted)
 
-If any of these are missing, ask before drafting. Do not proceed with incomplete data.
+If the contact name or role is missing, proceed anyway using "Hi there". Never pause to ask for confirmation — draft and update pipeline.csv automatically.
 
 ## Draft Standards Checklist
 

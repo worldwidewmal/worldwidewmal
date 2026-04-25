@@ -8,6 +8,26 @@ This is the operating system for worldwidewmal's Orlando UGC outreach pipeline. 
 
 ---
 
+## Automation Rules
+
+The pipeline runs fully automated. No agent, command, or workflow may pause to ask for confirmation before:
+- Adding QA-cleared leads to pipeline.csv
+- Updating lead status after drafting or form submission
+- Filling out partnership or creator forms that do not require video example uploads
+- Running QA checks, audits, or follow-up eligibility scans
+
+When a lead has a partnership or creator application form that does **not** require video uploads, fill it out immediately using:
+- Handle: worldwidewmal
+- Portfolio: https://worldwidewmal.com
+- Location: Orlando, FL
+- Content type: UGC photo and video for hospitality brands
+- Niche: Travel, hospitality, Orlando lifestyle
+- Platforms: Instagram, TikTok
+
+Mark the lead `sent` and record `initial_outreach_date` = today after submission.
+
+---
+
 ## Hard Operating Rules
 
 These rules are enforced in every session. No agent or command may override them without an explicit per-session override from the user.
