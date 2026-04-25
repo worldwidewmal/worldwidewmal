@@ -96,6 +96,7 @@ Every draft must pass all of the following before it is considered review-ready:
 | Agent | File | Role |
 |---|---|---|
 | lead-conductor | `.claude/agents/lead-conductor.md` | Orchestrates the full daily session. Calls other agents in order. |
+| form-finder | `.claude/agents/form-finder.md` | Finds 5 Orlando influencer/creator application forms per day. Submits forms that don't require video. Syncs to Google Sheets. |
 | lead-researcher | `.claude/agents/lead-researcher.md` | Sources and verifies net-new Orlando leads. |
 | outreach-writer | `.claude/agents/outreach-writer.md` | Drafts initial outreach emails for verified leads. |
 | follow-up-manager | `.claude/agents/follow-up-manager.md` | Checks eligibility and drafts FU1 and FU2. |
@@ -111,6 +112,7 @@ Every draft must pass all of the following before it is considered review-ready:
 | Command | Purpose |
 |---|---|
 | `/daily-run` | Run the complete daily outreach session |
+| `/find-forms` | Find and submit 5 Orlando influencer application forms |
 | `/research-leads` | Source and verify new Orlando leads only |
 | `/write-outreach` | Draft initial outreach for verified leads only |
 | `/send-followups` | Check eligibility and draft follow-ups |
