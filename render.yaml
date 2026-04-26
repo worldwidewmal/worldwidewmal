@@ -1,4 +1,5 @@
 services:
+  # ── Web Dashboard ────────────────────────────────────────────────────────────
   - type: web
     name: ugc-os-dashboard
     runtime: node
@@ -7,4 +8,19 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+      - key: SHEETS_WEBHOOK_URL
+        sync: false
     autoDeploy: true
+
+  # ── Daily Runner — 7:00 AM ET (11:00 UTC) ───────────────────────────────────
+  - type: cron
+    name: ugc-os-daily-runner
+    runtime: node
+    schedule: "0 11 * * *"
+    buildCommand: cd dashboard && npm install
+    startCommand: node scripts/daily-runner.js
+    envVars:
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: SHEETS_WEBHOOK_URL
+        sync: false
