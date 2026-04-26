@@ -17,7 +17,7 @@ services:
     name: ugc-os-daily-runner
     runtime: node
     schedule: "0 11 * * *"
-    buildCommand: cd dashboard && npm install
+    buildCommand: npm install && cd dashboard && npm install
     startCommand: node scripts/daily-runner.js
     envVars:
       - key: ANTHROPIC_API_KEY

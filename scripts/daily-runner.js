@@ -13,17 +13,9 @@ const { execSync } = require('child_process');
 
 const ROOT = path.resolve(__dirname, '..');
 
-// ─── Anthropic SDK (install if needed) ───────────────────────────────────────
-let Anthropic;
-try {
-  Anthropic = require('@anthropic-ai/sdk');
-} catch {
-  console.log('[runner] Installing @anthropic-ai/sdk…');
-  execSync('npm install @anthropic-ai/sdk', { cwd: ROOT, stdio: 'inherit' });
-  Anthropic = require('@anthropic-ai/sdk');
-}
-
-const client = new Anthropic.default({ apiKey: process.env.ANTHROPIC_API_KEY });
+// ─── Anthropic SDK ────────────────────────────────────────────────────────────
+const Anthropic = require('@anthropic-ai/sdk');
+const client = new Anthropic({ apiKey: process.env.ANTHROPIC_API_KEY });
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 function safeRead(file, fallback = '') {
