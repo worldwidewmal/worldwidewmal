@@ -41,6 +41,7 @@ function loadTab(tab) {
   if (tab === 'outreach')  loadOutreach();
   if (tab === 'audit')     loadAudit();
   if (tab === 'errors')    loadErrors();
+  if (tab === 'sheets')    loadSheets();
   if (tab === 'settings')  loadSettings();
 }
 
@@ -617,6 +618,135 @@ const STATUS_COLORS = {
 };
 function statusBg(s) { return (STATUS_COLORS[s] || ['var(--s3)', 'var(--sub)'])[0]; }
 function statusFg(s) { return (STATUS_COLORS[s] || ['var(--s3)', 'var(--sub)'])[1]; }
+
+// ─── Sheets Tab ───────────────────────────────────────────────────────────────
+let activeSheetTab = 'forms';
+
+document.querySelectorAll('.sheets-subtab').forEach(btn => {
+  btn.addEventListener('click', () => switchSheetsTab(btn.dataset.sheetsTab));
+});
+
+function switchSheetsTab(tab) {
+  activeSheetTab = tab;
+  document.querySelectorAll('.sheets-subtab').forEach(b => b.classList.toggle('active', b.dataset.sheetsTab === tab));
+  document.querySelectorAll('.sheets-pane').forEach(p => p.classList.toggle('active', p.id === `sheets-pane-${tab}`));
+  if (tab === 'forms')    loadSheetsForms();
+  if (tab === 'outreach') loadSheetsOutreach();
+}
+
+async function loadSheets() {
+  if (activeSheetTab === 'forms')    await loadSheetsForms();
+  if (activeSheetTab === 'outreach') await loadSheetsOutreach();
+}
+
+async function loadSheetsForms() {
+  const rows = await api('/api/sheets/forms');
+  const tbody = document.getElementById('forms-tbody');
+  if (!rows || !rows.length) {
+    tbody.innerHTML = '<tr><td colspan="7" class="loading">No application forms tracked yet. Run /find-forms to add forms.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map((r, i) => `<tr>
+    <td class="dim">${i + 1}</td>
+    <td><strong>${r.company}</strong></td>
+    <td>${r.vertical || '—'}</td>
+    <td class="dim">${r.date_added || '—'}</td>
+    <td><a class="form-url" href="${r.form_url}" target="_blank" title="${r.form_url}">${truncUrl(r.form_url)}</a></td>
+    <td class="dim">${r.requires_video ? '<span class="badge red">Yes</span>' : '<span class="badge green">No</span>'}</td>
+    <td class="sheet-check-cell">
+      <label class="check-wrap">
+        <input type="checkbox" class="sheet-check" data-tab="forms" data-key="${escapeHTML(r.form_url)}" data-field="submitted" ${r.submitted ? 'checked' : ''}/>
+        <span class="check-label ${r.submitted ? 'checked' : ''}">${r.submitted ? 'Done' : 'Pending'}</span>
+      </label>
+    </td>
+  </tr>`).join('');
+  tbody.querySelectorAll('.sheet-check').forEach(cb => {
+    cb.addEventListener('change', handleSheetToggle);
+  });
+}
+
+async function loadSheetsOutreach() {
+  const rows = await api('/api/sheets/outreach');
+  const tbody = document.getElementById('outreach-sheet-tbody');
+  if (!rows || !rows.length) {
+    tbody.innerHTML = '<tr><td colspan="9" class="loading">No outreach with confirmed emails yet.</td></tr>';
+    return;
+  }
+  tbody.innerHTML = rows.map((r, i) => `<tr>
+    <td class="dim">${i + 1}</td>
+    <td><strong>${r.company}</strong><br><span class="dim" style="font-size:11px">${r.status}</span></td>
+    <td>${r.vertical || '—'}</td>
+    <td style="font-family:var(--mono);font-size:11px">${r.contact_email || '—'}</td>
+    <td class="dim">${r.date_added || '—'}</td>
+    <td class="sheet-check-cell">
+      <label class="check-wrap">
+        <input type="checkbox" class="sheet-check" data-tab="outreach" data-key="${r.id}" data-field="initial_sent" ${r.initial_sent ? 'checked' : ''}/>
+        <span class="check-label ${r.initial_sent ? 'checked' : ''}"></span>
+      </label>
+    </td>
+    <td class="sheet-check-cell">
+      <label class="check-wrap">
+        <input type="checkbox" class="sheet-check" data-tab="outreach" data-key="${r.id}" data-field="fu1_sent" ${r.fu1_sent ? 'checked' : ''}/>
+        <span class="check-label ${r.fu1_sent ? 'checked' : ''}"></span>
+      </label>
+    </td>
+    <td class="sheet-check-cell">
+      <label class="check-wrap">
+        <input type="checkbox" class="sheet-check" data-tab="outreach" data-key="${r.id}" data-field="fu2_sent" ${r.fu2_sent ? 'checked' : ''}/>
+        <span class="check-label ${r.fu2_sent ? 'checked' : ''}"></span>
+      </label>
+    </td>
+    <td class="sheet-check-cell">
+      ${r.has_draft
+        ? `<button class="btn-trigger" onclick="viewDraft('${r.id}','${escapeHTML(r.company)}','${escapeHTML(r.contact_email || '')}')">View</button>`
+        : '<span class="dim">—</span>'}
+    </td>
+  </tr>`).join('');
+  tbody.querySelectorAll('.sheet-check').forEach(cb => {
+    cb.addEventListener('change', handleSheetToggle);
+  });
+}
+
+async function handleSheetToggle(e) {
+  const cb = e.target;
+  const { tab, key, field } = cb.dataset;
+  const value = cb.checked;
+  const label = cb.nextElementSibling;
+  if (label) {
+    label.textContent = tab === 'forms' ? (value ? 'Done' : 'Pending') : '';
+    label.className = 'check-label' + (value ? ' checked' : '');
+  }
+  const result = await api('/api/sheets/toggle', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ tab, key, field, value }),
+  });
+  if (!result?.ok) {
+    showToast('Failed to save checkbox state', 'error');
+    cb.checked = !value;
+  }
+}
+
+async function viewDraft(id, company, email) {
+  const data = await api(`/api/drafts/${id}`);
+  document.getElementById('draft-modal-company').textContent = company;
+  document.getElementById('draft-modal-email').textContent = email;
+  document.getElementById('draft-subject').textContent = data?.subject || '(no subject)';
+  document.getElementById('draft-body').textContent = data?.body || '(no body)';
+  document.getElementById('draft-modal-overlay').classList.add('open');
+}
+
+document.getElementById('draft-modal-close').addEventListener('click',  () => document.getElementById('draft-modal-overlay').classList.remove('open'));
+document.getElementById('draft-modal-cancel').addEventListener('click', () => document.getElementById('draft-modal-overlay').classList.remove('open'));
+document.getElementById('draft-modal-overlay').addEventListener('click', e => { if (e.target === e.currentTarget) document.getElementById('draft-modal-overlay').classList.remove('open'); });
+
+function truncUrl(url) {
+  try {
+    const u = new URL(url);
+    const p = u.pathname.length > 28 ? u.pathname.slice(0, 28) + '…' : u.pathname;
+    return u.hostname + p;
+  } catch { return url.slice(0, 40) + (url.length > 40 ? '…' : ''); }
+}
 
 // ─── Init ─────────────────────────────────────────────────────────────────────
 (async () => {

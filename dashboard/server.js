@@ -15,6 +15,9 @@ const MANUAL_ACTIONS_DIR = path.join(DATA_DIR, 'manual_actions');
 const PIPELINE_CSV = path.join(ROOT, 'pipeline.csv');
 const SUPPRESSION_CSV = path.join(ROOT, 'suppression-list.csv');
 const REPORTS_DIR = path.join(ROOT, 'reports');
+const FORMS_TRACKER = path.join(DATA_DIR, 'forms-tracker.json');
+const SHEETS_STATE = path.join(DATA_DIR, 'sheets-state.json');
+const DRAFTS_DIR = path.join(DATA_DIR, 'drafts');
 const ROUTINES_DIR = path.join(ROOT, 'routines');
 const CLAUDE_AGENTS_DIR = path.join(ROOT, '.claude', 'agents');
 
@@ -338,6 +341,75 @@ app.get('/api/rules', (req, res) => {
     { id: 11, category: 'Contact Layering',   rule: 'Draft separate outreach per verified contact layer' },
     { id: 12, category: 'Safety',             rule: 'No outbound send without explicit human approval — safe mode always on' },
   ]);
+});
+
+// Sheets — Application Forms
+app.get('/api/sheets/forms', (req, res) => {
+  const forms = safeJSON(FORMS_TRACKER, []);
+  const st = safeJSON(SHEETS_STATE, { forms: {}, outreach: {} });
+  const rows = forms.map((f, i) => ({
+    row: i + 1,
+    company: f.company,
+    vertical: f.vertical,
+    date_added: f.date_added,
+    form_url: f.form_url,
+    requires_video: f.requires_video || false,
+    notes: f.notes || '',
+    submitted: st.forms[f.form_url]?.submitted ?? f.submitted ?? false,
+  }));
+  res.json(rows);
+});
+
+// Sheets — Email Outreach
+app.get('/api/sheets/outreach', (req, res) => {
+  const leads = parseCSV(PIPELINE_CSV);
+  const st = safeJSON(SHEETS_STATE, { forms: {}, outreach: {} });
+  const SENT_STATUSES = ['sent', 'fu1-sent', 'fu2-sent', 'replied', 'booked', 'closed', 'rejected'];
+  const FU1_STATUSES  = ['fu1-sent', 'fu2-sent', 'replied', 'booked', 'closed', 'rejected'];
+  const FU2_STATUSES  = ['fu2-sent', 'replied', 'booked', 'closed', 'rejected'];
+  const rows = leads
+    .filter(l => l.contact_email)
+    .map(l => {
+      const ov = st.outreach[l.id] || {};
+      const s = l.status;
+      const hasDraft = fs.existsSync(path.join(DRAFTS_DIR, `${l.id}.json`));
+      return {
+        id: l.id,
+        row: Number(l.id),
+        company: l.company,
+        vertical: l.vertical,
+        contact_email: l.contact_email,
+        date_added: l.date_added,
+        status: s,
+        initial_sent: ov.initial_sent !== undefined ? ov.initial_sent : SENT_STATUSES.includes(s),
+        fu1_sent:     ov.fu1_sent     !== undefined ? ov.fu1_sent     : FU1_STATUSES.includes(s),
+        fu2_sent:     ov.fu2_sent     !== undefined ? ov.fu2_sent     : FU2_STATUSES.includes(s),
+        has_draft: hasDraft,
+        notes: l.notes || '',
+      };
+    });
+  res.json(rows);
+});
+
+// Sheets — Toggle checkbox
+app.post('/api/sheets/toggle', (req, res) => {
+  const { tab, key, field, value } = req.body;
+  if (!tab || !key || !field) return res.status(400).json({ error: 'tab, key, and field required' });
+  ensureDir(DATA_DIR);
+  const st = safeJSON(SHEETS_STATE, { forms: {}, outreach: {} });
+  if (!st[tab]) st[tab] = {};
+  if (!st[tab][key]) st[tab][key] = {};
+  st[tab][key][field] = value;
+  fs.writeFileSync(SHEETS_STATE, JSON.stringify(st, null, 2));
+  res.json({ ok: true });
+});
+
+// Draft viewer
+app.get('/api/drafts/:id', (req, res) => {
+  const file = path.join(DRAFTS_DIR, `${req.params.id}.json`);
+  const data = safeJSON(file);
+  if (!data) return res.status(404).json({ error: 'No draft found' });
+  res.json(data);
 });
 
 // Health check

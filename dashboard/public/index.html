@@ -22,6 +22,7 @@
     <button class="tab" data-tab="outreach">Outreach <span class="badge" id="out-badge"></span></button>
     <button class="tab" data-tab="audit">Audit</button>
     <button class="tab" data-tab="errors">Errors</button>
+    <button class="tab" data-tab="sheets">Sheets</button>
     <button class="tab" data-tab="settings">Settings</button>
   </nav>
   <div class="nav-status">
@@ -185,6 +186,65 @@
     <div id="manual-actions-list"></div>
   </section>
 
+  <!-- ── Sheets Tab ────────────────────────────────────────── -->
+  <section class="tab-pane" id="tab-sheets">
+    <div class="section-header">
+      <h2>Sheets Tracker</h2>
+      <div class="sheets-subtabs">
+        <button class="sheets-subtab active" data-sheets-tab="forms">Application Forms</button>
+        <button class="sheets-subtab" data-sheets-tab="outreach">Email Outreach</button>
+      </div>
+    </div>
+
+    <!-- Application Forms sub-tab -->
+    <div class="sheets-pane active" id="sheets-pane-forms">
+      <div class="fu-rule">Influencer/creator application forms found for your niche. Check "Submitted" once you complete the form in your browser.</div>
+      <div class="table-wrap">
+        <table class="data-table" id="forms-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Company</th>
+              <th>Vertical</th>
+              <th>Date Added</th>
+              <th>Form URL</th>
+              <th>Requires Video</th>
+              <th>Submitted ✓</th>
+            </tr>
+          </thead>
+          <tbody id="forms-tbody">
+            <tr><td colspan="7" class="loading">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Email Outreach sub-tab -->
+    <div class="sheets-pane" id="sheets-pane-outreach">
+      <div class="fu-rule">All email outreach tracked by sequence stage. Checkboxes auto-fill from pipeline status. Click to override manually.</div>
+      <div class="table-wrap">
+        <table class="data-table" id="outreach-sheet-table">
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Company</th>
+              <th>Vertical</th>
+              <th>Email</th>
+              <th>Date Added</th>
+              <th>Initial ✓</th>
+              <th>FU1 ✓</th>
+              <th>FU2 ✓</th>
+              <th>Draft</th>
+            </tr>
+          </thead>
+          <tbody id="outreach-sheet-tbody">
+            <tr><td colspan="9" class="loading">Loading…</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
   <!-- ── Settings Tab ──────────────────────────────────────── -->
   <section class="tab-pane" id="tab-settings">
     <div class="section-header"><h2>Environment & Connections</h2></div>
@@ -237,6 +297,32 @@
     <div class="modal-footer">
       <button class="btn-ghost" id="modal-cancel">Cancel</button>
       <button class="btn-primary" id="modal-confirm">Log Trigger Request</button>
+    </div>
+  </div>
+</div>
+
+<!-- Draft Viewer Modal -->
+<div class="modal-overlay" id="draft-modal-overlay">
+  <div class="modal modal-wide">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="draft-modal-company">Draft</div>
+        <div class="modal-subtitle" id="draft-modal-email"></div>
+      </div>
+      <button class="btn-icon" id="draft-modal-close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="draft-field">
+        <div class="draft-field-label">Subject</div>
+        <div class="draft-subject" id="draft-subject">—</div>
+      </div>
+      <div class="draft-field">
+        <div class="draft-field-label">Body</div>
+        <pre class="draft-body" id="draft-body">—</pre>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn-ghost" id="draft-modal-cancel">Close</button>
     </div>
   </div>
 </div>

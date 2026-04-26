@@ -77,6 +77,25 @@ WORD COUNT: [n]
 STANDARDS MET: Yes / No — [list any issues if No]
 ```
 
+## After Drafting
+
+After every approved draft, do the following automatically — no confirmation needed:
+
+1. Save the draft as `data/drafts/<id>.json` with this structure:
+```json
+{
+  "id": "<pipeline row id>",
+  "company": "<company name>",
+  "to": "<email>",
+  "subject": "<subject line>",
+  "body": "<full body text>",
+  "drafted_at": "<ISO timestamp>",
+  "word_count": <n>
+}
+```
+2. Update the lead's `status` to `drafted` in `pipeline.csv`.
+3. Record `initial_outreach_date` = today in `pipeline.csv`.
+
 ## Rules
 
 - Only draft for leads with `status: verified`.
