@@ -1,1 +1,47 @@
-[]
+[
+  {
+    "company": "Four Seasons Resort Orlando",
+    "form_url": "https://press.fourseasons.com/content/fourseasons_pressroom/en/forms/influencer.html",
+    "vertical": "hotel",
+    "date_added": "2026-04-25",
+    "submitted": false,
+    "requires_video": false,
+    "notes": "Form found — submit via browser at https://press.fourseasons.com/content/fourseasons_pressroom/en/forms/influencer.html"
+  },
+  {
+    "company": "Crayola Experience Orlando",
+    "form_url": "https://www.crayolaexperience.com/influencer-program",
+    "vertical": "attraction",
+    "date_added": "2026-04-25",
+    "submitted": false,
+    "requires_video": false,
+    "notes": "Form found — submit via browser at https://www.crayolaexperience.com/influencer-program"
+  },
+  {
+    "company": "Vistana Signature Experiences (Sheraton Vistana Villages Orlando)",
+    "form_url": "https://www.vistana.com/influencer/1000",
+    "vertical": "hotel",
+    "date_added": "2026-04-25",
+    "submitted": false,
+    "requires_video": false,
+    "notes": "Form found — submit via browser at https://www.vistana.com/influencer/1000"
+  },
+  {
+    "company": "Loews Hotels at Universal Orlando",
+    "form_url": "https://www.loewshotels.com/influencer-stay-request",
+    "vertical": "hotel",
+    "date_added": "2026-04-25",
+    "submitted": false,
+    "requires_video": false,
+    "notes": "Form found — submit via browser at https://www.loewshotels.com/influencer-stay-request"
+  },
+  {
+    "company": "SeaWorld Orlando",
+    "form_url": "https://seaworld.com/orlando/media-room/media-ticket-requests/media-visit-request/",
+    "vertical": "attraction",
+    "date_added": "2026-04-25",
+    "submitted": false,
+    "requires_video": false,
+    "notes": "Form found — submit via browser at https://seaworld.com/orlando/media-room/media-ticket-requests/media-visit-request/"
+  }
+]
