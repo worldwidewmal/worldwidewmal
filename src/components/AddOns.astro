@@ -1,0 +1,47 @@
+---
+import { cta } from '../data/site';
+
+const addons = [
+  {
+    title: 'Drone + Photography',
+    copy: 'Add aerial footage, professional photography, and extra visual assets to either production service.',
+    ctaLabel: cta.addOnDetails,
+    href: '#drone-photography',
+    icon: 'drone',
+  },
+  {
+    title: 'Social Campaigns',
+    copy: 'Extend your campaign with creator posting and distribution across my social channels.',
+    ctaLabel: cta.campaignOptions,
+    href: '#social-campaigns',
+    icon: 'social',
+  },
+];
+---
+<section id="addons" class="sec alt">
+  <div class="wrap">
+    <p class="eyebrow rv">Expand Your Production</p>
+    <h2 class="h2 rv">Add more to the <i>shoot.</i></h2>
+    <div class="duo">
+      {addons.map((a) => (
+        <article class="card rv">
+          <div class="card-ic">
+            {a.icon === 'drone' ? (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="3" /><path d="M6 6l3 3M18 6l-3 3M6 18l3-3M18 18l-3-3" />
+                <circle cx="5" cy="5" r="2" /><circle cx="19" cy="5" r="2" /><circle cx="5" cy="19" r="2" /><circle cx="19" cy="19" r="2" />
+              </svg>
+            ) : (
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7" /><path d="M12 16V3" /><path d="M8 7l4-4 4 4" />
+              </svg>
+            )}
+          </div>
+          <h3 class="card-t">{a.title}</h3>
+          <p class="card-c">{a.copy}</p>
+          <a class="txtlink" href={a.href}>{a.ctaLabel} &rarr;</a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

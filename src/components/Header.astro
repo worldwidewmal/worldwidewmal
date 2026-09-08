@@ -1,0 +1,41 @@
+---
+import { site, nav, cta, links } from '../data/site';
+---
+<nav id="nav">
+  <a class="logo" href="/">{site.wordmark}</a>
+  <button
+    type="button"
+    id="navtoggle"
+    aria-label="Toggle navigation"
+    aria-expanded="false"
+    aria-controls="navlinks"
+  >
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true">
+      <line x1="3" y1="7" x2="21" y2="7" /><line x1="3" y1="12" x2="21" y2="12" /><line x1="3" y1="17" x2="21" y2="17" />
+    </svg>
+  </button>
+  <div class="navlinks" id="navlinks">
+    {nav.map((item) => (
+      <a href={item.href} class={item.secondary ? 'secondary' : undefined}>{item.label}</a>
+    ))}
+    <a class="btn btn-g btn-sm" href="#start">{cta.start}</a>
+  </div>
+</nav>
+
+<script is:inline>
+  (function () {
+    var btn = document.getElementById('navtoggle');
+    var links = document.getElementById('navlinks');
+    if (!btn || !links) return;
+    btn.addEventListener('click', function () {
+      var open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+    links.addEventListener('click', function (e) {
+      if (e.target.tagName === 'A' && window.innerWidth <= 900) {
+        links.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      }
+    });
+  })();
+</script>

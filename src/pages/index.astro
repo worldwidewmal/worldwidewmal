@@ -1,0 +1,65 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import BrandHero from '../components/BrandHero.astro';
+import BrandMarquee from '../components/BrandMarquee.astro';
+import ServiceSplit from '../components/ServiceSplit.astro';
+import AddOns from '../components/AddOns.astro';
+import PortfolioBridge from '../components/PortfolioBridge.astro';
+import Pricing from '../components/Pricing.astro';
+import Process from '../components/Process.astro';
+import ProjectInquiry from '../components/ProjectInquiry.astro';
+import FAQ from '../components/FAQ.astro';
+import Footer from '../components/Footer.astro';
+import { seo, site, links } from '../data/site';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ProfessionalService',
+  name: 'Worldwidewmal',
+  description: seo.home.description,
+  url: site.url,
+  email: site.email,
+  image: `${site.url}/logo.png`,
+  serviceType: [
+    'UGC content production',
+    'On-location content production',
+    'Brand video production',
+    'Short-form video production',
+    'Product video production',
+    'Social media content production',
+  ],
+  sameAs: [links.tiktok, links.instagram],
+};
+---
+<BaseLayout title={seo.home.title} description={seo.home.description} path="/" schema={schema}>
+  <Header />
+  <BrandHero />
+  <BrandMarquee />
+  <ServiceSplit />
+  <AddOns />
+  <PortfolioBridge />
+  <Pricing />
+  <Process />
+  <ProjectInquiry />
+  <FAQ />
+  <Footer />
+
+  <script is:inline>
+    /* Scroll reveal. Elements start hidden only when JS + IO are available, so
+       the page is fully readable if either is missing. */
+    (function () {
+      var els = document.querySelectorAll('.rv');
+      if (!('IntersectionObserver' in window)) {
+        for (var i = 0; i < els.length; i++) els[i].classList.add('vis');
+        return;
+      }
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { en.target.classList.add('vis'); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+      els.forEach(function (el) { io.observe(el); });
+    })();
+  </script>
+</BaseLayout>

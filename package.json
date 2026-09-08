@@ -1,0 +1,16 @@
+{
+  "name": "worldwidewmal",
+  "type": "module",
+  "version": "2.0.0",
+  "private": true,
+  "description": "worldwidewmal — creator-led content production for brands",
+  "scripts": {
+    "dev": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "publish:pages": "astro build && node scripts/publish.mjs"
+  },
+  "devDependencies": {
+    "astro": "^5.0.0"
+  }
+}

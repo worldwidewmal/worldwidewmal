@@ -1,0 +1,70 @@
+---
+import '../styles/global.css';
+import { site } from '../data/site';
+
+export interface Props {
+  title: string;
+  description: string;
+  /** Path only, e.g. "/" or "/travel". Combined with site.url for canonical. */
+  path?: string;
+  /** Optional JSON-LD object rendered as schema.org markup. */
+  schema?: Record<string, unknown>;
+}
+
+const { title, description, path = '/', schema } = Astro.props;
+const canonical = new URL(path, site.url).href;
+---
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+
+  <script is:inline>
+    /* Clickjacking guard: refuse to render inside a frame. */
+    if (window.top !== window.self) {
+      try { window.top.location = window.self.location; } catch (e) { document.body.innerHTML = ''; }
+    }
+  </script>
+
+  <meta
+    http-equiv="Content-Security-Policy"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com; frame-src https://www.canva.com https://*.canva.com; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"
+  />
+  <meta
+    http-equiv="Permissions-Policy"
+    content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), usb=(), serial=(), bluetooth=(), browsing-topics=()"
+  />
+  <meta name="referrer" content="strict-origin-when-cross-origin" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <link rel="canonical" href={canonical} />
+  <link rel="icon" href="/logo.png" />
+
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content={canonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={`${site.url}/logo.png`} />
+  <meta property="og:site_name" content={site.name} />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@worldwidewmal" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={`${site.url}/logo.png`} />
+
+  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+
+  <script is:inline type="speculationrules">
+    { "prerender": [ { "where": { "href_matches": "/portfolio*" }, "eagerness": "moderate" } ] }
+  </script>
+
+  <!-- Form hardening: sanitising, email validation, and submit rate-limiting.
+       Client-side only; it complements, and does not replace, server checks. -->
+  <script is:inline src="/js/security.js"></script>
+</head>
+<body>
+  <slot />
+</body>
+</html>

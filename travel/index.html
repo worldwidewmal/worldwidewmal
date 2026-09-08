@@ -1,0 +1,1222 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><script>
+    /* Clickjacking guard: refuse to render inside a frame. */
+    if (window.top !== window.self) {
+      try { window.top.location = window.self.location; } catch (e) { document.body.innerHTML = ''; }
+    }
+  </script><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com; frame-src https://www.canva.com https://*.canva.com; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"><meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), usb=(), serial=(), bluetooth=(), browsing-topics=()"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Travel Planning | Custom Trip Itineraries by Worldwidewmal</title><meta name="description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><link rel="canonical" href="https://worldwidewmal.com/travel"><link rel="icon" href="/logo.png"><meta property="og:type" content="website"><meta property="og:url" content="https://worldwidewmal.com/travel"><meta property="og:title" content="Travel Planning | Custom Trip Itineraries by Worldwidewmal"><meta property="og:description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta property="og:image" content="https://worldwidewmal.com/logo.png"><meta property="og:site_name" content="worldwidewmal"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@worldwidewmal"><meta name="twitter:title" content="Travel Planning | Custom Trip Itineraries by Worldwidewmal"><meta name="twitter:description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta name="twitter:image" content="https://worldwidewmal.com/logo.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Custom Travel Planning","description":"Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks.","url":"https://worldwidewmal.com/travel","provider":{"@type":"Person","name":"Malachi Marshall-Harris","url":"https://worldwidewmal.com"},"areaServed":"Worldwide","serviceType":"Custom travel itinerary planning"}</script><script type="speculationrules">
+    { "prerender": [ { "where": { "href_matches": "/portfolio*" }, "eagerness": "moderate" } ] }
+  </script><!-- Form hardening: sanitising, email validation, and submit rate-limiting.
+       Client-side only; it complements, and does not replace, server checks. --><script src="/js/security.js"></script><link rel="stylesheet" href="/assets/_astro/index.DYFAp8ZK.css">
+<link rel="stylesheet" href="/assets/_astro/travel.ce6LKwLj.css"></head> <body>   
+<div id="pb"></div>
+
+<!-- MODAL -->
+<div id="modal-overlay" role="dialog" aria-modal="true" aria-label="Plan overview">
+  <div class="modal">
+    <button type="button" class="modal-close" id="mc-btn" onclick="closeModal()" aria-label="Close"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <h2 class="modal-h">Choose your <i>Plan.</i></h2>
+    <p class="modal-sub">Select a tier. Your plan is delivered to your inbox within 2-7 days.</p>
+    <div class="modal-cards">
+      <div class="mc">
+        <span class="mc-badge mcbg-d">Starter</span>
+        <div class="mc-type">Starter Plan</div>
+        <div class="mc-for"><strong>Best for:</strong> Short trips or first-timers who need a clear starting point</div>
+        <div class="mc-pr"><div class="mc-price"><sup>$</sup>149</div></div>
+        <div class="mc-del">3-5 day delivery &middot; 1 revision</div>
+        <ul class="mc-feats">
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>1-day personalized route</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Best starting area</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Main stops organized in order</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Food and activity recommendations</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Transportation guidance</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Estimated trip budget</li>
+        </ul>
+        <button type="button" class="mc-btn gh" onclick="closeModal();wwCart('starter')">Plan My Day Trip</button>
+      </div>
+      <div class="mc popular">
+        <span class="mc-badge mcbg-g">Most Popular</span>
+        <div class="mc-type">Core Plan</div>
+        <div class="mc-for"><strong>Best for:</strong> Fully structured 2-3 day trips, what most people choose</div>
+        <div class="mc-pr"><div class="mc-price"><sup>$</sup>299</div></div>
+        <div class="mc-del">3-5 day delivery &middot; 2 revisions</div>
+        <ul class="mc-feats">
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Complete 2-3 day itinerary</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Daily route structure</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Hotel or neighborhood guidance</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Food and activity recommendations</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Backup recommendations</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>2 revisions</li>
+        </ul>
+        <button type="button" class="mc-btn pr" onclick="closeModal();wwCart('core')">Build My Trip</button>
+      </div>
+      <div class="mc">
+        <span class="mc-badge mcbg-p">Stress-Free</span>
+        <div class="mc-type">Concierge Plan</div>
+        <div class="mc-for"><strong>Best for:</strong> Complex trips, groups, or travelers who want zero guesswork</div>
+        <div class="mc-pr"><span style="font-size:.62rem;color:var(--sub);text-transform:uppercase;letter-spacing:.06em;align-self:center">Starting at</span><div class="mc-price"><sup>$</sup>499</div></div>
+        <div class="mc-del">2-3 day delivery &middot; 3 revisions</div>
+        <ul class="mc-feats">
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Everything in the 2-3 Day Trip</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Complete multi-day itinerary</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Accommodation-area guidance</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Transportation between destinations</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Packing and preparation notes</li>
+          <li><span class="ic"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Priority turnaround</li>
+        </ul>
+        <button type="button" class="mc-btn gh" onclick="closeModal();wwCart('concierge')">Plan My Full Trip</button>
+      </div>
+    </div>
+    <div class="modal-trust"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>&ensp;Secure checkout &middot; Plan delivered to your inbox within 2-7 days &middot; No hidden fees</div>
+  </div>
+</div>
+
+<!-- STICKY BAR — bottom, not floating, no content overlap -->
+<div id="stk">
+  <div class="stk-inner">
+    <span class="stk-label"><strong>Custom Travel Plans</strong> &nbsp;&middot;&nbsp; From $149</span>
+    <button type="button" class="stk-btn" id="stk-btn" onclick="openModal()">Get The Plan <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg></button>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nlogo"><b>worldwide</b>wmal</div>
+  <div class="nlinks">
+    <a href="#plan">The Plan</a>
+    <a href="#trips">Trips</a>
+    <a href="#trust">About</a>
+    <a href="#countries">Travels</a>
+    <a href="#intake" class="npill">Get In Touch</a>
+    <a href="/" class="npill" style="margin-left:8px;text-decoration:none;">&#8592; Brand Work</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div id="hbg" class="hbg"><img width="1200" height="2135" src="/images/pyramids-of-giza-egypt-ad6f16a7.webp" alt="Pyramids of Giza, Egypt" decoding="async"/></div>
+  <div class="hi">
+    <div class="hey"><div class="hel"></div><span class="het">Custom Travel Plans &nbsp;&middot;&nbsp; 25+ Countries &nbsp;&middot;&nbsp; Real POV</span></div>
+    <h1 class="hname">Turn Your Saved Videos<br>Into A <i>Real Trip.</i></h1>
+    <p class="hdef">Custom travel plans with your route, budget, neighborhoods, restaurant picks, and booking notes, built from real, recent, firsthand trips.</p>
+    <div class="hts">
+      <span class="hts-i">Plans from $149</span>
+      <span class="hts-i">Delivered within 2-7 days</span>
+      <span class="hts-i live" id="hcred">48K+ on TikTok</span>
+      <span class="hts-i">No guesswork. No wasted hours.</span>
+    </div>
+    <div class="hcta">
+      <button type="button" class="btn btn-g" id="hero-buy-btn" onclick="openModal()">Get Your Custom Plan</button>
+      <a href="#plan" class="btn btn-o">See How It Works</a>
+    </div>
+  </div>
+</section>
+
+<!-- scroll target for #preview nav links -->
+<div id="preview" style="height:0;overflow:hidden"></div>
+
+<!-- PROOF — reframed for buyer, not brand -->
+<div id="proof">
+  <div class="pf rv"><div class="pf-live"><span class="live-badge"><span class="ld"></span>Live</span></div><div class="pf-n" id="pf-f"><span class="sk"></span></div><div class="pf-l">TikTok Followers</div><div class="pf-s">18-34, travel-intent audience</div><div class="pf-ts" id="pf-ts"></div></div>
+  <div class="pf rv d1"><div class="pf-n gld">25+</div><div class="pf-l">Countries Personally Visited</div><div class="pf-s">Every destination covered, firsthand</div></div>
+  <div class="pf rv d2"><div class="pf-n gld">2-7</div><div class="pf-l">Day Delivery Window</div><div class="pf-s">Concierge tier delivers in 2-3 days</div></div>
+  <div class="pf rv d3"><div class="pf-n gld">3</div><div class="pf-l">Revision Tiers</div><div class="pf-s">1-3 revisions depending on tier</div></div>
+</div>
+
+<!-- GALLERY -->
+<div id="gallery">
+  <div class="g-head"><div class="g-lbl">25+ countries, documented</div><span class="g-hint">swipe</span></div>
+  <div class="gstrip rv">
+    <div class="gc"><div class="gc-w"><img width="1320" height="1789" src="/images/sahara-desert-cd847fbf.webp" alt="Sahara Desert" style="object-position:center 35%" loading="lazy" decoding="async"/></div><div class="gc-cap">Sahara &middot; Morocco</div></div>
+    <div class="gc"><div class="gc-w"><img width="480" height="720" src="/images/chichen-itza-130c6785.webp" alt="Chichen Itza" loading="lazy" decoding="async"/></div><div class="gc-cap">Chichen Itza &middot; Mexico</div></div>
+    <div class="gc"><div class="gc-w"><img width="480" height="720" src="/images/holy-sepulchre-eac2d86a.webp" alt="Holy Sepulchre" loading="lazy" decoding="async"/></div><div class="gc-cap">Holy Sepulchre &middot; Jerusalem</div></div>
+    <div class="gc"><div class="gc-w"><img width="480" height="854" src="/images/westminster-london-248fab47.webp" alt="Westminster London" loading="lazy" decoding="async"/></div><div class="gc-cap">Westminster &middot; London</div></div>
+    <div class="gc"><div class="gc-w"><img width="480" height="720" src="/images/lake-atitlan-e13c1f8a.webp" alt="Lake Atitlan" loading="lazy" decoding="async"/></div><div class="gc-cap">Lake Atitl&aacute;n &middot; Guatemala</div></div>
+    <div class="gc"><div class="gc-w"><img width="480" height="640" src="/images/equator-ecuador-e5f63673.webp" alt="Equator Ecuador" loading="lazy" decoding="async"/></div><div class="gc-cap">Equator &middot; Ecuador</div></div>
+  </div>
+</div>
+
+<!-- TRIPS PLANNED — with trip-type tags -->
+<section id="trips">
+  <div class="rv">
+    <p class="sec-tag L">Trips I&rsquo;ve Planned</p>
+    <h2 class="sh">Real destinations.<br>Real <i>trips.</i></h2>
+    <p style="margin-top:12px;font-size:.93rem;color:var(--sub);max-width:500px;line-height:1.75">Built from real trips, not Google searches. No generic recommendations, no recycled itineraries.</p>
+  </div>
+  <div class="trips-grid rv d1">
+    <div class="tri"><img width="480" height="636" src="/images/petra-jordan-05834263.webp" alt="Petra, Jordan" style="object-position:center 15%" loading="lazy" decoding="async"/>
+      <div class="tri-ov"><div class="tri-loc">Petra Treasury</div><div class="tri-sub">Jordan</div><span class="tri-tag">Faith &amp; History</span></div></div>
+    <div class="tri"><img width="480" height="356" src="/images/cartagena-bay-061618f8.webp" alt="Cartagena Bay" style="object-position:center 30%" loading="lazy" decoding="async"/>
+      <div class="tri-ov"><div class="tri-loc">Cartagena Bay</div><div class="tri-sub">Colombia</div><span class="tri-tag">Beach &amp; City</span></div></div>
+    <div class="tri"><img width="480" height="854" src="/images/bansko-bulgaria-d624b473.webp" alt="Bansko Bulgaria" style="object-position:center 40%" loading="lazy" decoding="async"/>
+      <div class="tri-ov"><div class="tri-loc">Bansko Resort</div><div class="tri-sub">Bulgaria</div><span class="tri-tag">Budget Adventure</span></div></div>
+    <div class="tri"><img width="420" height="315" src="/images/acatenango-summit-guatemala-client-photo-c0408a5c.webp" alt="Acatenango Summit, Guatemala - Client Photo" loading="lazy" decoding="async" style="object-position:center 30%"/><div class="tri-ov"><div class="tri-loc">Acatenango Summit</div><div class="tri-sub">Guatemala</div><span class="tri-tag">Adventure</span></div></div>
+    <div class="tri"><img width="1300" height="1751" src="/images/ksamil-beach-albania-d04288c3.webp" alt="Ksamil Beach Albania" style="object-position:center 40%" loading="lazy" decoding="async"/>
+      <div class="tri-ov"><div class="tri-loc">Ksamil Beach</div><div class="tri-sub">Albania &bull; Beach &amp; Relax</div></div>
+    </div>
+    <div class="tri"><img width="1320" height="2355" src="/images/aventine-keyhole-rome-9c8aef4f.webp" alt="Aventine Keyhole Rome" style="object-position:center 80%" loading="lazy" decoding="async"/>
+      <div class="tri-ov"><div class="tri-loc">Aventine Keyhole</div><div class="tri-sub">Rome, Italy &bull; Hidden Gems</div></div>
+    </div>
+
+    <div class="tri"><img width="480" height="632" src="/images/cave-tour-cartagena-3ab5a2d9.webp" alt="Cave Tour Cartagena" style="object-position:center 30%" loading="lazy" decoding="async"/>
+      <div class="tri-ov"><div class="tri-loc">Cave Expedition</div><div class="tri-sub">Cartagena</div><span class="tri-tag">Off the Beaten Path</span></div></div>
+    <div class="tri"><img width="480" height="640" src="/images/waterfall-nicaragua-0bf0da8e.jpg" alt="Waterfall Nicaragua" style="object-position:center 25%" loading="lazy" decoding="async"/>
+      <div class="tri-ov"><div class="tri-loc">Waterfall Hike</div><div class="tri-sub">Le&oacute;n, Nicaragua</div><span class="tri-tag">Adventure</span></div></div>
+
+
+
+
+  </div>
+</section>
+
+<!-- PLAN PREVIEW -->
+<!-- PRICING -->
+<section id="plan">
+  <div class="plan-hdr rv">
+    <h2 class="plan-big">Choose How Much Of Your Trip<br>You Want <i>Fully Planned.</i></h2>
+    <p class="plan-sub">1 day &rarr; Get the most out of a single experience &nbsp;&middot;&nbsp; 2-3 days &rarr; A complete, structured trip &nbsp;&middot;&nbsp; 4+ days &rarr; Everything handled for you.</p>
+  </div>
+  <div class="pcards">
+    <div class="pc rv">
+      <span class="pc-bdg bg-d">Starter</span>
+      <div class="pc-type">1 Day Trip</div>
+      <div class="pc-for"><strong>Best for:</strong> Day trips, layovers, or one full day in a city</div>
+      <div class="pc-pr"><div class="pc-price"><sup>$</sup>149</div></div>
+      <ul class="pc-list">
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>1-day personalized route</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Best starting area</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Main stops organized in order</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Food and activity recommendations</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Transportation guidance</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Estimated trip budget</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>1 revision</li>
+      </ul>
+      <button type="button" class="pc-cta co" onclick="wwCart('starter')">Plan My Day</button>
+    </div>
+    <div class="pc feat rv d1">
+      <span class="pc-bdg bg-g">Most Popular</span>
+      <div class="pc-type">2-3 Day Trip</div>
+      <div class="pc-for"><strong>Best for:</strong> Weekend trips or short getaways where you want each day mapped out clearly</div>
+      <div class="pc-pr"><div class="pc-price"><sup>$</sup>299</div></div>
+      <ul class="pc-list">
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Complete 2-3 day itinerary</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Daily route structure</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Hotel or neighborhood guidance</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Food and activity recommendations</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Transportation planning</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Estimated trip budget</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Backup recommendations</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>2 revisions</li>
+      </ul>
+      <button type="button" class="pc-cta cg" onclick="wwCart('core')">Plan My 2-3 Day Trip</button>
+    </div>
+    <div class="pc rv d2">
+      <span class="pc-bdg bg-p">Most Complete</span>
+      <div class="pc-type">4+ Day Trip</div>
+      <div class="pc-for"><strong>Best for:</strong> Longer trips, group trips, multi-city travel, or trips with more moving parts</div>
+      <div class="pc-pr"><span style="font-size:.66rem;color:var(--sub);text-transform:uppercase;letter-spacing:.07em;align-self:center">Starting at</span><div class="pc-price"><sup>$</sup>499</div></div>
+      <ul class="pc-list">
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Everything in the 2-3 Day Trip</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Complete multi-day itinerary</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Accommodation-area guidance</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Transportation between destinations</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Backup plans</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Packing and preparation notes</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>Priority turnaround</li>
+        <li><span class="ic iy"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><polyline points="20,6 9,17 4,12"/></svg></span>3 revisions</li>
+      </ul>
+      <button type="button" class="pc-cta co" onclick="wwCart('concierge')">Plan My 4+ Day Trip</button>
+    </div>
+  </div>
+  <div class="plan-trust rv">
+    <span class="pt-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
+    <p class="pt-tx"><strong>Secure checkout.</strong> Plan delivered to your inbox within your tier&rsquo;s window. Price is exactly what you see, no hidden fees. Questions? <a href="mailto:partnerships@worldwidewmal.com?subject=Travel%20Plan%20Inquiry">partnerships@worldwidewmal.com</a></p>
+  </div>
+
+  <div class="rv" style="max-width:640px;margin:56px auto 0">
+    <p class="sec-tag L">Add-Ons</p>
+    <h2 class="sh" style="font-size:1.6rem">Optional <i>Upgrades.</i></h2>
+    <p style="font-size:.83rem;color:var(--sub);margin-top:10px;line-height:1.7">All optional. Mention any of these when you reach out and they&rsquo;ll be confirmed and added to your invoice before work begins.</p>
+    <div class="faq-w" style="margin-top:24px;padding:4px 22px">
+      <div class="ww-addon-row"><span class="lbl">Additional destination or city</span><span class="amt">$75</span></div>
+      <div class="ww-addon-row"><span class="lbl">Rush delivery within 48 hours</span><span class="amt">$100</span></div>
+      <div class="ww-addon-row"><span class="lbl">Restaurant reservation research</span><span class="amt">$75</span></div>
+      <div class="ww-addon-row"><span class="lbl">Live trip-support add-on</span><span class="amt">$150</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHERE I'VE STAYED ── Airbnb Properties -->
+<section style="padding:80px 52px;border-bottom:1px solid var(--b1)">
+  <div class="rv">
+    <p class="sec-tag L">Where I&rsquo;ve Stayed</p>
+    <h2 class="sh">Places I&rsquo;ve stayed<br>and <i>personally approve.</i></h2>
+    <p style="margin-top:12px;margin-bottom:40px;font-size:.93rem;color:var(--sub);max-width:520px;line-height:1.75">Handpicked places I&rsquo;ve personally stayed at and stand behind, each one selected for quality, character, and the kind of experience worth recommending.</p>
+  </div>
+  <div class="ww-hscroll-track">
+    <div class="ww-ab-card">
+      <img width="300" height="178" class="ww-ab-thumb" src="https://a0.muscache.com/im/pictures/miso/Hosting-1013524829541414475/original/b3855372-88d4-4d14-8036-3045b52bc0aa.jpeg" alt="Sarnai Daya balcony rooftop San Marcos La Laguna Guatemala" loading="lazy">
+      <div class="ww-ab-body">
+        <div class="ww-ab-loc">San Marcos La Laguna &bull; Guatemala</div>
+        <div class="ww-ab-name">Sarnai | Daya &ndash; Balcony, Bathtub &amp; Rooftop Terrace</div>
+        <a class="ww-ab-cta" href="https://www.airbnb.com/rooms/1013524829541414475" target="_blank" rel="noopener noreferrer">View on Airbnb &rarr;</a>
+      </div>
+    </div>
+    <div class="ww-ab-card">
+      <img width="300" height="178" class="ww-ab-thumb" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1106738887530860188/original/3371f4e2-474c-4fb0-b4d8-90d579f261b8.jpeg" alt="Carina at Casa Verapaz volcano view loft Guatemala" loading="lazy">
+      <div class="ww-ab-body">
+        <div class="ww-ab-loc">Santa Catarina Palopó &bull; Guatemala</div>
+        <div class="ww-ab-name">Carina at Casa Verapaz | 1BR + Loft | Volcano View</div>
+        <a class="ww-ab-cta" href="https://www.airbnb.com/rooms/1106738887530860188" target="_blank" rel="noopener noreferrer">View on Airbnb &rarr;</a>
+      </div>
+    </div>
+    <div class="ww-ab-card">
+      <img width="300" height="178" class="ww-ab-thumb" src="https://a0.muscache.com/im/pictures/hosting/Hosting-1403575733488153086/original/69194a25-6f21-49c8-8b9a-274560849cb5.jpeg" alt="Ocean front infinity pool apartment Cartagena Colombia" loading="lazy">
+      <div class="ww-ab-body">
+        <div class="ww-ab-loc">Cartagena &bull; Colombia</div>
+        <div class="ww-ab-name">Smile at Life in Front of the Ocean, Infinity Pool</div>
+        <a class="ww-ab-cta" href="https://www.airbnb.com/rooms/1403575733488153086" target="_blank" rel="noopener noreferrer">View on Airbnb &rarr;</a>
+      </div>
+    </div>
+    <div class="ww-ab-card">
+      <img width="300" height="178" class="ww-ab-thumb" src="https://a0.muscache.com/im/pictures/hosting/Hosting-987036239618865404/original/384c38e2-f263-4a51-92ec-d2e8356f922e.jpeg" alt="Luxury house jacuzzi Medellin Colombia" loading="lazy">
+      <div class="ww-ab-body">
+        <div class="ww-ab-loc">Medell&iacute;n &bull; Colombia</div>
+        <div class="ww-ab-name">Luxury House &bull; Jacuzzi &bull; Near Stadium &amp; Laureles</div>
+        <a class="ww-ab-cta" href="https://www.airbnb.com/rooms/987036239618865404" target="_blank" rel="noopener noreferrer">View on Airbnb &rarr;</a>
+      </div>
+    </div>
+    <div class="ww-ab-card">
+      <img width="300" height="178" class="ww-ab-thumb" src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTQxMTI4OTUwODQxNDU4NDAwMg==/original/3ef74962-2ec2-4c13-bf90-a6495886bfd5.jpeg" alt="Spacious apartment Zona 14 Guatemala City" loading="lazy">
+      <div class="ww-ab-body">
+        <div class="ww-ab-loc">Guatemala City &bull; Guatemala</div>
+        <div class="ww-ab-name">Spacious Apartment in Zona 14</div>
+        <a class="ww-ab-cta" href="https://www.airbnb.com/rooms/1411289508414584002" target="_blank" rel="noopener noreferrer">View on Airbnb &rarr;</a>
+      </div>
+    </div>
+    <div class="ww-ab-card">
+      <img width="300" height="178" class="ww-ab-thumb" src="https://a0.muscache.com/im/pictures/hosting/Hosting-969477068984788401/original/0fc2b075-52a6-4683-81b2-ad3940b80ff8.jpeg" alt="Private jungle retreat hideaway Costa Rica" loading="lazy">
+      <div class="ww-ab-body">
+        <div class="ww-ab-loc">Puerto Viejo de Talamanca &bull; Costa Rica</div>
+        <div class="ww-ab-name">Private Jungle Retreat Hideaway</div>
+        <a class="ww-ab-cta" href="https://www.airbnb.com/rooms/969477068984788401" target="_blank" rel="noopener noreferrer">View on Airbnb &rarr;</a>
+      </div>
+    </div>
+    <div class="ww-ab-card">
+      <img width="300" height="178" class="ww-ab-thumb" src="https://a0.muscache.com/im/pictures/hosting/Hosting-U3RheVN1cHBseUxpc3Rpbmc6MTUwNjQ3MjUwODE1NjU0NTkwMg==/original/7dde59c4-29d4-470e-96f6-ec8a3470d5b7.jpeg?im_w=960" alt="Luxury urban loft with river view near Notre Dame, South Bend Indiana" loading="lazy">
+      <div class="ww-ab-body">
+        <div class="ww-ab-loc">South Bend &bull; Indiana</div>
+        <div class="ww-ab-name">Luxury Urban Loft w/ River View &ndash; Near Notre Dame</div>
+        <a class="ww-ab-cta" href="https://www.airbnb.com/rooms/1506472508156545902" target="_blank" rel="noopener noreferrer">View on Airbnb &rarr;</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TRUST / ABOUT -->
+<section id="trust">
+  <div class="ap rv">
+    <div class="ap-photo"><img width="480" height="720" src="/images/holy-sepulchre-eac2d86a.webp" alt="Malachi at the Church of the Holy Sepulchre" loading="lazy" decoding="async"/></div>
+    <div class="ap-badge"><b>Worldwide</b>worldwidewmal</div>
+  </div>
+  <div>
+    <div class="rv">
+      <p class="sec-tag L">Why trust this</p>
+      <h2 class="sh">Not a travel blog.<br>A traveler who <i>actually went.</i></h2>
+    </div>
+    <div class="tbody rv d1">
+      <p>Malachi Marshall-Harris has visited <strong>25+ countries</strong>, from Egypt to Ecuador and Palestine to Portugal, mostly on a student budget, mostly solo, all documented. Based in the US with current, ongoing access to every destination in The Plan.</p>
+      <p>Every recommendation comes from someone who walked those streets, haggled those prices, and figured out what was worth it and what wasn&rsquo;t. The plans aren&rsquo;t built from research. They&rsquo;re built from the trips.</p>
+    </div>
+    <div class="cred-g rv d2">
+      <div class="cc"><div class="cc-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div><div class="cc-t">25+ Countries</div><div class="cc-d">Every destination covered has been personally visited, recently.</div></div>
+      <div class="cc"><div class="cc-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div><div class="cc-t">Student Budget</div><div class="cc-d">Every plan includes budget-conscious options built for real constraints.</div></div>
+      <div class="cc"><div class="cc-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div><div class="cc-t">US-Based</div><div class="cc-d">Current, ongoing local access, not trips from years ago.</div></div>
+      <div class="cc"><div class="cc-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><line x1="12" y1="2" x2="12" y2="22"/><line x1="5" y1="8" x2="19" y2="8"/></svg></div><div class="cc-t">Faith-Driven Travel</div><div class="cc-d">Walked the Via Dolorosa. Stood at Golgotha. Specializes in Holy Land and faith-informed itineraries.</div></div>
+    </div>
+    <div class="socrow rv d3">
+      <a href="https://www.instagram.com/malachi.mh/" target="_blank" rel="noopener noreferrer" class="soc s-ig"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg> Instagram</a>
+      <a href="mailto:partnerships@worldwidewmal.com?subject=Travel%20Plan%20Inquiry" class="soc s-em"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg> Email</a>
+    </div>
+  </div>
+</section>
+
+
+<!-- AFTER PURCHASE -->
+<section id="after">
+  <div class="after-in rv">
+    <p class="sec-tag">What happens after you buy</p>
+    <h2 class="sh">Here&rsquo;s exactly what<br>happens <i>after you buy.</i></h2>
+  </div>
+  <div class="after-steps rv d1">
+    <div class="as"><div class="as-n">01</div><div class="as-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><polyline points="22,12 16,12 14,15 10,15 8,12 2,12"/><path d="M5.45 5.11L2 12v6a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-6l-3.45-6.89A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"/></svg></div><div class="as-t">Plan delivered by email</div><div class="as-d">Your plan arrives at the inbox used at checkout. Starter: 3-5 days. Signature: 3-5 days. Concierge: 2-3 days.</div></div>
+    <div class="as"><div class="as-n">02</div><div class="as-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div><div class="as-t">One organized document</div><div class="as-d">Day-by-day itinerary, budget, neighborhood picks, and booking links in one place, optimized for mobile use.</div></div>
+    <div class="as"><div class="as-n">03</div><div class="as-ic"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"><path d="M23 4v6h-6"/><path d="M1 20v-6h6"/><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"/></svg></div><div class="as-t">Request revisions</div><div class="as-d">Reply to the delivery email with changes. Processed within 48 hours. Revisions included per tier.</div></div>
+  </div>
+</section>
+
+<!-- ══ INTAKE FORM ═══════════════════════════════════════════════════════ -->
+<section id="intake" style="padding:80px 64px;background:var(--s2);border-bottom:1px solid var(--b1)">
+  <div style="max-width:640px;margin:0 auto">
+    <div class="rv" style="text-align:center;margin-bottom:36px">
+      <p class="sec-tag" style="justify-content:center;background:rgba(201,160,86,.08);padding:4px 14px;border-radius:100px;border:1px solid rgba(201,160,86,.2)">⟶ START HERE after purchase</p>
+      <h2 class="sh">Quick Travel Plan Form.<br><i>Takes about 2 minutes.</i></h2>
+      <p style="margin-top:10px;font-size:.92rem;color:var(--sub);line-height:1.7">Fill this out so I can build your plan specifically around your budget, travel style, and goals.</p>
+    </div>
+    <form id="intake-form" class="rv d1" style="display:flex;flex-direction:column;gap:16px" action="https://api.web3forms.com/submit" method="POST">
+      <input type="hidden" name="access_key" value="43898b71-02c7-419d-8c4b-6ee3b1ca6121"/>
+      <input type="hidden" name="subject" value="Travel Plan Intake Form"/>
+      <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none"/>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Destination</label>
+        <input name="destination" type="text" autocomplete="off" maxlength="150" placeholder="e.g. Rome, Italy" required style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'"></div>
+        <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Travel Dates</label>
+        <input name="dates" type="text" autocomplete="off" maxlength="60" placeholder="e.g. July 10-17" style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Trip Length (days)</label>
+        <input name="length" type="number" min="1" max="30" autocomplete="off" placeholder="e.g. 5" style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'"></div>
+        <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Departure City</label>
+        <input name="departure" type="text" autocomplete="off" maxlength="100" placeholder="e.g. Atlanta, GA" style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'"></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Budget Range</label>
+        <select name="budget" style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;box-sizing:border-box;appearance:none" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'">
+          <option value="">Select budget</option>
+          <option>Under $500</option><option>$500-$1,000</option>
+          <option>$1,000-$2,000</option><option>$2,000+</option>
+        </select></div>
+        <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Traveling With</label>
+        <select name="group" style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;box-sizing:border-box;appearance:none" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'">
+          <option value="">Select</option>
+          <option>Solo</option><option>Friends</option>
+          <option>Partner</option><option>Family</option>
+        </select></div>
+      </div>
+      <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Travel Style</label>
+      <div style="display:flex;flex-wrap:wrap;gap:7px" id="style-chips">
+        <label style="cursor:pointer"><input type="checkbox" name="style" value="Budget" style="display:none" onchange="toggleChip(this)"><span style="display:inline-block;padding:5px 12px;border:1px solid var(--b1);border-radius:100px;font-size:.72rem;color:var(--sub);transition:all .17s">Budget</span></label>
+        <label style="cursor:pointer"><input type="checkbox" name="style" value="Balanced" style="display:none" onchange="toggleChip(this)"><span style="display:inline-block;padding:5px 12px;border:1px solid var(--b1);border-radius:100px;font-size:.72rem;color:var(--sub);transition:all .17s">Balanced</span></label>
+        <label style="cursor:pointer"><input type="checkbox" name="style" value="Luxury" style="display:none" onchange="toggleChip(this)"><span style="display:inline-block;padding:5px 12px;border:1px solid var(--b1);border-radius:100px;font-size:.72rem;color:var(--sub);transition:all .17s">Luxury</span></label>
+        <label style="cursor:pointer"><input type="checkbox" name="style" value="Adventure" style="display:none" onchange="toggleChip(this)"><span style="display:inline-block;padding:5px 12px;border:1px solid var(--b1);border-radius:100px;font-size:.72rem;color:var(--sub);transition:all .17s">Adventure</span></label>
+        <label style="cursor:pointer"><input type="checkbox" name="style" value="Culture" style="display:none" onchange="toggleChip(this)"><span style="display:inline-block;padding:5px 12px;border:1px solid var(--b1);border-radius:100px;font-size:.72rem;color:var(--sub);transition:all .17s">Culture</span></label>
+        <label style="cursor:pointer"><input type="checkbox" name="style" value="Relax/Beach" style="display:none" onchange="toggleChip(this)"><span style="display:inline-block;padding:5px 12px;border:1px solid var(--b1);border-radius:100px;font-size:.72rem;color:var(--sub);transition:all .17s">Relax / Beach</span></label>
+        <label style="cursor:pointer"><input type="checkbox" name="style" value="Nightlife" style="display:none" onchange="toggleChip(this)"><span style="display:inline-block;padding:5px 12px;border:1px solid var(--b1);border-radius:100px;font-size:.72rem;color:var(--sub);transition:all .17s">Nightlife</span></label>
+      </div></div>
+      <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Accommodation Preference</label>
+      <select name="accommodation" style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;box-sizing:border-box;appearance:none" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'">
+        <option value="">Select preference</option>
+        <option>Hostel</option><option>Airbnb</option>
+        <option>Hotel</option><option>No preference</option>
+      </select></div>
+      <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Biggest goal for this trip</label>
+      <textarea name="goal" placeholder="What matters most to you on this trip?" maxlength="1000" rows="2" style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;resize:vertical;box-sizing:border-box" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'"></textarea></div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Must-Do Experiences</label>
+        <textarea name="mustdo" placeholder="Anything specific you want included?" maxlength="1000" rows="2" style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;resize:vertical;box-sizing:border-box" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'"></textarea></div>
+        <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Anything to Avoid</label>
+        <textarea name="avoid" placeholder="Restrictions, concerns, or no-gos?" maxlength="1000" rows="2" style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;resize:vertical;box-sizing:border-box" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'"></textarea></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+        <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Your Name <span style="color:var(--gold)">*</span></label>
+        <input name="name" type="text" autocomplete="name" maxlength="100" placeholder="First name" required style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'"></div>
+        <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Your Email <span style="color:var(--gold)">*</span></label>
+        <input name="email" type="email" maxlength="254" autocomplete="email" placeholder="so I can send your plan" required style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'"></div>
+      </div>
+      <div><label style="font-size:.61rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--sub);display:block;margin-bottom:4px">Instagram / TikTok <span style="color:var(--sub);font-weight:400">(optional)</span></label>
+      <input name="social" type="text" autocomplete="off" maxlength="60" placeholder="@handle (for vibe reference)" style="width:100%;padding:10px 12px;background:var(--s1);border:1px solid var(--b1);border-radius:6px;color:var(--text);font-family:var(--fb);font-size:.84rem;outline:none;box-sizing:border-box" onfocus="this.style.borderColor='var(--gold)'" onblur="this.style.borderColor='var(--b1)'"></div>
+      <p style="font-size:.74rem;color:var(--sub);text-align:center;font-style:italic">Once you submit, I'll start building your personalized plan.</p>
+      <button type="submit" id="intake-submit" style="padding:13px;background:var(--gold);color:var(--bg);border:none;border-radius:100px;font-family:var(--fb);font-size:.76rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;transition:background .2s">Build My Plan</button>
+    </form>
+    <!-- success message -->
+    <div id="intake-success" style="display:none;text-align:center;padding:32px 0">
+      <div style="font-size:2rem;margin-bottom:12px">✓</div>
+      <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:200;color:var(--cream);margin-bottom:8px">Got it! I'll start building this out and reach out shortly with your plan.</h3>
+      <p style="font-size:.84rem;color:var(--sub)">Check your inbox. I usually deliver within the window of your chosen plan.</p>
+    </div>
+  </div>
+</section>
+
+<!-- COUNTRIES — regional groups, expandable -->
+<section id="countries">
+  <div class="cthdr rv">
+    <div>
+      <p class="sec-tag L">The Passport</p>
+      <h2 class="sh">Where I&rsquo;ve <i>been.</i></h2>
+    </div>
+    <div class="ctnum">25+</div>
+  </div>
+  <div class="rgns rv d1">
+    
+    <div class="rgn-block open" data-rgn="0">
+      <div class="rgn-hdr" onclick="toggleRgn(this)">
+        <span class="rgn-name">Middle East</span>
+        <span class="rgn-count">4 countries <span class="rgn-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6,9 12,15 18,9"/></svg></span></span>
+      </div>
+      <div class="rgn-stamps"><div class="stamp"><span class="sf">🇮🇱</span>Israel</div>
+<div class="stamp"><span class="sf">🇯🇴</span>Jordan</div>
+<div class="stamp"><span class="sf">🇵🇸</span>Palestine</div>
+<div class="stamp"><span class="sf">🇻🇦</span>Vatican</div></div>
+    </div>
+    <div class="rgn-block open" data-rgn="1">
+      <div class="rgn-hdr" onclick="toggleRgn(this)">
+        <span class="rgn-name">Africa</span>
+        <span class="rgn-count">2 countries <span class="rgn-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6,9 12,15 18,9"/></svg></span></span>
+      </div>
+      <div class="rgn-stamps"><div class="stamp"><span class="sf">🇪🇬</span>Egypt</div>
+<div class="stamp"><span class="sf">🇲🇦</span>Morocco</div></div>
+    </div>
+    <div class="rgn-block" data-rgn="2">
+      <div class="rgn-hdr" onclick="toggleRgn(this)">
+        <span class="rgn-name">Europe</span>
+        <span class="rgn-count">10 countries <span class="rgn-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6,9 12,15 18,9"/></svg></span></span>
+      </div>
+      <div class="rgn-stamps"><div class="stamp"><span class="sf">🇦🇱</span>Albania</div>
+<div class="stamp"><span class="sf">🇧🇬</span>Bulgaria</div>
+<div class="stamp"><span class="sf">🇨🇾</span>Cyprus</div>
+<div class="stamp"><span class="sf">🇬🇷</span>Greece</div>
+<div class="stamp"><span class="sf">🇭🇺</span>Hungary</div>
+<div class="stamp"><span class="sf">🇮🇹</span>Italy</div>
+<div class="stamp"><span class="sf">🇪🇸</span>Spain</div>
+<div class="stamp"><span class="sf">🇬🇧</span>UK</div>
+<div class="stamp"><span class="sf">🇰🇾</span>Cayman Is.</div>
+<div class="stamp"><span class="sf">🏴󠁧󠁢󠁥󠁮󠁧󠁿</span>England</div></div>
+    </div>
+    <div class="rgn-block" data-rgn="3">
+      <div class="rgn-hdr" onclick="toggleRgn(this)">
+        <span class="rgn-name">Caribbean & North America</span>
+        <span class="rgn-count">5 countries <span class="rgn-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6,9 12,15 18,9"/></svg></span></span>
+      </div>
+      <div class="rgn-stamps"><div class="stamp"><span class="sf">🇧🇸</span>Bahamas</div>
+<div class="stamp"><span class="sf">🇨🇦</span>Canada</div>
+<div class="stamp"><span class="sf">🇯🇲</span>Jamaica</div>
+<div class="stamp"><span class="sf">🇵🇷</span>Puerto Rico</div>
+<div class="stamp"><span class="sf">🇺🇸</span>USA</div></div>
+    </div>
+    <div class="rgn-block" data-rgn="4">
+      <div class="rgn-hdr" onclick="toggleRgn(this)">
+        <span class="rgn-name">Central America</span>
+        <span class="rgn-count">6 countries <span class="rgn-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6,9 12,15 18,9"/></svg></span></span>
+      </div>
+      <div class="rgn-stamps"><div class="stamp"><span class="sf">🇨🇷</span>Costa Rica</div>
+<div class="stamp"><span class="sf">🇩🇴</span>Dom. Rep.</div>
+<div class="stamp"><span class="sf">🇬🇹</span>Guatemala</div>
+<div class="stamp"><span class="sf">🇭🇳</span>Honduras</div>
+<div class="stamp"><span class="sf">🇲🇽</span>Mexico</div>
+<div class="stamp"><span class="sf">🇳🇮</span>Nicaragua</div></div>
+    </div>
+    <div class="rgn-block" data-rgn="5">
+      <div class="rgn-hdr" onclick="toggleRgn(this)">
+        <span class="rgn-name">South America</span>
+        <span class="rgn-count">2 countries <span class="rgn-arrow"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><polyline points="6,9 12,15 18,9"/></svg></span></span>
+      </div>
+      <div class="rgn-stamps"><div class="stamp"><span class="sf">🇨🇴</span>Colombia</div>
+<div class="stamp"><span class="sf">🇪🇨</span>Ecuador</div></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="ftop">
+    <div class="flogo"><b>worldwide</b>wmal</div>
+    <div class="fcopy">&copy; 2026 Malachi Marshall-Harris &middot; worldwidewmal.com</div>
+    <div class="flinks">
+      <a href="#plan">The Plan</a><a href="#trips">Trips</a><a href="#countries">Travels</a><a href="#intake">Contact</a>
+    </div>
+  </div>
+  <div style="max-width:760px;margin:0 auto;padding:18px 20px 6px;border-top:1px solid rgba(255,255,255,.05)">
+    <details style="margin-bottom:10px">
+      <summary style="cursor:pointer;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6b6260">Privacy Policy</summary>
+      <div style="font-size:.72rem;color:#6b6260;line-height:1.7;padding:10px 0 4px">
+        <p style="margin:0 0 8px">When you submit a form on this site (contact, intake, inquiry, or email signup), the information you enter (such as your name, email address, and message) is sent to us via Web3Forms, a form delivery service, so we can respond to you and deliver what you requested. We do not sell, rent, or share your personal information with third parties for their marketing purposes.</p>
+        <p style="margin:0 0 8px">Payments are processed entirely by Stripe or PayPal on their own secure checkout pages. We never see, collect, or store your card or bank details. Stripe and PayPal handle your payment data under their own privacy policies.</p>
+        <p style="margin:0 0 8px">This site does not use advertising cookies or third-party analytics trackers. It stores small amounts of data in your browser's local storage strictly for site functionality (such as preventing duplicate form submissions). This data stays on your device.</p>
+        <p style="margin:0">To request access to or deletion of any personal information you've submitted, email <a href="mailto:partnerships@worldwidewmal.com" style="color:#c9a056">partnerships@worldwidewmal.com</a> and we will respond promptly.</p>
+      </div>
+    </details>
+    <details style="margin-bottom:10px">
+      <summary style="cursor:pointer;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6b6260">Terms of Service</summary>
+      <div style="font-size:.72rem;color:#6b6260;line-height:1.7;padding:10px 0 4px">
+        <p style="margin:0 0 8px">Travel plans sold on this site are custom digital products prepared individually for each customer based on the details provided in the intake form. Delivery timelines shown on each plan (typically 3–5 days) begin once your completed intake form is received. Plans are delivered by email.</p>
+        <p style="margin:0 0 8px">Travel plans are recommendations based on personal experience and research. You are responsible for verifying visa requirements, travel advisories, opening hours, and prices before and during your trip, and for your own travel decisions, bookings, and safety. We are not a travel agency and do not make bookings on your behalf unless explicitly stated in your plan.</p>
+        <p style="margin:0">Plans are licensed for your personal use. Please don't resell or redistribute them. All site content is &copy; Malachi Marshall-Harris.</p>
+      </div>
+    </details>
+    <details style="margin-bottom:10px">
+      <summary style="cursor:pointer;font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#6b6260">Refund Policy</summary>
+      <div style="font-size:.72rem;color:#6b6260;line-height:1.7;padding:10px 0 4px">
+        <p style="margin:0">If work on your plan has not yet started, contact us at <a href="mailto:partnerships@worldwidewmal.com" style="color:#c9a056">partnerships@worldwidewmal.com</a> for a full refund. Because each plan is a custom digital product, once your plan has been started it is non-refundable. If something in your delivered plan is wrong or doesn't match what you ordered, reach out within 7 days and we'll make it right with a revision.</p>
+      </div>
+    </details>
+  </div>
+  <div class="fbot">
+    <a href="https://www.instagram.com/malachi.mh/" target="_blank" rel="noopener noreferrer" class="fs ig"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>&ensp;@malachi.mh</a>
+    <a href="mailto:partnerships@worldwidewmal.com?subject=Travel%20Plan%20Inquiry" class="fs"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>&ensp;partnerships@worldwidewmal.com</a>
+  </div>
+</footer>
+
+<!-- ══ CHECKOUT MODAL ══════════════════════════════════════════════════ -->
+<div id="ww-cart" role="dialog" aria-modal="true" aria-label="Checkout" style="display:none;position:fixed;inset:0;z-index:2000;background:rgba(9,8,10,.85);backdrop-filter:blur(12px);align-items:flex-end;justify-content:center">
+  <div id="ww-cart-box" style="width:100%;max-width:480px;background:#100f12;border:1px solid rgba(201,160,86,.18);border-radius:18px 18px 0 0;overflow:hidden;transform:translateY(40px);opacity:0;transition:transform .32s cubic-bezier(.16,1,.3,1),opacity .28s">
+    <div style="height:3px;background:linear-gradient(90deg,#c9a056,#e8c47a)"></div>
+    <div style="display:flex;align-items:center;justify-content:space-between;padding:18px 20px 12px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:1.2rem;font-weight:200;color:#faf8f4">Complete your <em style="color:#c9a056">purchase.</em></div>
+      <button type="button" id="ww-cart-close" onclick="wwCloseCart()" aria-label="Close" style="width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:transparent;color:#6b6260;cursor:pointer;font-size:1.1rem;display:flex;align-items:center;justify-content:center">&#x2715;</button>
+    </div>
+    <!-- plan summary -->
+    <div style="margin:0 18px 16px;padding:14px;border:1px solid rgba(201,160,86,.12);border-radius:8px;background:rgba(201,160,86,.04);display:flex;justify-content:space-between;align-items:center">
+      <div>
+        <div id="ww-badge" style="font-size:.58rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:#c9a056;margin-bottom:4px">Plan</div>
+        <div id="ww-name" style="font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:200;color:#faf8f4">&nbsp;</div>
+        <div id="ww-desc" style="font-size:.71rem;color:#6b6260;line-height:1.4;margin-top:3px;max-width:230px">&nbsp;</div>
+      </div>
+      <div style="text-align:right;flex-shrink:0;padding-left:10px">
+        <div id="ww-price" style="font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:200;color:#c9a056">&nbsp;</div>
+        <div id="ww-was" style="font-size:.71rem;color:#6b6260;text-decoration:line-through;opacity:.45">&nbsp;</div>
+      </div>
+    </div>
+    <!-- payment buttons -->
+    <div style="padding:0 18px">
+      <div style="font-size:.59rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#4a4848;margin-bottom:10px">Choose how to pay</div>
+      <!-- STRIPE: card + Google Pay -->
+      <a id="ww-stripe-btn" href="#" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;width:100%;padding:12px 15px;background:#1c1a24;border:1px solid rgba(99,91,255,.35);border-radius:10px;text-decoration:none;margin-bottom:8px;box-sizing:border-box;transition:border-color .18s">
+        <div style="width:34px;height:34px;border-radius:7px;background:#635bff;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><rect x="1" y="5" width="22" height="14" rx="2" fill="white" fill-opacity=".9"/><path d="M1 10h22" stroke="#635bff" stroke-width="2"/></svg>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:.78rem;font-weight:600;color:#faf8f4;margin-bottom:1px">Stripe</div>
+          <div style="font-size:.64rem;color:#6b6260">Cards · Google Pay · Klarna</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#635bff" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+      </a>
+      <!-- APPLE PAY -->
+      <a id="ww-apple-btn" href="#" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;width:100%;padding:12px 15px;background:#1c1a24;border:1px solid rgba(255,255,255,.1);border-radius:10px;text-decoration:none;margin-bottom:8px;box-sizing:border-box;transition:border-color .18s">
+        <div style="width:34px;height:34px;border-radius:7px;background:#000;border:1px solid rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="white"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:.78rem;font-weight:600;color:#faf8f4;margin-bottom:1px">Apple Pay</div>
+          <div style="font-size:.64rem;color:#6b6260">Available on Safari · Apple devices only</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#6b6260" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+      </a>
+      <!-- PAYPAL -->
+      <a id="ww-paypal-btn" href="#" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:12px;width:100%;padding:12px 15px;background:#1c1a24;border:1px solid rgba(0,112,186,.3);border-radius:10px;text-decoration:none;margin-bottom:4px;box-sizing:border-box;transition:border-color .18s">
+        <div style="width:34px;height:34px;border-radius:7px;background:#003087;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M7.5 21H4L6.5 7h6c3.5 0 5.5 2 4.5 5.5C16 15.5 13.5 17 10.5 17H8L7.5 21z" fill="#009cde"/><path d="M10 14H7.5L6.5 7h6c3.5 0 5.5 2 4.5 5.5-.5 1.5-1.5 1.5-1.5 1.5H10z" fill="white" fill-opacity=".3"/></svg>
+        </div>
+        <div style="flex:1">
+          <div style="font-size:.78rem;font-weight:600;color:#faf8f4;margin-bottom:1px"><span style="color:#009cde">Pay</span><span style="color:#7eb8f5">Pal</span></div>
+          <div style="font-size:.64rem;color:#6b6260">Balance · Pay Later · no account needed</div>
+        </div>
+        <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#009cde" stroke-width="2.2" stroke-linecap="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12,5 19,12 12,19"/></svg>
+      </a>
+    </div>
+    <div id="ww-spots-remaining" style="display:none;text-align:center;font-size:.7rem;color:#f59e0b;padding:6px 18px 0;font-weight:600;letter-spacing:.04em;"></div><div style="padding:12px 18px 20px;text-align:center;font-size:.62rem;color:#4a4848">
+      <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" style="vertical-align:middle;margin-right:4px"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+      256-bit SSL encrypted &bull; All payments secured
+    </div>
+  </div>
+</div>
+
+
+<script>
+/* Shared utility — defined first so every subsequent block can call it */
+function escHtml(s){var d=document.createElement('div');d.appendChild(document.createTextNode(String(s)));return d.innerHTML;}
+
+/* ── WEEKLY AVAILABILITY SYSTEM ─────────────────────────────────────────
+   Soft cap: 5 plans/week (any mix)
+   Hard cap: 8 plans/week (Concierge only above soft cap)
+   Waitlist: auto-queues to next week, processes automatically
+──────────────────────────────────────────────────────────────────────── */
+
+
+/* Get current week key: YYYY-WNN */
+function getWeekKey() {
+  var d  = new Date();
+  var jan1 = new Date(d.getFullYear(), 0, 1);
+  var week = Math.ceil(((d - jan1) / 86400000 + jan1.getDay() + 1) / 7);
+  return d.getFullYear() + '-W' + (week < 10 ? '0' : '') + week;
+}
+
+/* Get NEXT week key */
+function getNextWeekKey() {
+  var d = new Date();
+  d.setDate(d.getDate() + 7);
+  var jan1 = new Date(d.getFullYear(), 0, 1);
+  var week = Math.ceil(((d - jan1) / 86400000 + jan1.getDay() + 1) / 7);
+  return d.getFullYear() + '-W' + (week < 10 ? '0' : '') + week;
+}
+
+/* Get next Monday date string */
+function getNextMonday() {
+  var d = new Date();
+  var day = d.getDay();
+  var diff = (day === 0) ? 1 : (8 - day);
+  d.setDate(d.getDate() + diff);
+  return d.toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' });
+}
+
+/* Tier weights: concierge counts as 1, core as 1, starter as 0.6 */
+var TIER_WEIGHT = { starter: 0.6, core: 1, concierge: 1 };
+var SOFT_CAP = 5;
+var HARD_CAP = 8;
+
+/* Default data structure */
+function defaultData() {
+  return { weeks: {} };
+}
+
+/* Load data from localStorage */
+function loadAvailability(cb) {
+  try {
+    var stored = localStorage.getItem('ww_avail_data');
+    cb(stored ? JSON.parse(stored) : defaultData());
+  } catch(e) { cb(defaultData()); }
+}
+
+/* Save data to localStorage */
+function saveAvailability(data, cb) {
+  try { localStorage.setItem('ww_avail_data', JSON.stringify(data)); } catch(e) {}
+  if (cb) cb();
+}
+
+/* Check availability for a plan tier */
+function checkAvailability(tier, cb) {
+  loadAvailability(function(data) {
+    var week = getWeekKey();
+    if (!data.weeks[week]) data.weeks[week] = { count: 0, plans: [], weight: 0 };
+    var w = data.weeks[week];
+    var weight = TIER_WEIGHT[tier] || 1;
+    var newWeight = w.weight + weight;
+
+    var available = true;
+    var waitlisted = false;
+
+    if (newWeight > HARD_CAP) {
+      available = false;
+      waitlisted = true;
+    } else if (w.weight >= SOFT_CAP && tier !== 'concierge') {
+      available = false;
+      waitlisted = true;
+    }
+
+    cb({
+      available:   available,
+      waitlisted:  waitlisted,
+      currentWeight: w.weight,
+      spotsLeft:   Math.max(0, Math.floor(SOFT_CAP - w.weight)),
+      nextWeek:    getNextMonday(),
+      data:        data
+    });
+  });
+}
+
+/* Record a purchase (called after successful payment) */
+function recordPurchase(tier, weekOverride) {
+  loadAvailability(function(data) {
+    var week = weekOverride || getWeekKey();
+    if (!data.weeks[week]) data.weeks[week] = { count: 0, plans: [], weight: 0 };
+    data.weeks[week].count += 1;
+    data.weeks[week].weight += (TIER_WEIGHT[tier] || 1);
+    data.weeks[week].plans.push({ tier: tier, ts: Date.now() });
+    saveAvailability(data, null);
+  });
+}
+
+/* Record a waitlist entry — queues to next week */
+function recordWaitlist(tier, customerEmail, cb) {
+  loadAvailability(function(data) {
+    var nextWeek = getNextWeekKey();
+    if (!data.weeks[nextWeek]) data.weeks[nextWeek] = { count: 0, plans: [], weight: 0 };
+    data.weeks[nextWeek].weight += (TIER_WEIGHT[tier] || 1);
+    data.weeks[nextWeek].count += 1;
+    data.weeks[nextWeek].plans.push({ tier: tier, email: customerEmail, ts: Date.now(), waitlisted: true });
+    saveAvailability(data, function() { if (cb) cb(); });
+  });
+}
+
+/* Get spots remaining this week */
+function getSpotsRemaining(cb) {
+  loadAvailability(function(data) {
+    var week = getWeekKey();
+    var w = data.weeks[week] || { weight: 0 };
+    cb(Math.max(0, SOFT_CAP - w.weight));
+  });
+}
+
+window.WW_AVAIL = {
+  check:    checkAvailability,
+  record:   recordPurchase,
+  waitlist: recordWaitlist,
+  spots:    getSpotsRemaining,
+  nextMonday: getNextMonday
+};
+
+</script>
+<script>
+/* ── AVAILABILITY UI INTEGRATION ─────────────────────────────────────────
+   Hooks into wwCart to check caps before showing checkout
+   Shows spots remaining, sold-out state, waitlist flow
+──────────────────────────────────────────────────────────────────────── */
+
+/* Inject availability badge into pricing cards */
+function updateAvailabilityBadges() {
+  WW_AVAIL.spots(function(spots) {
+    var badges = document.querySelectorAll('.avail-badge');
+    badges.forEach(function(b) {
+      if (spots <= 0) {
+        b.textContent = 'Waitlist available';
+        b.style.color = '#f59e0b';
+      } else if (spots <= 2) {
+        b.textContent = spots + ' spot' + (spots === 1 ? '' : 's') + ' left this week';
+        b.style.color = '#f59e0b';
+      } else {
+        b.textContent = spots + ' spots available this week';
+        b.style.color = 'rgba(201,160,86,.7)';
+      }
+    });
+  });
+}
+
+/* Waitlist modal */
+function showWaitlistModal(tier, nextWeek) {
+  var planNames = { starter: 'Starter Plan', core: 'Core Plan', concierge: 'Concierge Plan' };
+  if (!Object.prototype.hasOwnProperty.call(planNames, tier)) return;
+  var planName  = escHtml(planNames[tier]);
+  var safeWeek  = escHtml(String(nextWeek));
+
+  var existing = document.getElementById('ww-waitlist-modal');
+  if (existing) existing.remove();
+
+  var modal = document.createElement('div');
+  modal.id = 'ww-waitlist-modal';
+  modal.style.cssText = 'position:fixed;inset:0;z-index:10001;background:rgba(9,8,10,.92);display:flex;align-items:flex-end;justify-content:center;backdrop-filter:blur(12px);';
+
+  modal.innerHTML = '<div id="ww-wl-box" style="width:100%;max-width:480px;background:#100f12;border:1px solid rgba(201,160,86,.2);border-radius:18px 18px 0 0;overflow:hidden;transform:translateY(40px);opacity:0;transition:transform .32s cubic-bezier(.16,1,.3,1),opacity .28s;">'
+    + '<div style="height:3px;background:linear-gradient(90deg,#f59e0b,#c9a056)"></div>'
+    + '<div style="padding:20px 20px 8px;display:flex;align-items:center;justify-content:space-between;">'
+    +   '<div style="font-family:Georgia,serif;font-size:1.1rem;font-weight:200;color:#faf8f4">This week is <em style="color:#f59e0b">sold out.</em></div>'
+    +   '<button type="button" onclick="closeWaitlistModal()" aria-label="Close" style="width:28px;height:28px;border-radius:50%;border:1px solid rgba(255,255,255,.1);background:transparent;color:#6b6260;cursor:pointer;font-size:1rem;">&#x2715;</button>'
+    + '</div>'
+    + '<div style="padding:0 20px 14px;">'
+    +   '<div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:12px 14px;font-size:.78rem;color:rgba(234,229,220,.8);line-height:1.6;">'
+    +     '&#128274; This week\'s ' + planName + ' slots are full. Enter your email below and you\'ll be <strong style="color:#f59e0b">automatically booked for ' + safeWeek + '</strong>. First in line, no action needed.'
+    +   '</div>'
+    + '</div>'
+    + '<div style="padding:0 20px 6px;">'
+    +   '<input id="ww-wl-email" type="email" maxlength="254" name="email" autocomplete="email" placeholder="Your email address" style="width:100%;padding:11px 14px;background:#1c1a24;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#faf8f4;font-family:inherit;font-size:.84rem;outline:none;box-sizing:border-box;" />'
+    + '</div>'
+    + '<div style="padding:10px 20px 6px;">'
+    +   '<input id="ww-wl-name" type="text" name="name" autocomplete="name" maxlength="100" placeholder="Your name" style="width:100%;padding:11px 14px;background:#1c1a24;border:1px solid rgba(255,255,255,.1);border-radius:8px;color:#faf8f4;font-family:inherit;font-size:.84rem;outline:none;box-sizing:border-box;" />'
+    + '</div>'
+    + '<input id="ww-wl-botcheck" type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />'
+    + '<div style="padding:10px 20px 20px;">'
+    +   '<button type="button" id="ww-wl-submit" onclick="submitWaitlist(\'' + tier + '\',\'' + safeWeek + '\')" style="width:100%;padding:13px;background:#f59e0b;color:#09080a;border:none;border-radius:100px;font-family:inherit;font-size:.75rem;font-weight:700;letter-spacing:.09em;text-transform:uppercase;cursor:pointer;">Reserve My Spot for ' + safeWeek + ' &#8594;</button>'
+    + '</div>'
+    + '<div id="ww-wl-success" style="display:none;padding:0 20px 20px;text-align:center;">'
+    +   '<div style="font-size:1.4rem;margin-bottom:8px">&#10003;</div>'
+    +   '<div style="font-size:.88rem;color:#6fcf97;font-weight:600;margin-bottom:4px">You\'re on the list!</div>'
+    +   '<div style="font-size:.76rem;color:#6b6260;">Your spot for ' + safeWeek + ' is secured. I\'ll email you when it\'s time to complete your plan.</div>'
+    + '</div>'
+    + '</div>';
+
+  document.body.appendChild(modal);
+  document.body.style.overflow = 'hidden';
+
+  setTimeout(function() {
+    var box = document.getElementById('ww-wl-box');
+    if (box) { box.style.transform = 'translateY(0)'; box.style.opacity = '1'; }
+  }, 30);
+}
+
+window.closeWaitlistModal = function() {
+  var m = document.getElementById('ww-waitlist-modal');
+  if (!m) return;
+  var box = document.getElementById('ww-wl-box');
+  if (box) { box.style.transform = 'translateY(40px)'; box.style.opacity = '0'; }
+  setTimeout(function() { m.remove(); document.body.style.overflow = ''; }, 340);
+};
+
+window.submitWaitlist = function(tier, nextWeek) {
+  var sec=(typeof WW_SECURITY!=='undefined'&&WW_SECURITY)||window.WW_SECURITY;
+  var emailEl = document.getElementById('ww-wl-email');
+  var nameEl  = document.getElementById('ww-wl-name');
+  var hpEl    = document.getElementById('ww-wl-botcheck');
+  if(!sec){ alert('Please refresh the page and try again.'); return; }
+  var email = sec.cleanEmail(emailEl ? emailEl.value : '');
+  var name  = sec.clean(nameEl ? nameEl.value : '', 100);
+
+  if (!sec.validEmail(email)) {
+    if (emailEl) { emailEl.style.borderColor = '#ef4444'; emailEl.focus(); }
+    return;
+  }
+  if(!sec.acquire('waitlist',60000)){ return; }
+  var btn = document.getElementById('ww-wl-submit');
+  var orig = btn ? btn.textContent : '';
+  if (btn) { btn.textContent = 'Securing your spot...'; btn.disabled = true; }
+
+  WW_AVAIL.waitlist(tier, email, function() {
+    var planNames = { starter:'Starter Plan', core:'Core Plan', concierge:'Concierge Plan' };
+    sec.postJSON('https://api.web3forms.com/submit', {
+      access_key: '43898b71-02c7-419d-8c4b-6ee3b1ca6121',
+      subject: 'Travel Plan Waitlist: ' + (planNames[tier] || tier),
+      botcheck: hpEl ? (hpEl.checked ? '1' : '') : '',
+      from_name: name,
+      email: email,
+      plan: (planNames[tier] || tier) + ' (WAITLISTED)',
+      available_date: nextWeek
+    }).then(function(){
+      var form = document.querySelectorAll('#ww-wl-box > div');
+      form.forEach(function(d,i){ if(i>1 && i<6) d.style.display='none'; });
+      var success = document.getElementById('ww-wl-success');
+      if (success) success.style.display = 'block';
+    }).catch(function(){
+      if (btn) { btn.textContent = orig||'Reserve My Spot'; btn.disabled = false; }
+      alert('Error sending. Email partnerships@worldwidewmal.com directly.');
+    }).then(function(){ sec.release('waitlist'); });
+  });
+};
+
+/* Init on DOM ready */
+document.addEventListener('DOMContentLoaded', function() {
+  updateAvailabilityBadges();
+});
+
+</script>
+<script>
+/* worldwidewmal — v15 */
+
+var PLANS = {
+  starter: {
+    name:'Starter Plan', badge:'Starter', price:149,
+    desc:'1-day itinerary. Exact route, timing, key spots. 3-5 day delivery.',
+    stripe:'https://buy.stripe.com/7sY3cx7emgfad8bgGsgUM04',
+    paypal:'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=worldwidewmal%40gmail.com&currency_code=USD&no_shipping=1&rm=2&item_name=Starter+Plan&amount=149.00'
+  },
+  core: {
+    name:'Core Plan', badge:'Most Popular', price:299,
+    desc:'Full 2-3 day itinerary. Routing, budget, picks, backup recommendations.',
+    stripe:'https://buy.stripe.com/3cI4gBfKSgfa0lp4XKgUM05',
+    paypal:'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=worldwidewmal%40gmail.com&currency_code=USD&no_shipping=1&rm=2&item_name=Core+Plan&amount=299.00'
+  },
+  concierge: {
+    name:'Concierge Plan', badge:'Full Service', price:499,
+    desc:'4+ day or multi-city plan. Priority support, everything handled. Starting price, scales with trip complexity.',
+    stripe:'https://buy.stripe.com/4gM4gB0PY7IEecffCogUM06',
+    paypal:'https://www.paypal.com/cgi-bin/webscr?cmd=_xclick&business=worldwidewmal%40gmail.com&currency_code=USD&no_shipping=1&rm=2&item_name=Concierge+Plan&amount=499.00'
+  }
+};
+
+/* Utilities */
+function el(id){ return document.getElementById(id); }
+function setText(id,v){ var e=el(id); if(e) e.textContent=v; }
+
+/* ── Overview modal ─────────────────────────────────────── */
+function openModal(){
+  var ov=el('modal-overlay');
+  if(!ov) return;
+  ov.style.display='flex';
+  ov.style.position='fixed';
+  ov.style.inset='0';
+  ov.style.zIndex='1000';
+  ov.style.background='rgba(0,0,0,.8)';
+  ov.style.alignItems='center';
+  ov.style.justifyContent='center';
+  ov.style.padding='24px';
+  document.body.style.overflow='hidden';
+}
+function closeModal(){
+  var ov=el('modal-overlay');
+  if(ov){ ov.style.display='none'; }
+  document.body.style.overflow='';
+}
+window.openModal  = openModal;
+window.closeModal = closeModal;
+
+/* ── Cart ───────────────────────────────────────────────── */
+function wwCart(key){
+  var p=PLANS[key];
+  if(!p) return;
+  setText('ww-badge', p.badge);
+  setText('ww-name',  p.name);
+  setText('ww-desc',  p.desc);
+  setText('ww-price', '$'+p.price);
+  setText('ww-was',   p.was ? '$'+p.was : '');
+  var sb=el('ww-stripe-btn'); if(sb) sb.href=p.stripe;
+  var pb=el('ww-paypal-btn'); if(pb) pb.href=p.paypal;
+  var ab=el('ww-apple-btn');  if(ab) ab.style.display='none';
+  var ov=el('ww-cart'), box=el('ww-cart-box');
+  if(!ov||!box){ window.open(p.stripe,'_blank','noopener,noreferrer'); return; }
+  ov.style.display='flex';
+  ov.style.position='fixed';
+  ov.style.inset='0';
+  ov.style.zIndex='2000';
+  ov.style.background='rgba(9,8,10,.88)';
+  ov.style.alignItems='flex-end';
+  ov.style.justifyContent='center';
+  document.body.style.overflow='hidden';
+  setTimeout(function(){ box.style.transform='translateY(0)'; box.style.opacity='1'; },30);
+  wireNativePay(key);
+}
+function wwCloseCart(){
+  var ov=el('ww-cart'), box=el('ww-cart-box');
+  if(!ov||!box) return;
+  box.style.transform='translateY(40px)';
+  box.style.opacity='0';
+  setTimeout(function(){ ov.style.display='none'; document.body.style.overflow=''; },340);
+}
+window.wwCart      = wwCart;
+window.wwCloseCart = wwCloseCart;
+
+/* Wrap wwCart with availability check — must run after wwCart is defined above */
+(function(){
+  var _base = window.wwCart;
+  window.wwCart = function(tier) {
+    WW_AVAIL.check(tier, function(result) {
+      if (result.available) {
+        _base(tier);
+        var spotsEl = document.getElementById('ww-spots-remaining');
+        if (spotsEl) {
+          var left = Math.floor(result.spotsLeft);
+          if (left <= 2 && left > 0) {
+            spotsEl.textContent = 'Only ' + left + ' spot' + (left===1?'':'s') + ' left this week!';
+            spotsEl.style.display = 'block';
+          } else {
+            spotsEl.style.display = 'none';
+          }
+        }
+      } else {
+        showWaitlistModal(tier, result.nextWeek);
+      }
+    });
+  };
+}());
+
+/* ── Passport toggle ────────────────────────────────────── */
+function toggleRgn(hdr){
+  var n=hdr;
+  while(n){ if(n.classList&&(n.classList.contains('rgn-block')||n.classList.contains('rgn'))){ n.classList.toggle('open'); return; } n=n.parentNode; }
+}
+window.toggleRgn = toggleRgn;
+
+/* ── Chip ───────────────────────────────────────────────── */
+function toggleChip(input){
+  var sp=input.nextElementSibling; if(!sp) return;
+  if(input.checked){ sp.style.background='rgba(201,160,86,.15)'; sp.style.borderColor='rgba(201,160,86,.5)'; sp.style.color='#c9a056'; }
+  else{ sp.style.background='transparent'; sp.style.borderColor='rgba(255,255,255,.08)'; sp.style.color='#6b6260'; }
+}
+window.toggleChip = toggleChip;
+
+/* ── Native pay (Apple/Google) ──────────────────────────── */
+var stripe=null, _nativePay={};
+try{ stripe=Stripe('pk_live_51TFBaHRY8E8onfsOpQZh3Qysts9ImtDT4mXR4xw251KWHY8x1DNlSG3hdeAdL6oGJl4eAk5S164zt0dnXVBz7w3V00IbE30E4M'); }catch(e){}
+
+function preloadNativePay(){
+  if(!stripe) return;
+  Object.keys(PLANS).forEach(function(key){
+    var p=PLANS[key];
+    try{
+      var pr=stripe.paymentRequest({ country:'US',currency:'usd',total:{label:p.name+' - worldwidewmal',amount:p.price*100},requestPayerName:true,requestPayerEmail:true });
+      pr.canMakePayment().then(function(res){
+        if(!res) return;
+        _nativePay[key]={pr:pr,apple:!!res.applePay,google:!!res.googlePay};
+        pr.on('paymentmethod',function(ev){
+          ev.complete('success');
+          wwCloseCart();
+          setTimeout(function(){ var e=el('intake'); if(e) e.scrollIntoView({behavior:'smooth',block:'start'}); },400);
+        });
+      }).catch(function(){});
+    }catch(e){}
+  });
+}
+
+function wireNativePay(key){
+  var ab=el('ww-apple-btn');
+  if(ab) ab.style.display='none';
+  var np=_nativePay[key]; if(!np) return;
+  if(np.apple&&ab){ ab.style.display='flex'; ab.onclick=function(e){ e.preventDefault(); np.pr.show(); }; }
+
+}
+
+/* ── DOM Ready ──────────────────────────────────────────── */
+document.addEventListener('DOMContentLoaded',function(){
+
+  /* Lock body scroll on load — UGC page is the visible landing view */
+  document.body.style.overflow = 'hidden';
+
+  /* Show all sections immediately */
+  document.querySelectorAll('.rv,.sr').forEach(function(e){ e.classList.add('on'); });
+
+  /* IntersectionObserver for smooth reveals on scroll */
+  if(window.IntersectionObserver){
+    var _io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){ if(en.isIntersecting) en.target.classList.add('on'); });
+    },{threshold:0.05});
+    document.querySelectorAll('.rv,.sr').forEach(function(e){ _io.observe(e); });
+  }
+
+  /* Cart close */
+  var cx=el('ww-cart-close'); if(cx) cx.onclick=wwCloseCart;
+  var co=el('ww-cart'); if(co) co.onclick=function(e){ if(e.target===co) wwCloseCart(); };
+
+  /* Modal close */
+  var mc=el('mc-btn')||el('mod-x'); if(mc) mc.onclick=closeModal;
+  var mo=el('modal-overlay'); if(mo) mo.onclick=function(e){ if(e.target===mo) closeModal(); };
+
+  /* CTA buttons */
+  ['stk-btn','hero-buy-btn','faq-btn','close-btn'].forEach(function(id){
+    var b=el(id); if(b) b.onclick=openModal;
+  });
+
+  /* Escape key */
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'){ wwCloseCart(); closeModal(); } });
+
+  /* Scroll */
+  var pb=el('pb'), nav=document.querySelector('nav'), stk=el('stk');
+  window.addEventListener('scroll',function(){
+    var pct=window.scrollY/Math.max(1,document.body.scrollHeight-window.innerHeight)*100;
+    if(pb) pb.style.width=Math.min(pct,100)+'%';
+    if(nav) nav.classList.toggle('sol',window.scrollY>56);
+    if(stk) stk.classList.toggle('on',window.scrollY>window.innerHeight*.55);
+  },{passive:true});
+
+  /* Card tilt */
+  document.querySelectorAll('.pc').forEach(function(card){
+    card.onmousemove=function(e){ var r=card.getBoundingClientRect(); card.style.transform='perspective(900px) rotateX('+(-(e.clientY-r.top-r.height/2)/r.height*7).toFixed(1)+'deg) rotateY('+((e.clientX-r.left-r.width/2)/r.width*7).toFixed(1)+'deg) translateY(-3px)'; };
+    card.onmouseleave=function(){ card.style.transform=''; };
+  });
+
+  /* FAQ */
+  document.querySelectorAll('.fq').forEach(function(btn){
+    btn.onclick=function(){
+      var item=btn.closest?btn.closest('.fi'):btn.parentNode, wasOpen=item.classList.contains('open');
+      document.querySelectorAll('.fi').forEach(function(fi){ fi.classList.remove('open'); var b=fi.querySelector('.fq'); if(b) b.classList.remove('open'); });
+      if(!wasOpen){ item.classList.add('open'); btn.classList.add('open'); }
+    };
+  });
+
+  /* Forms */
+  var cf=el('contact-form');
+  if(cf) cf.onsubmit=function(e){
+    e.preventDefault();
+    var sec=(typeof WW_SECURITY!=='undefined'&&WW_SECURITY)||window.WW_SECURITY;
+    var b=cf.querySelector('.cfsub');
+    if(!sec){ alert('Please refresh the page and try again.'); return; }
+    if(!sec.acquire('contact-form',60000)){ return; }
+    var d=sec.safeForm(cf,{name:100,email:254,company:120,topic:80,message:1800});
+    if(!sec.validEmail(d.email)){ sec.release('contact-form'); alert('Please enter a valid email address.'); return; }
+    if(b){ b.textContent='Sending...'; b.disabled=true; }
+    sec.postJSON('https://api.web3forms.com/submit',{
+      access_key:'43898b71-02c7-419d-8c4b-6ee3b1ca6121',
+      subject:'Contact Form \u2014 '+(d.topic||'General'),
+      botcheck:d.botcheck||'',
+      from_name:d.name||'-',
+      email:d.email||'-',
+      company:d.company||'-',
+      topic:d.topic||'-',
+      message:d.message||'-'
+    }).then(function(){
+      if(b){ b.textContent='Sent \u2713'; b.style.background='#2a6b45'; setTimeout(function(){ b.textContent='Send It'; b.style.background=''; b.disabled=false; cf.reset(); },3000); }
+    }).catch(function(){
+      if(b){ b.textContent='Send It'; b.disabled=false; }
+      alert('Error sending. Email partnerships@worldwidewmal.com directly.');
+    }).then(function(){ sec.release('contact-form'); });
+  };
+  var lf=el('lead-form');
+  if(lf) lf.onsubmit=function(e){
+    e.preventDefault();
+    var sec=(typeof WW_SECURITY!=='undefined'&&WW_SECURITY)||window.WW_SECURITY;
+    var b=lf.querySelector('.lead-sbmt');
+    if(!sec){ alert('Please refresh the page and try again.'); return; }
+    if(!sec.acquire('lead-form',60000)){ return; }
+    var d=sec.safeForm(lf,{email:254});
+    if(!sec.validEmail(d.email)){ sec.release('lead-form'); alert('Please enter a valid email address.'); return; }
+    if(b){ b.textContent='Sending...'; b.disabled=true; }
+    sec.postJSON('https://api.web3forms.com/submit',{
+      access_key:'43898b71-02c7-419d-8c4b-6ee3b1ca6121',
+      subject:'Free Routes Guide Request',
+      botcheck:d.botcheck||'',
+      email:d.email||'-'
+    }).then(function(){
+      if(b){ b.textContent='On its way \u2713'; b.style.background='#2a6b45'; setTimeout(function(){ b.textContent='Send Me The Routes'; b.style.background=''; b.disabled=false; lf.reset(); },4000); }
+    }).catch(function(){
+      if(b){ b.textContent='Send Me The Routes'; b.disabled=false; }
+      alert('Error sending. Email partnerships@worldwidewmal.com directly.');
+    }).then(function(){ sec.release('lead-form'); });
+  };
+
+  /* Follower count */
+  function fmtN(n){ return (n>=1e6?(n/1e6).toFixed(1).replace(/\.0$/,'')+'M':n>=1e3?(n/1e3).toFixed(1).replace(/\.0$/,'')+'K':String(n))+'+'; }
+  function countUp(e,t){ if(!e) return; var s=Date.now(); (function tick(){ var p=Math.min((Date.now()-s)/1200,1),ease=1-Math.pow(1-p,3); e.textContent=fmtN(Math.round(ease*t)); if(p<1) requestAnimationFrame(tick); else e.textContent=fmtN(t); })(); }
+  countUp(el('pf-f'),48000);
+  var hc=el('hcred'); if(hc) hc.textContent='48K+ on TikTok';
+
+  /* Intake form */
+  var iF=el('intake-form');
+  if(iF) iF.onsubmit=function(e){
+    e.preventDefault();
+    var sec=(typeof WW_SECURITY!=='undefined'&&WW_SECURITY)||window.WW_SECURITY;
+    var btn=el('intake-submit');
+    if(!sec){ alert('Please refresh the page and try again.'); return; }
+    if(!sec.acquire('intake-form',60000)){ return; }
+    var data=sec.safeForm(iF,{destination:150,dates:60,length:3,departure:100,budget:80,group:80,accommodation:80,goal:1000,mustdo:1000,avoid:1000,name:100,email:254,social:60});
+    if(!sec.validEmail(data.email)){ sec.release('intake-form'); alert('Please enter a valid email address.'); return; }
+    var styles=Array.from(iF.querySelectorAll('input[name="style"]:checked')).map(function(c){ return sec.clean(c.value,40); }).join(', ')||'Not specified';
+    var plan=window._purchasedPlan||new URLSearchParams(window.location.search).get('plan')||'Unknown';
+    var orig=btn?btn.textContent:'';
+    if(btn){ btn.textContent='Sending...'; btn.disabled=true; }
+    sec.postJSON('https://api.web3forms.com/submit',{
+      access_key:'43898b71-02c7-419d-8c4b-6ee3b1ca6121',
+      subject:'Travel Plan Intake Form: '+plan,
+      botcheck:data.botcheck||'',
+      from_name: data.name||'-',
+      email: data.email||'-',
+      destination: data.destination||'-',
+      travel_dates: data.dates||'-',
+      trip_length: data.length||'-',
+      departure_city: data.departure||'-',
+      budget: data.budget||'-',
+      group_size: data.group||'-',
+      travel_style: styles,
+      accommodation: data.accommodation||'-',
+      goal: data.goal||'-',
+      must_do: data.mustdo||'-',
+      avoid: data.avoid||'-',
+      social_handle: data.social||'-',
+      plan_purchased: plan
+    }).then(function(){ iF.style.display='none'; var s=el('intake-success'); if(s) s.style.display='block'; })
+    .catch(function(){
+      if(btn){ btn.textContent=orig||'Build My Plan'; btn.disabled=false; }
+      alert('Error sending. Email partnerships@worldwidewmal.com directly.');
+    }).then(function(){ sec.release('intake-form'); });
+  };
+
+  /* Post-purchase scroll */
+  var _rawPp=new URLSearchParams(window.location.search).get('plan');
+  var pp=['starter','core','concierge'].indexOf(_rawPp)!==-1?_rawPp:null;
+  if(pp){
+    if(typeof closeUGC==='function') closeUGC();
+    if(window.WW_AVAIL) WW_AVAIL.record(pp);
+    var pn={starter:'Starter Plan',core:'Core Plan',concierge:'Concierge Plan'};
+    window._purchasedPlan=pn[pp]||'Your Plan';
+    setTimeout(function(){
+      var intake=el('intake'); if(!intake) return;
+      intake.scrollIntoView({behavior:'smooth',block:'start'});
+      if(!el('purchase-banner')){
+        var b=document.createElement('div'); b.id='purchase-banner';
+        b.style.cssText='background:rgba(42,107,69,.15);border:1px solid rgba(42,107,69,.35);border-radius:10px;padding:14px 18px;text-align:center;margin-bottom:20px;color:#6fcf97;font-size:.85rem;';
+        b.textContent='\u2713 Payment confirmed \u2014 '+window._purchasedPlan+'. Fill out the form below.';
+        var fe=el('intake-form'); if(fe) fe.parentNode.insertBefore(b,fe);
+      }
+    },600);
+  }
+
+  /* Native pay init */
+  function tryNative(){ if(window.Stripe&&!stripe){ try{ stripe=Stripe('pk_live_51TFBaHRY8E8onfsOpQZh3Qysts9ImtDT4mXR4xw251KWHY8x1DNlSG3hdeAdL6oGJl4eAk5S164zt0dnXVBz7w3V00IbE30E4M'); }catch(e){} } if(stripe) preloadNativePay(); }
+  var sEl=document.querySelector('script[src*="stripe.com"]'); if(sEl) sEl.addEventListener('load',tryNative);
+  setTimeout(tryNative,1500);
+
+}); /* end DOMContentLoaded */
+
+</script>
+  </body></html>

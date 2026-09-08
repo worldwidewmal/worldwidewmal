@@ -1,0 +1,24 @@
+---
+import { stats, cta, links, seo } from '../data/site';
+---
+<section id="hero">
+  <div class="hero-in">
+    <p class="eyebrow">Brand Content Production</p>
+    <h1 class="h1">{seo.home.h1}</h1>
+    <p class="hero-sub">
+      On-location and UGC production for hospitality, travel, lifestyle, tech, wellness, and consumer brands.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-g" href="#start">{cta.start}</a>
+      <a class="btn btn-o" href={links.portfolio}>{cta.viewPortfolio}</a>
+    </div>
+    <dl class="stats">
+      {stats.map((s) => (
+        <div class="stat">
+          <dt class="stat-n">{s.value}</dt>
+          <dd class="stat-l">{s.label}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>

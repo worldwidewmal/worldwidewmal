@@ -1,0 +1,162 @@
+---
+import { cta } from '../data/site';
+import {
+  onLocation,
+  ugcProduct,
+  usageAddOns,
+  usageNote,
+  droneOptions,
+  postingRates,
+  monthly,
+  type Package,
+} from '../data/brand-pricing';
+
+const groups: { id: string; heading: string; note: string; packages: Package[] }[] = [
+  {
+    id: 'onlocation-pricing',
+    heading: 'On-Location Pricing',
+    note: 'Produced on site at your property, venue, event, or experience.',
+    packages: onLocation,
+  },
+  {
+    id: 'ugc-pricing',
+    heading: 'UGC + Product Pricing',
+    note: 'Short-form product, app, and lifestyle content produced for your brand.',
+    packages: ugcProduct,
+  },
+];
+---
+
+<section id="pricing" class="sec alt">
+  <div class="wrap">
+    <p class="eyebrow rv">Production Pricing</p>
+    <h2 class="h2 rv">Choose the scope that fits the <i>campaign.</i></h2>
+    <p class="lede rv">
+      Start with a core production package, then add usage, distribution, or additional assets as needed.
+    </p>
+
+    {groups.map((group) => (
+      <Fragment>
+        <div class="price-head rv" id={group.id}>
+          <h3>{group.heading}</h3>
+          <p>{group.note}</p>
+        </div>
+        <div class="trio">
+          {group.packages.map((p) => (
+            <article class="pcard rv">
+              <div class="pcard-label">{p.label}</div>
+              <h4 class="pcard-t">{p.title}</h4>
+              <div class="pcard-p">{p.price}</div>
+              <p class="pcard-d">{p.summary}</p>
+              <ul class="pcard-list">
+                {p.visible.map((v) => <li>{v}</li>)}
+              </ul>
+              <a class="btn btn-g" href="#start">{cta.start}</a>
+              <button
+                type="button"
+                class="txtlink js-incl"
+                aria-expanded="false"
+                aria-controls={`incl-${p.id}`}
+                data-label={cta.fullInclusions}
+              >
+                {cta.fullInclusions}
+              </button>
+              <ul class="incl" id={`incl-${p.id}`}>
+                {p.full.map((f) => <li>{f}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </Fragment>
+    ))}
+
+    {/* Commercial terms — progressively disclosed, deliberately lighter weight
+        than the two core service categories. */}
+    <div class="detail-col">
+      <div class="rv">
+        <h3 class="detail-h">Usage + Production Add-Ons</h3>
+        <p class="lede center" style="margin:12px auto 0">
+          Need additional rights, assets, or turnaround options? Add them to any eligible production package.
+        </p>
+      </div>
+      <div class="taglist rv" style="justify-content:center;margin-top:24px">
+        {usageAddOns.map((u) => <span class="tag">{u}</span>)}
+      </div>
+      <p class="note center rv">{usageNote}</p>
+
+      <div class="panel rv" id="drone-photography">
+        <button type="button" class="panel-q js-panel" aria-expanded="false" aria-controls="dp-a">
+          Drone + Photography<span class="panel-ic" aria-hidden="true">+</span>
+        </button>
+        <div class="panel-a" id="dp-a">
+          <p>Add aerial footage, still photography, or additional visual assets to an on-location or product production.</p>
+          <div class="taglist">
+            {droneOptions.map((d) => <span class="tag">{d}</span>)}
+          </div>
+          <a class="btn btn-o btn-sm" href="#start">{cta.addToProject}</a>
+        </div>
+      </div>
+
+      <div class="panel rv" id="social-campaigns">
+        <button type="button" class="panel-q js-panel" aria-expanded="false" aria-controls="sc-a">
+          Social Campaigns<span class="panel-ic" aria-hidden="true">+</span>
+        </button>
+        <div class="panel-a" id="sc-a">
+          <p>Pair your production with creator distribution when you want the content shared with my audience.</p>
+          <div class="rates">
+            {postingRates.map((r) => (
+              <div class="rate">
+                <div class="rate-l">{r.label}</div>
+                <div class="rate-p">{r.price}</div>
+              </div>
+            ))}
+          </div>
+          <p class="note" style="margin-bottom:16px">
+            Campaign posting is available as an add-on to qualifying production projects.
+          </p>
+          <a class="btn btn-o btn-sm" href="#start">{cta.addSocial}</a>
+        </div>
+      </div>
+
+      <div class="panel rv" id="monthly">
+        <button type="button" class="panel-q js-panel" aria-expanded="false" aria-controls="mo-a">
+          <span>
+            <span class="panel-kicker">{monthly.label}</span>
+            {monthly.title}
+          </span>
+          <span class="panel-ic" aria-hidden="true">+</span>
+        </button>
+        <div class="panel-a" id="mo-a">
+          <p>{monthly.copy}</p>
+          <ul class="plainlist">
+            {monthly.detail.map((d) => <li>{d}</li>)}
+          </ul>
+          <a class="btn btn-o btn-sm" href="#start">{cta.askMonthly}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    /* Expandable panels (add-ons, monthly, FAQ) — click and keyboard both work
+       natively because every control is a real <button>. */
+    document.addEventListener('click', function (e) {
+      var panelBtn = e.target.closest ? e.target.closest('.js-panel') : null;
+      if (panelBtn) {
+        var open = panelBtn.parentElement.classList.toggle('open');
+        panelBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+        return;
+      }
+      var inclBtn = e.target.closest ? e.target.closest('.js-incl') : null;
+      if (inclBtn) {
+        var target = document.getElementById(inclBtn.getAttribute('aria-controls'));
+        if (!target) return;
+        var isOpen = target.classList.toggle('open');
+        inclBtn.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        inclBtn.textContent = isOpen ? 'Hide Full Inclusions' : inclBtn.dataset.label;
+      }
+    });
+  })();
+</script>

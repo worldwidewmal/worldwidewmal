@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { seo, site } from '../data/site';
+
+/**
+ * Travel Planning — the secondary destination.
+ *
+ * The travel experience is a large, self-contained legacy page with its own
+ * styles and inline behaviour. It is imported as raw HTML rather than being
+ * re-authored into components: its inline scripts are full of `{}` which
+ * Astro would otherwise parse as template expressions. Importing it verbatim
+ * keeps it byte-for-byte intact while still giving the route its own layout,
+ * metadata, and schema.
+ */
+import travelBody from '../travel-legacy/body.html?raw';
+
+/* The legacy stylesheet that page depends on. Imported so Astro bundles and
+   fingerprints it alongside the rest of the build instead of leaving it as a
+   loose file the markup has to reference by hand. */
+import '../styles/travel.css';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Service',
+  name: 'Custom Travel Planning',
+  description: seo.travel.description,
+  url: `${site.url}/travel`,
+  provider: { '@type': 'Person', name: 'Malachi Marshall-Harris', url: site.url },
+  areaServed: 'Worldwide',
+  serviceType: 'Custom travel itinerary planning',
+};
+---
+
+<BaseLayout
+  title={seo.travel.title}
+  description={seo.travel.description}
+  path="/travel"
+  schema={schema}
+>
+  <!-- Legacy travel markup, rendered verbatim at build time. -->
+  <Fragment set:html={travelBody} />
+</BaseLayout>

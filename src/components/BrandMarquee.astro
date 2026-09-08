@@ -1,0 +1,18 @@
+---
+import { brands } from '../data/brands';
+// The track is rendered twice; the keyframe translates exactly -50% so the
+// second copy lands where the first began — a seamless loop with no gap.
+const track = [...brands, ...brands];
+---
+<section id="brands" aria-label="Selected brand work">
+  <p class="eyebrow">Selected Brand Work</p>
+  <div class="marquee">
+    <div class="marquee-track">
+      {track.map((b, i) => (
+        b.logo
+          ? <img class="brand-logo" src={b.logo} alt={i < brands.length ? b.name : ''} aria-hidden={i >= brands.length} loading="lazy" width="150" height="34" />
+          : <span class="brand-mark" aria-hidden={i >= brands.length}>{b.name}</span>
+      ))}
+    </div>
+  </div>
+</section>

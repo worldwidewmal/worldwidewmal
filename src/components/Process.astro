@@ -1,0 +1,22 @@
+---
+const steps = [
+  { n: '01', t: 'Brief',   c: "Tell me what you're producing, your goals, timeline, and campaign needs." },
+  { n: '02', t: 'Create',  c: 'We align on the creative direction, then production and editing begin.' },
+  { n: '03', t: 'Deliver', c: 'Final assets are delivered ready for your brand, campaign, or social channels.' },
+];
+---
+<section id="process" class="sec alt">
+  <div class="wrap">
+    <p class="eyebrow rv">How It Works</p>
+    <h2 class="h2 rv">Simple from brief to <i>delivery.</i></h2>
+    <div class="steps">
+      {steps.map((s) => (
+        <article class="step rv">
+          <div class="step-n">{s.n}</div>
+          <h3 class="step-t">{s.t}</h3>
+          <p class="step-c">{s.c}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

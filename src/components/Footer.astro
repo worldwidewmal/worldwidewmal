@@ -1,0 +1,31 @@
+---
+import { site, links } from '../data/site';
+const year = new Date().getFullYear();
+---
+<footer>
+  <div class="wrap">
+    <div class="fgrid">
+      <div>
+        <div class="fbrand">{site.wordmark}</div>
+        <p class="fdesc">{site.tagline}</p>
+      </div>
+      <div class="fcol">
+        <div class="fcol-t">Work</div>
+        <a href="#services">Services</a>
+        <a href="#pricing">Pricing</a>
+        <a href={links.portfolio}>Portfolio</a>
+      </div>
+      <div class="fcol">
+        <div class="fcol-t">Explore</div>
+        <a href={links.travel}>Travel Planning</a>
+      </div>
+      <div class="fcol">
+        <div class="fcol-t">Connect</div>
+        <a href={links.tiktok} target="_blank" rel="noopener noreferrer">TikTok</a>
+        <a href={links.instagram} target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a href={links.email}>Email</a>
+      </div>
+    </div>
+    <div class="fbot">&copy; {year} Worldwidewmal. All rights reserved.</div>
+  </div>
+</footer>

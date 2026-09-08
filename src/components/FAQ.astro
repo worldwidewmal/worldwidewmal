@@ -1,0 +1,54 @@
+---
+const faqs = [
+  {
+    q: 'Do you work with brands outside of travel and hospitality?',
+    a: 'Yes. I produce content for hospitality, travel, products, apps, tech, wellness, lifestyle, food, and other consumer brands.',
+  },
+  {
+    q: 'Do you travel for on-location production?',
+    a: 'Yes. On-location projects can be produced domestically or internationally. Travel requirements are quoted based on the location and production scope.',
+  },
+  {
+    q: 'Can you create content without posting it on your own channels?',
+    a: 'Yes. UGC and production projects do not require creator posting. Social distribution is available separately when a campaign needs it.',
+  },
+  {
+    q: 'Can brands use the content for paid ads?',
+    a: 'Yes. Paid usage, whitelisting, and extended licensing are available as add-ons. Pricing depends on the usage type and term.',
+  },
+  {
+    q: 'Do you provide raw footage?',
+    a: 'Yes. Raw footage can be added to qualifying production packages.',
+  },
+  {
+    q: 'Do you offer drone footage and photography?',
+    a: 'Yes. Drone footage and photography can be added to eligible on-location and production projects.',
+  },
+  {
+    q: 'Do you offer monthly content packages?',
+    a: 'Yes. Monthly production options are available for brands that need recurring content.',
+  },
+  {
+    q: 'How do I get started?',
+    a: "Submit the project form with your brand, budget, timeline, and content needs. I'll review the scope and recommend the best next step.",
+  },
+];
+---
+<section id="faq" class="sec alt">
+  <div class="wrap center">
+    <p class="eyebrow center rv">FAQ</p>
+    <h2 class="h2 rv">A few things brands usually <i>ask.</i></h2>
+  </div>
+  <div class="wrap">
+    <div class="faqwrap">
+      {faqs.map((f, i) => (
+        <div class="panel rv">
+          <button type="button" class="panel-q js-panel" aria-expanded="false" aria-controls={`faq-${i + 1}`}>
+            {f.q}<span class="panel-ic" aria-hidden="true">+</span>
+          </button>
+          <div class="panel-a" id={`faq-${i + 1}`}><p>{f.a}</p></div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
