@@ -1,0 +1,57 @@
+---
+import { analytics } from '../data/analytics';
+
+/**
+ * Loads the funnel tracking helper and, only when measurement is actually
+ * configured, a small consent notice.
+ *
+ * With no measurement ID the site sets no cookies, so a banner would be
+ * consent theatre — it is not rendered at all. Fill in the ID in
+ * src/data/analytics.ts and the notice appears automatically.
+ */
+const enabled = Boolean(analytics.measurementId);
+---
+<script is:inline define:vars={{ measurementId: analytics.measurementId }}>
+  window.WW_ANALYTICS_CONFIG = { measurementId: measurementId };
+</script>
+<script is:inline defer src="/js/analytics.js"></script>
+
+{enabled && (
+  <Fragment>
+    <div class="consent" id="consent" role="dialog" aria-label="Cookie notice" hidden>
+      <p class="consent-c">
+        This site uses analytics cookies to understand which pages and services
+        get attention. Nothing is used for advertising.
+        <a href="/privacy">Privacy Policy</a>
+      </p>
+      <div class="consent-a">
+        <button type="button" class="btn btn-o btn-sm" id="consent-no">Decline</button>
+        <button type="button" class="btn btn-g btn-sm" id="consent-yes">Accept</button>
+      </div>
+    </div>
+
+    <script is:inline>
+      (function () {
+        function init() {
+        var A = window.WW_ANALYTICS;
+        var el = document.getElementById('consent');
+        if (!A || !el || !A.needsConsent()) return;
+        el.hidden = false;
+        document.getElementById('consent-yes').addEventListener('click', function () {
+          A.grant();
+          el.hidden = true;
+        });
+        document.getElementById('consent-no').addEventListener('click', function () {
+          A.deny();
+          el.hidden = true;
+        });
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', init);
+        } else {
+          init();
+        }
+      })();
+    </script>
+  </Fragment>
+)}

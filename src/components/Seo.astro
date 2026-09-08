@@ -1,0 +1,61 @@
+---
+import { site, seoDefaults } from '../data/site';
+
+/**
+ * Every piece of page metadata, in one place.
+ *
+ * Pages pass only what is genuinely page-specific — title, description, path,
+ * and optionally schema or a noindex flag. Canonical URL, Open Graph, Twitter,
+ * robots directives, icons, and the social card are all derived here, so they
+ * cannot drift apart between routes.
+ */
+export interface Props {
+  title: string;
+  description: string;
+  /** Path only, e.g. "/" or "/travel". Combined with site.url for canonical. */
+  path?: string;
+  /** Optional JSON-LD rendered as schema.org markup. */
+  schema?: Record<string, unknown>;
+  /** Keep this route out of search results (error and redirect pages). */
+  noindex?: boolean;
+  /** Override the social card. Defaults to the generated logo card. */
+  image?: string;
+}
+
+const { title, description, path = '/', schema, noindex = false, image } = Astro.props;
+
+const canonical = new URL(path, site.url).href;
+const socialImage = new URL(image ?? seoDefaults.image, site.url).href;
+const robots = noindex ? 'noindex, follow' : 'index, follow, max-image-preview:large';
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<meta name="robots" content={robots} />
+<link rel="canonical" href={canonical} />
+
+<!-- Icons, all generated from logo.png at build time. -->
+<link rel="icon" href="/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
+
+<meta property="og:type" content="website" />
+<meta property="og:url" content={canonical} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:site_name" content={site.name} />
+<meta property="og:locale" content="en_US" />
+<meta property="og:image" content={socialImage} />
+<meta property="og:image:width" content={String(seoDefaults.imageWidth)} />
+<meta property="og:image:height" content={String(seoDefaults.imageHeight)} />
+<meta property="og:image:alt" content={site.wordmark} />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:site" content={seoDefaults.twitter} />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={socialImage} />
+<meta name="twitter:image:alt" content={site.wordmark} />
+
+{schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}

@@ -1,0 +1,20 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { seo, site } from '../data/site';
+---
+<PageLayout
+  title={seo.refunds.title}
+  description={seo.refunds.description}
+  heading={seo.refunds.h1}
+  path="/refund-policy"
+>
+  <p>
+    If work on your plan has not yet started, contact us at
+    <a href={`mailto:${site.email}`}>{site.email}</a> for a full refund. Because each plan is
+    a custom digital product, once your plan has been started it is non-refundable.
+  </p>
+  <p>
+    If something in your delivered plan is wrong or does not match what you ordered, reach out
+    within 7 days and we will make it right with a revision.
+  </p>
+</PageLayout>

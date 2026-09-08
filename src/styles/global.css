@@ -77,10 +77,17 @@ section{scroll-margin-top:76px}
 .hero-copy{max-width:60%;min-width:0}
 .hero-logo img{display:block;width:100%;height:auto}
 @media(min-width:1025px){
-  /* Lifted out of flow into the open right-hand third, centred on the CTA and
-     analytics band rather than the headline, with clear space all round. */
-  .hero-logo{position:absolute;right:4%;top:58%;transform:translateY(-50%);
-    width:clamp(260px,19vw,390px);pointer-events:none}
+  /* Sits low in the open right-hand third, level with the analytics row.
+     Anchored to the hero's bottom edge rather than a percentage from the top:
+     the hero clips its overflow, and a top-anchored mark large enough to read
+     would have its base cut off at wide viewports. Anchoring to the bottom
+     keeps the whole mark on screen at every width. */
+  .hero-logo{position:absolute;right:4%;bottom:46px;transform:translateY(50%);
+    width:clamp(240px,17vw,330px);pointer-events:none}
+  /* Extra room below so a mark centred on the analytics row clears the
+     hero's bottom edge — the section clips its overflow, and cropping the
+     logo is not an option. */
+  #hero{padding-bottom:130px}
 }
 @media(max-width:1024px){
   /* Below 1025px there is no longer an empty right-hand column to sit in, so
@@ -150,6 +157,36 @@ section{scroll-margin-top:76px}
 
 /* ── expandable detail panels ────────────────────────────────────────── */
 
+
+
+/* ── prose pages (legal) ─────────────────────────────────────────────── */
+.prose{max-width:70ch;margin:0 auto}
+.prose h1{margin-bottom:28px}
+.prose h2{font-family:var(--ff);font-size:1.3rem;font-weight:300;color:var(--cream);
+  margin:36px 0 12px}
+.prose p{font-size:.9rem;color:var(--sub);line-height:1.85;margin-bottom:16px}
+.prose a{color:var(--gold);text-decoration:underline;text-underline-offset:3px}
+
+/* ── 404 ─────────────────────────────────────────────────────────────── */
+.nf{min-height:100vh;min-height:100svh;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:26px;padding:64px var(--pad);text-align:center}
+.nf-logo{display:block;line-height:0}
+.nf-logo img{width:clamp(150px,22vw,210px);height:auto;display:block}
+
+/* ── cookie notice ───────────────────────────────────────────────────── */
+/* Only rendered when analytics are actually configured. Sits low and narrow so
+   it never covers the page's own calls to action. */
+.consent{position:fixed;left:16px;right:16px;bottom:16px;z-index:120;
+  max-width:520px;margin:0 auto;display:flex;flex-wrap:wrap;align-items:center;gap:14px;
+  padding:16px 18px;border-radius:13px;background:rgba(15,14,18,.98);backdrop-filter:blur(10px);
+  border:1px solid var(--b2);box-shadow:0 14px 40px rgba(0,0,0,.55)}
+.consent-c{flex:1 1 240px;margin:0;font-size:.76rem;color:var(--sub);line-height:1.6}
+.consent-c a{color:var(--gold);margin-left:5px}
+.consent-a{display:flex;gap:9px;flex-shrink:0}
+@media(max-width:640px){
+  .consent{bottom:auto;top:16px}
+  .consent-a{width:100%;justify-content:flex-end}
+}
 
 /* ── project builder ─────────────────────────────────────────────────── */
 /* Selected state reads as a settled choice, not a disabled control. */

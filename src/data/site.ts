@@ -48,8 +48,10 @@ export const cta = {
 /** Primary navigation, in the exact required order. Travel Planning is
  *  flagged secondary so it renders visually de-emphasised. */
 export const nav = [
-  { label: 'Services', href: '#services' },
-  { label: 'Pricing', href: '#pricing' },
+  /* Homepage-absolute so these still work from the legal pages and the 404,
+     where a bare fragment would have no target. */
+  { label: 'Services', href: '/#services' },
+  { label: 'Pricing', href: '/#pricing' },
   { label: 'Portfolio', href: links.portfolio },
   { label: 'Travel Planning', href: links.travel, secondary: true },
 ] as const;
@@ -61,6 +63,18 @@ export const stats = [
   { value: '1.2M+', label: 'Top Video Views' },
   { value: '4K', label: '4K Production' },
 ] as const;
+
+/**
+ * Defaults every page inherits. Only page-specific values live on the pages
+ * themselves; anything shared belongs here so it cannot drift between routes.
+ */
+export const seoDefaults = {
+  /** Generated from logo.png at build time — the mark alone, no text. */
+  image: '/social-preview.png',
+  imageWidth: 1200,
+  imageHeight: 630,
+  twitter: '@worldwidewmal',
+} as const;
 
 export const seo = {
   home: {
@@ -74,5 +88,27 @@ export const seo = {
     description:
       'Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks.',
     h1: 'Turn Your Saved Videos Into A Real Trip.',
+  },
+  privacy: {
+    title: 'Privacy Policy | Worldwidewmal',
+    description:
+      'How Worldwidewmal collects, uses, and protects information submitted through the site.',
+    h1: 'Privacy Policy',
+  },
+  terms: {
+    title: 'Terms of Service | Worldwidewmal',
+    description:
+      'The terms that apply to content production projects and travel planning services from Worldwidewmal.',
+    h1: 'Terms of Service',
+  },
+  refunds: {
+    title: 'Refund Policy | Worldwidewmal',
+    description: 'Refund and cancellation terms for Worldwidewmal services.',
+    h1: 'Refund Policy',
+  },
+  notFound: {
+    title: 'Page Not Found | Worldwidewmal',
+    description: 'That page does not exist.',
+    h1: 'Page not found.',
   },
 } as const;

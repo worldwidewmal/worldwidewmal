@@ -1,0 +1,46 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><script>
+    /* Clickjacking guard: refuse to render inside a frame. */
+    if (window.top !== window.self) {
+      try { window.top.location = window.self.location; } catch (e) { document.body.innerHTML = ''; }
+    }
+  </script><!--
+    CSP is delivered as a meta tag because GitHub Pages serves static files and
+    cannot set response headers. It allows exactly what the site uses: its own
+    assets, the Web3Forms endpoint the inquiry form posts to, and the Airbnb
+    image CDN the travel page links stay images from. Portfolio navigation is a
+    plain top-level link to Canva, which CSP does not restrict, so no frame or
+    connect permission is needed for it.
+  --><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com https://www.googletagmanager.com https://www.google-analytics.com; frame-src 'none'; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com https://region1.google-analytics.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"><meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), usb=(), serial=(), bluetooth=(), browsing-topics=()"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#09080a"><title>Page Not Found | Worldwidewmal</title><meta name="description" content="That page does not exist."><meta name="robots" content="noindex, follow"><link rel="canonical" href="https://worldwidewmal.com/404"><!-- Icons, all generated from logo.png at build time. --><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta property="og:type" content="website"><meta property="og:url" content="https://worldwidewmal.com/404"><meta property="og:title" content="Page Not Found | Worldwidewmal"><meta property="og:description" content="That page does not exist."><meta property="og:site_name" content="worldwidewmal"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://worldwidewmal.com/social-preview.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="WORLDWIDEWMAL"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@worldwidewmal"><meta name="twitter:title" content="Page Not Found | Worldwidewmal"><meta name="twitter:description" content="That page does not exist."><meta name="twitter:image" content="https://worldwidewmal.com/social-preview.png"><meta name="twitter:image:alt" content="WORLDWIDEWMAL"><!-- Portfolio lives on Canva. Resolve DNS and open the TLS connection up
+       front so the click itself is the only thing left to do. --><link rel="preconnect" href="https://worldwidewmal.my.canva.site" crossorigin><link rel="dns-prefetch" href="https://worldwidewmal.my.canva.site"><!-- Form hardening: sanitising, email validation, and submit rate-limiting.
+       Client-side only; it complements, and does not replace, provider checks. --><script defer src="/js/security.js"></script><script>(function(){const measurementId = "";
+
+  window.WW_ANALYTICS_CONFIG = { measurementId: measurementId };
+})();</script> <script defer src="/js/analytics.js"></script> <script>(function(){const portfolioOrigin = "https://worldwidewmal.my.canva.site";
+
+    /* Warm the Canva connection on intent — hover, keyboard focus, or the
+       touchstart that precedes a tap — so the click has nothing left to set up.
+       Fires once; the click itself is a plain navigation and is never delayed
+       or intercepted, which keeps the Back button behaving normally. */
+    (function () {
+      var warmed = false;
+      function warm() {
+        if (warmed) return;
+        warmed = true;
+        var l = document.createElement('link');
+        l.rel = 'preconnect';
+        l.href = portfolioOrigin;
+        l.crossOrigin = '';
+        document.head.appendChild(l);
+      }
+      ['pointerenter', 'focusin', 'touchstart'].forEach(function (evt) {
+        document.addEventListener(
+          evt,
+          function (e) {
+            var t = e.target;
+            if (t && t.closest && t.closest('a[href^="' + portfolioOrigin + '"]')) warm();
+          },
+          { capture: true, passive: true }
+        );
+      });
+    })();
+  })();</script><link rel="stylesheet" href="/assets/_astro/privacy.Dg_TawJ5.css"></head> <body>  <main class="nf"> <a class="nf-logo" href="/"> <img src="/images/wwm-logo-290.webp" width="290" height="290" alt="WORLDWIDEWMAL" decoding="async"> </a> <h1 class="h2">Page not found.</h1> <a class="btn btn-g" href="/">Return Home</a> </main>  </body></html>

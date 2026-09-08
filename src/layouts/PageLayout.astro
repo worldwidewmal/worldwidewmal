@@ -1,0 +1,32 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+/**
+ * Shell for simple content routes — the legal pages and the 404. Same header,
+ * footer, and metadata pipeline as everything else, with a readable measure
+ * for prose.
+ */
+export interface Props {
+  title: string;
+  description: string;
+  heading: string;
+  path?: string;
+  noindex?: boolean;
+}
+
+const { title, description, heading, path = '/', noindex = false } = Astro.props;
+---
+<BaseLayout title={title} description={description} path={path} noindex={noindex}>
+  <Header />
+  <main class="sec">
+    <div class="wrap">
+      <div class="prose">
+        <h1 class="h2">{heading}</h1>
+        <slot />
+      </div>
+    </div>
+  </main>
+  <Footer />
+</BaseLayout>

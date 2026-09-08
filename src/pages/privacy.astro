@@ -1,0 +1,67 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { seo, site } from '../data/site';
+import { analytics } from '../data/analytics';
+
+/**
+ * The existing approved policy, with one section that reflects reality
+ * automatically: the storage and analytics paragraph changes depending on
+ * whether a measurement ID is configured, so the policy cannot claim the site
+ * is tracker-free after analytics are switched on.
+ */
+const analyticsEnabled = Boolean(analytics.measurementId);
+---
+<PageLayout
+  title={seo.privacy.title}
+  description={seo.privacy.description}
+  heading={seo.privacy.h1}
+  path="/privacy"
+>
+  <p>
+    When you submit a form on this site (contact, intake, inquiry, or email signup), the
+    information you enter — such as your name, email address, company, and message — is sent
+    to us via Web3Forms, a form delivery service, so we can respond to you and deliver what
+    you requested. We do not sell, rent, or share your personal information with third
+    parties for their marketing purposes.
+  </p>
+
+  <p>
+    Payments are processed entirely by Stripe or PayPal on their own secure checkout pages.
+    We never see, collect, or store your card or bank details. Stripe and PayPal handle your
+    payment data under their own privacy policies.
+  </p>
+
+  <h2>Storage in your browser</h2>
+  <p>
+    If you use the project builder to assemble a project, your selections are kept in your
+    browser's session storage so they survive scrolling and a page refresh, and are sent to
+    us only if you submit the inquiry form. They are cleared when you close the tab. The site
+    also stores small amounts of data in local storage strictly for functionality, such as
+    preventing duplicate form submissions. This data stays on your device.
+  </p>
+
+  {analyticsEnabled ? (
+    <Fragment>
+      <h2>Analytics</h2>
+      <p>
+        This site uses Google Analytics to understand which pages and services get attention.
+        Analytics cookies are set only after you accept the cookie notice, and you can decline
+        without losing any functionality. IP addresses are anonymised, and the data is not used
+        for advertising or personalisation.
+      </p>
+    </Fragment>
+  ) : (
+    <Fragment>
+      <h2>Analytics</h2>
+      <p>
+        This site does not use advertising cookies or third-party analytics trackers.
+      </p>
+    </Fragment>
+  )}
+
+  <h2>Your information</h2>
+  <p>
+    To request access to or deletion of any personal information you have submitted, email
+    <a href={`mailto:${site.email}`}>{site.email}</a> and we will respond promptly.
+  </p>
+</PageLayout>

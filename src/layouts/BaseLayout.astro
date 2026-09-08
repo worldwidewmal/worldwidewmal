@@ -1,20 +1,30 @@
 ---
 import '../styles/global.css';
-import { site, links } from '../data/site';
+import Seo from '../components/Seo.astro';
+import Analytics from '../components/Analytics.astro';
+import { links } from '../data/site';
 
 export interface Props {
   title: string;
   description: string;
-  /** Load the project builder. Homepage only — the travel page has no packages. */
-  projectBuilder?: boolean;
   /** Path only, e.g. "/" or "/travel". Combined with site.url for canonical. */
   path?: string;
   /** Optional JSON-LD object rendered as schema.org markup. */
   schema?: Record<string, unknown>;
+  /** Keep this route out of search results. */
+  noindex?: boolean;
+  /** Load the project builder. Homepage only — other routes have no packages. */
+  projectBuilder?: boolean;
 }
 
-const { title, description, path = '/', schema, projectBuilder = false } = Astro.props;
-const canonical = new URL(path, site.url).href;
+const {
+  title,
+  description,
+  path = '/',
+  schema,
+  noindex = false,
+  projectBuilder = false,
+} = Astro.props;
 ---
 <!DOCTYPE html>
 <html lang="en">
@@ -29,49 +39,44 @@ const canonical = new URL(path, site.url).href;
     }
   </script>
 
+  <!--
+    CSP is delivered as a meta tag because GitHub Pages serves static files and
+    cannot set response headers. It allows exactly what the site uses: its own
+    assets, the Web3Forms endpoint the inquiry form posts to, and the Airbnb
+    image CDN the travel page links stay images from. Portfolio navigation is a
+    plain top-level link to Canva, which CSP does not restrict, so no frame or
+    connect permission is needed for it.
+  -->
   <meta
     http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com; frame-src 'none'; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com https://www.googletagmanager.com https://www.google-analytics.com; frame-src 'none'; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com https://region1.google-analytics.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"
   />
   <meta
     http-equiv="Permissions-Policy"
     content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), usb=(), serial=(), bluetooth=(), browsing-topics=()"
   />
   <meta name="referrer" content="strict-origin-when-cross-origin" />
+  <meta name="color-scheme" content="dark" />
+  <meta name="theme-color" content="#09080a" />
 
-  <title>{title}</title>
-  <meta name="description" content={description} />
-  <link rel="canonical" href={canonical} />
-  <link rel="icon" href="/logo.png" />
-
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content={canonical} />
-  <meta property="og:title" content={title} />
-  <meta property="og:description" content={description} />
-  <meta property="og:image" content={`${site.url}/logo.png`} />
-  <meta property="og:site_name" content={site.name} />
-  <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:site" content="@worldwidewmal" />
-  <meta name="twitter:title" content={title} />
-  <meta name="twitter:description" content={description} />
-  <meta name="twitter:image" content={`${site.url}/logo.png`} />
-
-  {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
+  <Seo title={title} description={description} path={path} schema={schema} noindex={noindex} />
 
   <!-- Portfolio lives on Canva. Resolve DNS and open the TLS connection up
-       front so the click itself is the only thing left to do. Speculation
-       rules can't prerender a cross-origin document without the destination
-       opting in, so warming the connection is the real win here. -->
+       front so the click itself is the only thing left to do. -->
   <link rel="preconnect" href={links.portfolioOrigin} crossorigin />
   <link rel="dns-prefetch" href={links.portfolioOrigin} />
 
   <!-- Form hardening: sanitising, email validation, and submit rate-limiting.
-       Client-side only; it complements, and does not replace, server checks. -->
-  <script is:inline src="/js/security.js"></script>
+       Client-side only; it complements, and does not replace, provider checks. -->
+  <script is:inline defer src="/js/security.js"></script>
+
+  <Analytics />
 
   {projectBuilder && (
     <!-- Project builder state. Loaded before the components that bind to it so
          the first paint already reflects a restored selection. -->
+    <!-- Not deferred: component scripts in the body read WW_PROJECT while the
+         document is still parsing, so this has to be available before them. -->
     <script is:inline src="/js/project.js"></script>
   )}
 
@@ -79,7 +84,7 @@ const canonical = new URL(path, site.url).href;
     /* Warm the Canva connection on intent — hover, keyboard focus, or the
        touchstart that precedes a tap — so the click has nothing left to set up.
        Fires once; the click itself is a plain navigation and is never delayed
-       or intercepted, which also keeps the Back button behaving normally. */
+       or intercepted, which keeps the Back button behaving normally. */
     (function () {
       var warmed = false;
       function warm() {

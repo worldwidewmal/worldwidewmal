@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { seo, site } from '../data/site';
+
+/* Deliberately minimal: the mark, one line, one way back. */
+const LOGO = '/images/wwm-logo-290.webp';
+---
+<BaseLayout
+  title={seo.notFound.title}
+  description={seo.notFound.description}
+  path="/404"
+  noindex
+>
+  <main class="nf">
+    <a class="nf-logo" href="/">
+      <img src={LOGO} width="290" height="290" alt={site.wordmark} decoding="async" />
+    </a>
+    <h1 class="h2">{seo.notFound.h1}</h1>
+    <a class="btn btn-g" href="/">Return Home</a>
+  </main>
+</BaseLayout>

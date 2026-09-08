@@ -439,14 +439,25 @@ footer{border-top:1px solid var(--b1);background:var(--s1);padding:26px 52px;mar
 
 /* Trips grid — enforced uniform 2-col */
 
-.trips-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:260px;gap:5px;margin:28px 0 0;width:100%}
-.tri{position:relative;overflow:hidden;background:#17151a;border-radius:5px}
-.tri img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 20%;display:block;transition:transform .5s cubic-bezier(.16,1,.3,1)}
+/* Destination photos show in full. They were previously stretched across a
+   fixed 260px row with object-fit:cover, which cut the top and bottom off
+   every portrait shot. Now each image sits in normal flow at its own aspect
+   ratio, and a max-height caps how tall a card can get — a tall photo becomes
+   narrower rather than cropped. The card shrinks to the image so the caption
+   overlay stays aligned with the picture. */
+.trips-grid{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:auto;
+  align-items:start;gap:5px;margin:28px 0 0;width:100%}
+.tri{position:relative;overflow:hidden;background:#17151a;border-radius:5px;
+  width:fit-content;max-width:100%;margin:0 auto}
+.tri img{position:static;display:block;width:auto;height:auto;max-width:100%;
+  max-height:clamp(240px,40vh,420px);object-fit:contain;object-position:center;
+  transition:transform .5s cubic-bezier(.16,1,.3,1)}
 .tri:hover img{transform:scale(1.04)}
 .tri-ov{position:absolute;bottom:0;left:0;right:0;padding:22px 10px 9px;background:linear-gradient(to top,rgba(9,8,10,.88) 55%,transparent)}
 .tri-loc{font-size:.58rem;font-weight:700;letter-spacing:.11em;text-transform:uppercase;color:rgba(201,160,86,.95);margin-bottom:2px}
 .tri-sub{font-size:.52rem;letter-spacing:.06em;text-transform:uppercase;color:rgba(234,229,220,.5)}
-@media(max-width:480px){.trips-grid{grid-auto-rows:180px;gap:3px}}
+@media(max-width:480px){.trips-grid{gap:3px}
+  .tri img{max-height:clamp(200px,32vh,300px)}}
 
 /* Who This Is For — uniform grid */
 

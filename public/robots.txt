@@ -1,4 +1,5 @@
 User-agent: *
 Allow: /
+Disallow: /portfolio
 
-Sitemap: https://worldwidewmal.com/sitemap.xml
+Sitemap: https://worldwidewmal.com/sitemap-index.xml

@@ -3,16 +3,24 @@
     if (window.top !== window.self) {
       try { window.top.location = window.self.location; } catch (e) { document.body.innerHTML = ''; }
     }
-  </script><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com; frame-src 'none'; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"><meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), usb=(), serial=(), bluetooth=(), browsing-topics=()"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Travel Planning | Custom Trip Itineraries by Worldwidewmal</title><meta name="description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><link rel="canonical" href="https://worldwidewmal.com/travel"><link rel="icon" href="/logo.png"><meta property="og:type" content="website"><meta property="og:url" content="https://worldwidewmal.com/travel"><meta property="og:title" content="Travel Planning | Custom Trip Itineraries by Worldwidewmal"><meta property="og:description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta property="og:image" content="https://worldwidewmal.com/logo.png"><meta property="og:site_name" content="worldwidewmal"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@worldwidewmal"><meta name="twitter:title" content="Travel Planning | Custom Trip Itineraries by Worldwidewmal"><meta name="twitter:description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta name="twitter:image" content="https://worldwidewmal.com/logo.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Custom Travel Planning","description":"Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks.","url":"https://worldwidewmal.com/travel","provider":{"@type":"Person","name":"Malachi Marshall-Harris","url":"https://worldwidewmal.com"},"areaServed":"Worldwide","serviceType":"Custom travel itinerary planning"}</script><!-- Portfolio lives on Canva. Resolve DNS and open the TLS connection up
-       front so the click itself is the only thing left to do. Speculation
-       rules can't prerender a cross-origin document without the destination
-       opting in, so warming the connection is the real win here. --><link rel="preconnect" href="https://worldwidewmal.my.canva.site" crossorigin><link rel="dns-prefetch" href="https://worldwidewmal.my.canva.site"><!-- Form hardening: sanitising, email validation, and submit rate-limiting.
-       Client-side only; it complements, and does not replace, server checks. --><script src="/js/security.js"></script><script>(function(){const portfolioOrigin = "https://worldwidewmal.my.canva.site";
+  </script><!--
+    CSP is delivered as a meta tag because GitHub Pages serves static files and
+    cannot set response headers. It allows exactly what the site uses: its own
+    assets, the Web3Forms endpoint the inquiry form posts to, and the Airbnb
+    image CDN the travel page links stay images from. Portfolio navigation is a
+    plain top-level link to Canva, which CSP does not restrict, so no frame or
+    connect permission is needed for it.
+  --><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com https://www.googletagmanager.com https://www.google-analytics.com; frame-src 'none'; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com https://region1.google-analytics.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"><meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), usb=(), serial=(), bluetooth=(), browsing-topics=()"><meta name="referrer" content="strict-origin-when-cross-origin"><meta name="color-scheme" content="dark"><meta name="theme-color" content="#09080a"><title>Travel Planning | Custom Trip Itineraries by Worldwidewmal</title><meta name="description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta name="robots" content="index, follow, max-image-preview:large"><link rel="canonical" href="https://worldwidewmal.com/travel"><!-- Icons, all generated from logo.png at build time. --><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="manifest" href="/site.webmanifest"><meta property="og:type" content="website"><meta property="og:url" content="https://worldwidewmal.com/travel"><meta property="og:title" content="Travel Planning | Custom Trip Itineraries by Worldwidewmal"><meta property="og:description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta property="og:site_name" content="worldwidewmal"><meta property="og:locale" content="en_US"><meta property="og:image" content="https://worldwidewmal.com/social-preview.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta property="og:image:alt" content="WORLDWIDEWMAL"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@worldwidewmal"><meta name="twitter:title" content="Travel Planning | Custom Trip Itineraries by Worldwidewmal"><meta name="twitter:description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta name="twitter:image" content="https://worldwidewmal.com/social-preview.png"><meta name="twitter:image:alt" content="WORLDWIDEWMAL"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Custom Travel Planning","description":"Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks.","url":"https://worldwidewmal.com/travel","provider":{"@type":"Person","name":"Malachi Marshall-Harris","url":"https://worldwidewmal.com"},"areaServed":"Worldwide","serviceType":"Custom travel itinerary planning"}</script><!-- Portfolio lives on Canva. Resolve DNS and open the TLS connection up
+       front so the click itself is the only thing left to do. --><link rel="preconnect" href="https://worldwidewmal.my.canva.site" crossorigin><link rel="dns-prefetch" href="https://worldwidewmal.my.canva.site"><!-- Form hardening: sanitising, email validation, and submit rate-limiting.
+       Client-side only; it complements, and does not replace, provider checks. --><script defer src="/js/security.js"></script><script>(function(){const measurementId = "";
+
+  window.WW_ANALYTICS_CONFIG = { measurementId: measurementId };
+})();</script> <script defer src="/js/analytics.js"></script> <script>(function(){const portfolioOrigin = "https://worldwidewmal.my.canva.site";
 
     /* Warm the Canva connection on intent — hover, keyboard focus, or the
        touchstart that precedes a tap — so the click has nothing left to set up.
        Fires once; the click itself is a plain navigation and is never delayed
-       or intercepted, which also keeps the Back button behaving normally. */
+       or intercepted, which keeps the Back button behaving normally. */
     (function () {
       var warmed = false;
       function warm() {
@@ -35,8 +43,8 @@
         );
       });
     })();
-  })();</script><link rel="stylesheet" href="/assets/_astro/index.PdA0qmUN.css">
-<link rel="stylesheet" href="/assets/_astro/travel.ce6LKwLj.css"></head> <body>   
+  })();</script><link rel="stylesheet" href="/assets/_astro/privacy.Dg_TawJ5.css">
+<link rel="stylesheet" href="/assets/_astro/travel.C2FP6Le_.css"></head> <body>   
 <div id="pb"></div>
 
 <!-- MODAL -->
@@ -172,23 +180,23 @@
     <p style="margin-top:12px;font-size:.93rem;color:var(--sub);max-width:500px;line-height:1.75">Built from real trips, not Google searches. No generic recommendations, no recycled itineraries.</p>
   </div>
   <div class="trips-grid rv d1">
-    <div class="tri"><img width="480" height="636" src="/images/petra-jordan-05834263.webp" alt="Petra, Jordan" style="object-position:center 15%" loading="lazy" decoding="async"/>
+    <div class="tri"><img width="480" height="636" src="/images/petra-jordan-05834263.webp" alt="Petra, Jordan" loading="lazy" decoding="async"/>
       <div class="tri-ov"><div class="tri-loc">Petra Treasury</div><div class="tri-sub">Jordan</div><span class="tri-tag">Faith &amp; History</span></div></div>
-    <div class="tri"><img width="480" height="356" src="/images/cartagena-bay-061618f8.webp" alt="Cartagena Bay" style="object-position:center 30%" loading="lazy" decoding="async"/>
+    <div class="tri"><img width="480" height="356" src="/images/cartagena-bay-061618f8.webp" alt="Cartagena Bay" loading="lazy" decoding="async"/>
       <div class="tri-ov"><div class="tri-loc">Cartagena Bay</div><div class="tri-sub">Colombia</div><span class="tri-tag">Beach &amp; City</span></div></div>
-    <div class="tri"><img width="480" height="854" src="/images/bansko-bulgaria-d624b473.webp" alt="Bansko Bulgaria" style="object-position:center 40%" loading="lazy" decoding="async"/>
+    <div class="tri"><img width="480" height="854" src="/images/bansko-bulgaria-d624b473.webp" alt="Bansko Bulgaria" loading="lazy" decoding="async"/>
       <div class="tri-ov"><div class="tri-loc">Bansko Resort</div><div class="tri-sub">Bulgaria</div><span class="tri-tag">Budget Adventure</span></div></div>
-    <div class="tri"><img width="420" height="315" src="/images/acatenango-summit-guatemala-client-photo-c0408a5c.webp" alt="Acatenango Summit, Guatemala - Client Photo" loading="lazy" decoding="async" style="object-position:center 30%"/><div class="tri-ov"><div class="tri-loc">Acatenango Summit</div><div class="tri-sub">Guatemala</div><span class="tri-tag">Adventure</span></div></div>
-    <div class="tri"><img width="1300" height="1751" src="/images/ksamil-beach-albania-d04288c3.webp" alt="Ksamil Beach Albania" style="object-position:center 40%" loading="lazy" decoding="async"/>
+    <div class="tri"><img width="420" height="315" src="/images/acatenango-summit-guatemala-client-photo-c0408a5c.webp" alt="Acatenango Summit, Guatemala - Client Photo" loading="lazy" decoding="async"/><div class="tri-ov"><div class="tri-loc">Acatenango Summit</div><div class="tri-sub">Guatemala</div><span class="tri-tag">Adventure</span></div></div>
+    <div class="tri"><img width="1300" height="1751" src="/images/ksamil-beach-albania-d04288c3.webp" alt="Ksamil Beach Albania" loading="lazy" decoding="async"/>
       <div class="tri-ov"><div class="tri-loc">Ksamil Beach</div><div class="tri-sub">Albania &bull; Beach &amp; Relax</div></div>
     </div>
-    <div class="tri"><img width="1320" height="2355" src="/images/aventine-keyhole-rome-9c8aef4f.webp" alt="Aventine Keyhole Rome" style="object-position:center 80%" loading="lazy" decoding="async"/>
+    <div class="tri"><img width="1320" height="2355" src="/images/aventine-keyhole-rome-9c8aef4f.webp" alt="Aventine Keyhole Rome" loading="lazy" decoding="async"/>
       <div class="tri-ov"><div class="tri-loc">Aventine Keyhole</div><div class="tri-sub">Rome, Italy &bull; Hidden Gems</div></div>
     </div>
 
-    <div class="tri"><img width="480" height="632" src="/images/cave-tour-cartagena-3ab5a2d9.webp" alt="Cave Tour Cartagena" style="object-position:center 30%" loading="lazy" decoding="async"/>
+    <div class="tri"><img width="480" height="632" src="/images/cave-tour-cartagena-3ab5a2d9.webp" alt="Cave Tour Cartagena" loading="lazy" decoding="async"/>
       <div class="tri-ov"><div class="tri-loc">Cave Expedition</div><div class="tri-sub">Cartagena</div><span class="tri-tag">Off the Beaten Path</span></div></div>
-    <div class="tri"><img width="480" height="640" src="/images/waterfall-nicaragua-0bf0da8e.jpg" alt="Waterfall Nicaragua" style="object-position:center 25%" loading="lazy" decoding="async"/>
+    <div class="tri"><img width="480" height="640" src="/images/waterfall-nicaragua-0bf0da8e.jpg" alt="Waterfall Nicaragua" loading="lazy" decoding="async"/>
       <div class="tri-ov"><div class="tri-loc">Waterfall Hike</div><div class="tri-sub">Le&oacute;n, Nicaragua</div><span class="tri-tag">Adventure</span></div></div>
 
 

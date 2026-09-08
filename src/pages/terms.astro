@@ -1,0 +1,47 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import { seo, site } from '../data/site';
+---
+<PageLayout
+  title={seo.terms.title}
+  description={seo.terms.description}
+  heading={seo.terms.h1}
+  path="/terms"
+>
+  <h2>Content production projects</h2>
+  <p>
+    Prices shown on this site are starting rates for the scope described in each package.
+    Final pricing depends on location, travel, deliverable volume, usage requirements, and
+    production needs, and is confirmed in writing before a project begins. Any estimate
+    produced by the project builder is an estimate only and is not a quote or an offer.
+  </p>
+  <p>
+    Usage, licensing, exclusivity, and posting terms apply per video unless a written package
+    or campaign agreement states otherwise, and must be agreed before the shoot. Retroactive
+    paid usage licensing is not available.
+  </p>
+
+  <h2>Travel plans</h2>
+  <p>
+    Travel plans sold on this site are custom digital products prepared individually for each
+    customer based on the details provided in the intake form. Delivery timelines shown on
+    each plan begin once your completed intake form is received. Plans are delivered by email.
+  </p>
+  <p>
+    Travel plans are recommendations based on personal experience and research. You are
+    responsible for verifying visa requirements, travel advisories, opening hours, and prices
+    before and during your trip, and for your own travel decisions, bookings, and safety. We
+    are not a travel agency and do not make bookings on your behalf unless explicitly stated
+    in your plan.
+  </p>
+
+  <h2>Licence and ownership</h2>
+  <p>
+    Plans are licensed for your personal use. Please do not resell or redistribute them. All
+    site content is &copy; Malachi Marshall-Harris.
+  </p>
+
+  <p>
+    Questions about these terms: <a href={`mailto:${site.email}`}>{site.email}</a>.
+  </p>
+</PageLayout>

@@ -225,6 +225,11 @@ const ACCESS_KEY = '43898b71-02c7-419d-8c4b-6ee3b1ca6121';
       }).then(function () {
         form.style.display = 'none';
         document.getElementById('project-success').classList.add('show');
+        /* Counted only once the provider accepted it, so this measures real
+           inquiries rather than clicks on the button. */
+        document.dispatchEvent(new CustomEvent('ww:form-submitted', {
+          detail: { has_project: !!(projectInput && projectInput.value) }
+        }));
       }).catch(function () {
         if (btn) { btn.textContent = original || 'Get My Project Quote'; btn.disabled = false; }
         alert('Error sending. Email partnerships@worldwidewmal.com directly.');

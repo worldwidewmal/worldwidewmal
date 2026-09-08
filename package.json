@@ -8,9 +8,12 @@
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "publish:pages": "astro build && node scripts/publish.mjs"
+    "publish:pages": "astro build && node scripts/check-links.mjs && node scripts/publish.mjs",
+    "check": "node scripts/check-links.mjs"
   },
   "devDependencies": {
-    "astro": "^5.0.0"
+    "@astrojs/sitemap": "^3.7.0",
+    "astro": "^5.0.0",
+    "sharp": "^0.34.0"
   }
 }
