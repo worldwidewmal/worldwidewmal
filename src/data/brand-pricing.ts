@@ -44,7 +44,7 @@ export const onLocation: Package[] = [
     id: 'loc-campaign',
     label: 'Campaign',
     title: 'On-Location Campaign Package',
-    price: '$1,150',
+    price: '$1,350',
     summary: 'A multi-video content package built for a larger campaign or experience.',
     visible: [
       '3 vertical videos',
@@ -70,7 +70,7 @@ export const onLocation: Package[] = [
     id: 'loc-day',
     label: 'Full Production',
     title: 'Full Video Production Day',
-    price: '$1,750',
+    price: '$2,100',
     summary: 'A dedicated production day designed to capture a larger library of campaign assets.',
     visible: [
       '5 vertical videos',
@@ -177,6 +177,8 @@ export const ugcProduct: Package[] = [
  * carried over from the existing published rate card.
  */
 export interface AddOnRow {
+  /** Stable id — the project builder stores this, so it must not change. */
+  id: string;
   label: string;
   /** Optional qualifier shown under the label. */
   note?: string;
@@ -191,6 +193,12 @@ export interface AddOnGroup {
   rows: AddOnRow[];
   /** Explanatory copy shown under the rows when expanded. */
   footnote?: string;
+  /**
+   * How many rows may be selected at once. Production add-ons stack freely;
+   * a licensing term is one duration or nothing, so picking a new row in
+   * those groups replaces the previous choice.
+   */
+  select: 'multi' | 'single';
 }
 
 export const productionAddOns: AddOnGroup = {
@@ -198,24 +206,27 @@ export const productionAddOns: AddOnGroup = {
   title: 'Production Add-Ons',
   rows: [
     {
+      id: 'cutdown',
       label: 'Edited short-form cutdown',
       note: '15 to 30 second alternate edit created from footage captured for the project',
       price: '$125',
     },
-    { label: 'Additional hook variation', price: '$75' },
+    { id: 'hook', label: 'Additional hook variation', price: '$75' },
     {
+      id: 'raw-footage',
       label: 'Raw footage access',
       note: 'Per video, on packages that do not already include it',
       price: '$125',
     },
-    { label: 'Additional video added to an existing production package', price: '$325' },
-    { label: 'Secondary editing rights', note: 'Per video', price: '$150' },
+    { id: 'extra-video', label: 'Additional video added to an existing production package', price: '$325' },
+    { id: 'secondary-edit', label: 'Secondary editing rights', note: 'Per video', price: '$150' },
     // Drone and photography are production add-ons, not a service category of
     // their own. No rate exists for either in the current rate card, so the
     // slot is held open rather than filled with a guess.
-    { label: 'Drone footage', note: 'When legally permitted and operationally appropriate', price: null },
-    { label: 'Photography', note: 'Property, product, or lifestyle stills', price: null },
+    { id: 'drone', label: 'Drone footage', note: 'When legally permitted and operationally appropriate', price: null },
+    { id: 'photography', label: 'Photography', note: 'Property, product, or lifestyle stills', price: null },
   ],
+  select: 'multi',
   footnote:
     'Secondary editing rights allow the brand to create alternate edits, cutdowns, crops, hook and call-to-action variations, and derivative versions from the delivered content. They do not extend the original usage term and do not include raw footage unless raw footage is purchased separately.',
 };
@@ -226,12 +237,13 @@ export const licensingAddOns: AddOnGroup[] = [
     id: 'paid-ad-usage',
     title: 'Paid Ad Usage',
     scope: 'Run as paid ads, per video',
+    select: 'single',
     rows: [
-      { label: '30 days', price: '$175' },
-      { label: '3 months', price: '$300' },
-      { label: '6 months', price: '$450' },
-      { label: '12 months', price: '$650' },
-      { label: 'Perpetual paid-social buyout', price: 'Starting at $1,000' },
+      { id: 'paid-30-days', label: '30 days', price: '$175' },
+      { id: 'paid-3-months', label: '3 months', price: '$300' },
+      { id: 'paid-6-months', label: '6 months', price: '$450' },
+      { id: 'paid-12-months', label: '12 months', price: '$650' },
+      { id: 'paid-perpetual-paid-social-buyout', label: 'Perpetual paid-social buyout', price: 'Starting at $1,000' },
     ],
     footnote:
       'Paid Ad Usage covers advertising from the brand’s own advertising accounts on agreed social platforms. It does not include advertising through the creator’s handle, broadcast, print, out-of-home media, unrestricted all-media ownership, or raw footage.',
@@ -240,11 +252,12 @@ export const licensingAddOns: AddOnGroup[] = [
     id: 'whitelisting',
     title: 'Whitelisting / Spark Ads',
     scope: 'Ads through my handle, per video, per platform',
+    select: 'single',
     rows: [
-      { label: '30 days', price: '$200' },
-      { label: '60 days', price: '$350' },
-      { label: '90 days', price: '$450' },
-      { label: '6 months', price: '$700' },
+      { id: 'wl-30-days', label: '30 days', price: '$200' },
+      { id: 'wl-60-days', label: '60 days', price: '$350' },
+      { id: 'wl-90-days', label: '90 days', price: '$450' },
+      { id: 'wl-6-months', label: '6 months', price: '$700' },
     ],
     footnote:
       'Whitelisting, Spark Ads, and partnership ads allow approved advertising to run through the creator’s social identity or handle. These rights are separate from standard paid usage through the brand’s own account.',
@@ -253,24 +266,28 @@ export const licensingAddOns: AddOnGroup[] = [
     id: 'exclusivity',
     title: 'Brand Exclusivity',
     scope: '% of package, no direct competitors',
+    select: 'single',
     rows: [
-      { label: '30 days', price: '25%' },
-      { label: '60 days', price: '40%' },
-      { label: '90 days', price: '60%' },
-      { label: '6 months', price: '90%' },
-      { label: '12 months', price: '150%' },
+      { id: 'excl-30-days', label: '30 days', price: '25%' },
+      { id: 'excl-60-days', label: '60 days', price: '40%' },
+      { id: 'excl-90-days', label: '90 days', price: '60%' },
+      { id: 'excl-6-months', label: '6 months', price: '90%' },
+      { id: 'excl-12-months', label: '12 months', price: '150%' },
     ],
   },
   {
     id: 'business-licensing',
     title: 'Business Licensing',
     scope: 'Commercial use beyond paid social',
+    select: 'single',
     rows: [
       {
+        id: 'biz-owned-channels',
         label: 'Website, email, in-store, sales decks, and other non-social owned channels',
         price: '$250',
       },
       {
+        id: 'biz-all-media-buyout',
         label:
           'Full commercial all-media buyout — broadcast, print, out-of-home advertising, and other agreed commercial media',
         price: 'Starting at $1,000',
@@ -281,9 +298,10 @@ export const licensingAddOns: AddOnGroup[] = [
     id: 'rush',
     title: 'Rush Turnaround',
     scope: '% of project',
+    select: 'single',
     rows: [
-      { label: '48 to 72 hours', price: '20%' },
-      { label: '24 hours', price: '35%' },
+      { id: 'rush-48-72-hours', label: '48 to 72 hours', price: '20%' },
+      { id: 'rush-24-hours', label: '24 hours', price: '35%' },
     ],
   },
 ];

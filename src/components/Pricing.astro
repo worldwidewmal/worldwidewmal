@@ -2,15 +2,24 @@
 import { cta } from '../data/site';
 import { onLocation, ugcProduct, type Package } from '../data/brand-pricing';
 
-const groups: { id: string; heading: string; note: string; packages: Package[] }[] = [
+const groups: {
+  id: string;
+  /** Selection category — the tiers inside one category are mutually exclusive. */
+  category: string;
+  heading: string;
+  note: string;
+  packages: Package[];
+}[] = [
   {
     id: 'onlocation-pricing',
+    category: 'onLocation',
     heading: 'On-Location Pricing',
     note: 'Produced on site at your property, venue, event, or experience.',
     packages: onLocation,
   },
   {
     id: 'ugc-pricing',
+    category: 'ugc',
     heading: 'UGC + Product Pricing',
     note: 'Short-form product, app, and lifestyle content produced for your brand.',
     packages: ugcProduct,
@@ -42,7 +51,15 @@ const groups: { id: string; heading: string; note: string; packages: Package[] }
               <ul class="pcard-list">
                 {p.visible.map((v) => <li>{v}</li>)}
               </ul>
-              <a class="btn btn-g" href="#start">{cta.start}</a>
+              <button
+                type="button"
+                class="btn btn-g js-select"
+                data-select="package"
+                data-category={group.category}
+                data-id={p.id}
+                data-title={p.title}
+                data-price={p.price}
+              >Add to Project</button>
               <button
                 type="button"
                 class="txtlink js-incl"

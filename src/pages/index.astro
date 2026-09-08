@@ -13,6 +13,7 @@ import Process from '../components/Process.astro';
 import ProjectInquiry from '../components/ProjectInquiry.astro';
 import FAQ from '../components/FAQ.astro';
 import Footer from '../components/Footer.astro';
+import ProjectBar from '../components/ProjectBar.astro';
 import { seo, site, links } from '../data/site';
 
 const schema = {
@@ -34,7 +35,7 @@ const schema = {
   sameAs: [links.tiktok, links.instagram],
 };
 ---
-<BaseLayout title={seo.home.title} description={seo.home.description} path="/" schema={schema}>
+<BaseLayout title={seo.home.title} description={seo.home.description} path="/" schema={schema} projectBuilder>
   <Header />
   <BrandHero />
   <BrandMarquee />
@@ -48,6 +49,7 @@ const schema = {
   <ProjectInquiry />
   <FAQ />
   <Footer />
+  <ProjectBar />
 
   <script is:inline>
     /* Scroll reveal. Elements start hidden only when JS + IO are available, so

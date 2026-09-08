@@ -24,18 +24,6 @@ const LOGO_2X = '/images/wwm-logo-580.webp';
         <a class="btn btn-o js-portfolio" href={links.portfolio}>{cta.viewPortfolio}</a>
       </div>
     </div>
-    <div class="hero-logo">
-      <img
-        src={LOGO_1X}
-        srcset={`${LOGO_1X} 290w, ${LOGO_2X} 580w`}
-        sizes="(max-width:900px) 190px, 290px"
-        width="290"
-        height="290"
-        alt={site.wordmark}
-        fetchpriority="high"
-        decoding="async"
-      />
-    </div>
     <dl class="stats">
       {stats.map((s) => (
         <div class="stat">
@@ -44,5 +32,22 @@ const LOGO_2X = '/images/wwm-logo-580.webp';
         </div>
       ))}
     </dl>
+
+    {/* Sits in the open right-hand third on desktop, level with the CTA and
+        analytics rather than the headline. Last in the DOM so that when the
+        absolute positioning is dropped on narrow screens it falls in below
+        the copy instead of pushing the headline down. */}
+    <div class="hero-logo">
+      <img
+        src={LOGO_1X}
+        srcset={`${LOGO_1X} 290w, ${LOGO_2X} 580w`}
+        sizes="(max-width:1024px) 200px, (max-width:1400px) 300px, 390px"
+        width="290"
+        height="290"
+        alt={site.wordmark}
+        fetchpriority="high"
+        decoding="async"
+      />
+    </div>
   </div>
 </section>

@@ -17,6 +17,14 @@ const ACCESS_KEY = '43898b71-02c7-419d-8c4b-6ee3b1ca6121';
   </div>
   <div class="wrap">
     <div class="formwrap">
+      <section class="psumm rv" id="project-summary" aria-labelledby="psumm-title" hidden>
+        <div class="psumm-head">
+          <h3 class="psumm-t" id="psumm-title">Your Project</h3>
+          <button type="button" class="txtlink psumm-edit" id="psumm-edit">Edit Project</button>
+        </div>
+        <div id="psumm-body"></div>
+      </section>
+
       <form
         id="project-form"
         class="rv"
@@ -26,6 +34,7 @@ const ACCESS_KEY = '43898b71-02c7-419d-8c4b-6ee3b1ca6121';
       >
         <input type="hidden" name="access_key" value={ACCESS_KEY} />
         <input type="hidden" name="subject" value="New Project Inquiry" />
+        <input type="hidden" name="project" id="pf-project" value="" />
         {/* Honeypot — hidden from people, tempting to bots. */}
         <input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none" />
 
@@ -52,7 +61,7 @@ const ACCESS_KEY = '43898b71-02c7-419d-8c4b-6ee3b1ca6121';
         </div>
 
         <div class="frow">
-          <div class="field">
+          <div class="field" id="field-service">
             <label class="flabel" for="pf-service">Service Needed</label>
             <select class="fselect" id="pf-service" name="service" required>
               <option value="" disabled selected>Select a service</option>
@@ -102,6 +111,80 @@ const ACCESS_KEY = '43898b71-02c7-419d-8c4b-6ee3b1ca6121';
     var form = document.getElementById('project-form');
     if (!form) return;
 
+    /* ── project builder bridge ──────────────────────────────────────────
+       Whatever the visitor selected while scrolling is shown here in full,
+       so arriving at the form confirms their choices rather than hiding
+       them. The same content also rides along as readable text for the
+       inquiry email. */
+    var P = window.WW_PROJECT;
+    var summary = document.getElementById('project-summary');
+    var summaryBody = document.getElementById('psumm-body');
+    var serviceField = document.getElementById('field-service');
+    var serviceInput = document.getElementById('pf-service');
+    var projectInput = document.getElementById('pf-project');
+
+    function esc(v) {
+      return String(v).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function syncProject() {
+      if (!P || !summary) return;
+      var s = P.summary();
+
+      if (!s.count) {
+        summary.hidden = true;
+        if (serviceField) serviceField.hidden = false;
+        if (serviceInput) serviceInput.required = true;
+        if (projectInput) projectInput.value = '';
+        return;
+      }
+
+      var html = '';
+      s.groups.forEach(function (g) {
+        html += '<div class="pgroup"><div class="pgroup-t">' + esc(g.title) + '</div><ul class="plist">';
+        g.items.forEach(function (i) {
+          html += '<li><span class="pl-l">' + esc(i.label) + '</span>' +
+                  '<span class="pl-p' + (i.custom ? ' pl-custom' : '') + '">' + esc(i.price) + '</span></li>';
+        });
+        html += '</ul></div>';
+      });
+      html += '<div class="ptotal"><span>Estimated Total</span><span class="ptotal-v">';
+      if (s.totalLabel) {
+        html += esc(s.totalLabel);
+        if (s.custom.length) html += ' <span class="ptotal-plus">+ custom add-ons</span>';
+      } else {
+        html += '<span class="ptotal-plus">Quoted based on scope</span>';
+      }
+      html += '</span></div>';
+      summaryBody.innerHTML = html;
+      summary.hidden = false;
+
+      /* The service is implied by the chosen package, and it is stated in the
+         summary directly above — asking for it again is pure friction. */
+      var hasPackage = s.groups.some(function (g) { return g.title === 'Core package'; });
+      if (serviceField && hasPackage) {
+        serviceField.hidden = true;
+        if (serviceInput) serviceInput.required = false;
+      } else if (serviceField) {
+        serviceField.hidden = false;
+        if (serviceInput) serviceInput.required = true;
+      }
+
+      if (projectInput) projectInput.value = P.asText();
+    }
+
+    if (P) P.onChange(syncProject);
+
+    var edit = document.getElementById('psumm-edit');
+    if (edit) {
+      edit.addEventListener('click', function () {
+        var open = document.getElementById('pbar-open');
+        if (open) open.click();
+      });
+    }
+
     form.addEventListener('submit', function (e) {
       e.preventDefault();
       var sec = window.WW_SECURITY;
@@ -111,7 +194,10 @@ const ACCESS_KEY = '43898b71-02c7-419d-8c4b-6ee3b1ca6121';
 
       var data = sec.safeForm(form, {
         name: 100, email: 254, company: 120, website: 120,
-        service: 80, budget: 60, timeline: 120, message: 2000
+        service: 80, budget: 60, timeline: 120,
+        /* Both of these are read by a person, so their line breaks matter. */
+        message: { max: 2000, multiline: true },
+        project: { max: 4000, multiline: true }
       });
 
       if (!sec.validEmail(data.email)) {
@@ -131,7 +217,8 @@ const ACCESS_KEY = '43898b71-02c7-419d-8c4b-6ee3b1ca6121';
         email: data.email,
         company: data.company,
         website: data.website || '-',
-        service: data.service,
+        service: data.service || '(selected in project builder)',
+        project: data.project || '(no selections made)',
         budget: data.budget || '-',
         timeline: data.timeline || '-',
         message: data.message || '-'

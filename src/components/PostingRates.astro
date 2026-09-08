@@ -1,6 +1,5 @@
 ---
 import { postingRates } from '../data/brand-pricing';
-import { cta } from '../data/site';
 
 /**
  * Posting is a standalone section, deliberately not an accordion. It is a
@@ -9,6 +8,11 @@ import { cta } from '../data/site';
  * than being filed under add-ons.
  */
 ---
+
+<!-- Posting rates the project builder prices selections against. -->
+<script is:inline define:vars={{ posting: postingRates }}>
+  window.WW_POSTING = posting;
+</script>
 
 <section id="posting" class="sec">
   <div class="wrap center">
@@ -35,7 +39,12 @@ import { cta } from '../data/site';
               </li>
             ))}
           </ul>
-          <a class="btn btn-o btn-sm post-cta" href="#start">{cta.start}</a>
+          <button
+            type="button"
+            class="btn btn-o btn-sm post-cta js-select"
+            data-select="posting"
+            data-id={p.id}
+          >Add to Project</button>
         </article>
       ))}
     </div>

@@ -44,8 +44,21 @@ const groups: AddOnGroup[] = [productionAddOns, ...licensingAddOns];
                     {r.label}
                     {r.note && <span class="acc-row-n">{r.note}</span>}
                   </span>
-                  <span class={r.price ? 'acc-row-p' : 'acc-row-p acc-row-p-tbc'}>
-                    {r.price ?? 'Rate on request'}
+                  <span class="acc-row-r">
+                    <span class={r.price ? 'acc-row-p' : 'acc-row-p acc-row-p-tbc'}>
+                      {r.price ?? 'Rate on request'}
+                    </span>
+                    <button
+                      type="button"
+                      class="addbtn js-select"
+                      data-select="addon"
+                      data-group={g.id}
+                      data-group-title={g.title}
+                      data-mode={g.select}
+                      data-id={r.id}
+                      data-label={r.label}
+                      data-price={r.price ?? ''}
+                    >+ Add</button>
                   </span>
                 </li>
               ))}

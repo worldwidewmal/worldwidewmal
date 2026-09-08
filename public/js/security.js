@@ -18,6 +18,21 @@
     if (typeof max === 'number' && max > 0) s = s.slice(0, max);
     return s;
   }
+  /* Same rules, but line breaks survive. Used for fields whose whole value is
+     its layout — a typed message, or the project summary — where collapsing
+     newlines turns a readable block into one unreadable line. */
+  function cleanMultiline(value, max){
+    if (value === null || value === undefined) return '';
+    var s = String(value);
+    s = s.replace(/\r\n?/g, '\n');
+    s = s.replace(/[^\S\n]+/g, ' ');
+    s = s.replace(/[\x00-\x09\x0B-\x1F\x7F]/g, '');
+    s = s.replace(/[<>`]/g, '');
+    s = s.replace(/\n{3,}/g, '\n\n');
+    s = s.split('\n').map(function(l){ return l.replace(/\s+$/, ''); }).join('\n').trim();
+    if (typeof max === 'number' && max > 0) s = s.slice(0, max);
+    return s;
+  }
   function cleanEmail(value){ return clean(value, 254).toLowerCase().replace(/\s+/g,'').slice(0,254); }
   function validEmail(value){
     var s = String(value || '');
@@ -29,8 +44,16 @@
     var fd = new FormData(form);
     fd.forEach(function(val, key){
       if (key === 'access_key' || key === 'subject') return;
-      var cap = (typeof caps[key] === 'number') ? caps[key] : 200;
-      out[key] = /email/i.test(key) ? cleanEmail(val) : clean(val, cap);
+      /* A cap may be a number, or {max, multiline} when line breaks matter. */
+      var spec = caps[key];
+      var cap = 200, multiline = false;
+      if (typeof spec === 'number') cap = spec;
+      else if (spec && typeof spec === 'object') {
+        if (typeof spec.max === 'number') cap = spec.max;
+        multiline = !!spec.multiline;
+      }
+      if (/email/i.test(key)) out[key] = cleanEmail(val);
+      else out[key] = multiline ? cleanMultiline(val, cap) : clean(val, cap);
     });
     return out;
   }
@@ -97,7 +120,8 @@
     return attempt(1);
   }
   window.WW_SECURITY = {
-    clean: clean, cleanEmail: cleanEmail, validEmail: validEmail,
+    clean: clean,
+    cleanMultiline: cleanMultiline, cleanEmail: cleanEmail, validEmail: validEmail,
     safeForm: safeForm, submissionId: submissionId,
     acquire: acquire, release: release, postJSON: postJSON
   };

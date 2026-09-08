@@ -1,0 +1,195 @@
+---
+/**
+ * The project builder's visible surface: a sticky pill that appears only once
+ * something is selected, and a drawer listing what is in the project.
+ *
+ * This is an inquiry aid, not a checkout — there is no payment step and the
+ * closing action just carries the visitor to the project form.
+ */
+---
+
+<div class="pbar" id="pbar" hidden>
+  <button type="button" class="pbar-btn" id="pbar-open" aria-haspopup="dialog" aria-controls="pdrawer">
+    <span class="pbar-l">Your Project</span>
+    <span class="pbar-sep" aria-hidden="true">·</span>
+    <span class="pbar-n" id="pbar-count">0 items</span>
+    <span class="pbar-cta" aria-hidden="true">View Project</span>
+  </button>
+</div>
+
+<div class="pdrawer-scrim" id="pdrawer-scrim" hidden></div>
+
+<div
+  class="pdrawer"
+  id="pdrawer"
+  role="dialog"
+  aria-modal="true"
+  aria-labelledby="pdrawer-title"
+  hidden
+>
+  <div class="pdrawer-head">
+    <h2 class="pdrawer-t" id="pdrawer-title">Your Project</h2>
+    <button type="button" class="pdrawer-x" id="pdrawer-close" aria-label="Close project summary">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+        <line x1="6" y1="6" x2="18" y2="18" /><line x1="18" y1="6" x2="6" y2="18" />
+      </svg>
+    </button>
+  </div>
+
+  <div class="pdrawer-body" id="pdrawer-body"></div>
+
+  <div class="pdrawer-foot">
+    <p class="pdrawer-note">
+      Estimated only. Travel, location, quantities, and licensing scope may change the final quote.
+    </p>
+    <a class="btn btn-g pdrawer-go" href="#start" id="pdrawer-go">Continue to Project Form</a>
+    <button type="button" class="txtlink pdrawer-clear" id="pdrawer-clear">Clear Project</button>
+  </div>
+</div>
+
+<script is:inline>
+  (function () {
+    var P = window.WW_PROJECT;
+    if (!P) return;
+
+    var bar = document.getElementById('pbar');
+    var count = document.getElementById('pbar-count');
+    var drawer = document.getElementById('pdrawer');
+    var scrim = document.getElementById('pdrawer-scrim');
+    var body = document.getElementById('pdrawer-body');
+    var lastFocus = null;
+
+    /* ── selection controls ──────────────────────────────────────────── */
+    function labelFor(btn, selected) {
+      if (btn.dataset.select === 'addon') return selected ? 'Added ✓' : '+ Add';
+      return selected ? 'Added ✓' : 'Add to Project';
+    }
+
+    function paint() {
+      document.querySelectorAll('.js-select').forEach(function (btn) {
+        var kind = btn.dataset.select;
+        var id = kind === 'posting' ? btn.dataset.id : btn.dataset.id;
+        var on = P.isSelected(kind === 'package' ? 'package' : kind === 'posting' ? 'posting' : 'addon', id);
+        btn.classList.toggle('is-added', on);
+        btn.setAttribute('aria-pressed', on ? 'true' : 'false');
+        btn.textContent = labelFor(btn, on);
+      });
+
+      var n = P.count();
+      if (n > 0) {
+        bar.hidden = false;
+        count.textContent = n + (n === 1 ? ' item' : ' items');
+      } else {
+        bar.hidden = true;
+        closeDrawer();
+      }
+      render();
+    }
+
+    document.addEventListener('click', function (e) {
+      var btn = e.target.closest ? e.target.closest('.js-select') : null;
+      if (!btn) return;
+      var d = btn.dataset;
+      var notice = null;
+
+      if (d.select === 'package') {
+        P.togglePackage(d.category, { id: d.id, title: d.title, price: d.price });
+      } else if (d.select === 'addon') {
+        P.toggleAddOn(d.group, d.mode, {
+          id: d.id,
+          label: d.label,
+          price: d.price === '' ? null : d.price,
+          groupTitle: d.groupTitle,
+        });
+      } else if (d.select === 'posting') {
+        notice = P.togglePosting(d.id);
+      }
+
+      if (notice) announce(notice);
+    });
+
+    /* Overlap resolutions change selections the visitor did not click, so say
+       so out loud rather than silently rewriting their choices. */
+    var liveRegion = document.createElement('p');
+    liveRegion.className = 'pnotice';
+    liveRegion.setAttribute('role', 'status');
+    liveRegion.setAttribute('aria-live', 'polite');
+    liveRegion.hidden = true;
+    document.body.appendChild(liveRegion);
+    var noticeTimer;
+    function announce(msg) {
+      liveRegion.textContent = msg;
+      liveRegion.hidden = false;
+      clearTimeout(noticeTimer);
+      noticeTimer = setTimeout(function () { liveRegion.hidden = true; }, 6000);
+    }
+
+    /* ── drawer ──────────────────────────────────────────────────────── */
+    function render() {
+      if (!body) return;
+      var s = P.summary();
+      if (!s.count) { body.innerHTML = ''; return; }
+
+      var html = '';
+      s.groups.forEach(function (g) {
+        html += '<div class="pgroup"><div class="pgroup-t">' + esc(g.title) + '</div><ul class="plist">';
+        g.items.forEach(function (i) {
+          html += '<li><span class="pl-l">' + esc(i.label) + '</span>' +
+                  '<span class="pl-p' + (i.custom ? ' pl-custom' : '') + '">' + esc(i.price) + '</span></li>';
+        });
+        html += '</ul></div>';
+      });
+
+      html += '<div class="ptotal"><span>Estimated Total</span><span class="ptotal-v">';
+      if (s.totalLabel) {
+        html += esc(s.totalLabel);
+        if (s.custom.length) html += ' <span class="ptotal-plus">+ custom add-ons</span>';
+      } else {
+        html += '<span class="ptotal-plus">Quoted based on scope</span>';
+      }
+      html += '</span></div>';
+      body.innerHTML = html;
+    }
+
+    function esc(v) {
+      return String(v).replace(/[&<>"']/g, function (c) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+      });
+    }
+
+    function openDrawer() {
+      lastFocus = document.activeElement;
+      drawer.hidden = false;
+      scrim.hidden = false;
+      document.getElementById('pdrawer-close').focus();
+      document.addEventListener('keydown', onKey);
+    }
+
+    function closeDrawer() {
+      if (drawer.hidden) return;
+      drawer.hidden = true;
+      scrim.hidden = true;
+      document.removeEventListener('keydown', onKey);
+      if (lastFocus && lastFocus.focus) lastFocus.focus();
+    }
+
+    function onKey(e) {
+      if (e.key === 'Escape') { closeDrawer(); return; }
+      if (e.key !== 'Tab') return;
+      /* Keep focus inside the dialog while it is open. */
+      var f = drawer.querySelectorAll('a[href],button,[tabindex]:not([tabindex="-1"])');
+      if (!f.length) return;
+      var first = f[0], last = f[f.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+
+    document.getElementById('pbar-open').addEventListener('click', openDrawer);
+    document.getElementById('pdrawer-close').addEventListener('click', closeDrawer);
+    scrim.addEventListener('click', closeDrawer);
+    document.getElementById('pdrawer-go').addEventListener('click', closeDrawer);
+    document.getElementById('pdrawer-clear').addEventListener('click', function () { P.clear(); });
+
+    P.onChange(paint);
+  })();
+</script>
