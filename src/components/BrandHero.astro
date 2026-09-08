@@ -1,16 +1,40 @@
 ---
-import { stats, cta, links, seo } from '../data/site';
+import { stats, cta, links, seo, site } from '../data/site';
+
+/**
+ * The approved WORLDWIDEWMAL mark. `logo.png` stays the canonical source
+ * asset; these are straight resizes of it — same design, proportions, colour,
+ * and spacing — encoded as WebP so the hero doesn't ship a 1.8 MB PNG into a
+ * 290px slot. The mark's own background matches the page background, so it
+ * sits flush with no visible edge and needs no effects or treatment.
+ */
+const LOGO_1X = '/images/wwm-logo-290.webp';
+const LOGO_2X = '/images/wwm-logo-580.webp';
 ---
 <section id="hero">
   <div class="hero-in">
-    <p class="eyebrow">Brand Content Production</p>
-    <h1 class="h1">{seo.home.h1}</h1>
-    <p class="hero-sub">
-      On-location and UGC production for hospitality, travel, lifestyle, tech, wellness, and consumer brands.
-    </p>
-    <div class="hero-cta">
-      <a class="btn btn-g" href="#start">{cta.start}</a>
-      <a class="btn btn-o" href={links.portfolio}>{cta.viewPortfolio}</a>
+    <div class="hero-copy">
+      <p class="eyebrow">Brand Content Production</p>
+      <h1 class="h1">{seo.home.h1}</h1>
+      <p class="hero-sub">
+        On-location and UGC production for hospitality, travel, lifestyle, tech, wellness, and consumer brands.
+      </p>
+      <div class="hero-cta">
+        <a class="btn btn-g" href="#start">{cta.start}</a>
+        <a class="btn btn-o js-portfolio" href={links.portfolio}>{cta.viewPortfolio}</a>
+      </div>
+    </div>
+    <div class="hero-logo">
+      <img
+        src={LOGO_1X}
+        srcset={`${LOGO_1X} 290w, ${LOGO_2X} 580w`}
+        sizes="(max-width:900px) 190px, 290px"
+        width="290"
+        height="290"
+        alt={site.wordmark}
+        fetchpriority="high"
+        decoding="async"
+      />
     </div>
     <dl class="stats">
       {stats.map((s) => (

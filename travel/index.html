@@ -3,10 +3,39 @@
     if (window.top !== window.self) {
       try { window.top.location = window.self.location; } catch (e) { document.body.innerHTML = ''; }
     }
-  </script><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com; frame-src https://www.canva.com https://*.canva.com; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"><meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), usb=(), serial=(), bluetooth=(), browsing-topics=()"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Travel Planning | Custom Trip Itineraries by Worldwidewmal</title><meta name="description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><link rel="canonical" href="https://worldwidewmal.com/travel"><link rel="icon" href="/logo.png"><meta property="og:type" content="website"><meta property="og:url" content="https://worldwidewmal.com/travel"><meta property="og:title" content="Travel Planning | Custom Trip Itineraries by Worldwidewmal"><meta property="og:description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta property="og:image" content="https://worldwidewmal.com/logo.png"><meta property="og:site_name" content="worldwidewmal"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@worldwidewmal"><meta name="twitter:title" content="Travel Planning | Custom Trip Itineraries by Worldwidewmal"><meta name="twitter:description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta name="twitter:image" content="https://worldwidewmal.com/logo.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Custom Travel Planning","description":"Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks.","url":"https://worldwidewmal.com/travel","provider":{"@type":"Person","name":"Malachi Marshall-Harris","url":"https://worldwidewmal.com"},"areaServed":"Worldwide","serviceType":"Custom travel itinerary planning"}</script><script type="speculationrules">
-    { "prerender": [ { "where": { "href_matches": "/portfolio*" }, "eagerness": "moderate" } ] }
-  </script><!-- Form hardening: sanitising, email validation, and submit rate-limiting.
-       Client-side only; it complements, and does not replace, server checks. --><script src="/js/security.js"></script><link rel="stylesheet" href="/assets/_astro/index.DYFAp8ZK.css">
+  </script><meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com; frame-src 'none'; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"><meta http-equiv="Permissions-Policy" content="accelerometer=(), camera=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), usb=(), serial=(), bluetooth=(), browsing-topics=()"><meta name="referrer" content="strict-origin-when-cross-origin"><title>Travel Planning | Custom Trip Itineraries by Worldwidewmal</title><meta name="description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><link rel="canonical" href="https://worldwidewmal.com/travel"><link rel="icon" href="/logo.png"><meta property="og:type" content="website"><meta property="og:url" content="https://worldwidewmal.com/travel"><meta property="og:title" content="Travel Planning | Custom Trip Itineraries by Worldwidewmal"><meta property="og:description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta property="og:image" content="https://worldwidewmal.com/logo.png"><meta property="og:site_name" content="worldwidewmal"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:site" content="@worldwidewmal"><meta name="twitter:title" content="Travel Planning | Custom Trip Itineraries by Worldwidewmal"><meta name="twitter:description" content="Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks."><meta name="twitter:image" content="https://worldwidewmal.com/logo.png"><script type="application/ld+json">{"@context":"https://schema.org","@type":"Service","name":"Custom Travel Planning","description":"Custom travel plans built from real, firsthand trips across 25+ countries: day-by-day routes, budgets, neighbourhood guidance, and vetted restaurant and activity picks.","url":"https://worldwidewmal.com/travel","provider":{"@type":"Person","name":"Malachi Marshall-Harris","url":"https://worldwidewmal.com"},"areaServed":"Worldwide","serviceType":"Custom travel itinerary planning"}</script><!-- Portfolio lives on Canva. Resolve DNS and open the TLS connection up
+       front so the click itself is the only thing left to do. Speculation
+       rules can't prerender a cross-origin document without the destination
+       opting in, so warming the connection is the real win here. --><link rel="preconnect" href="https://worldwidewmal.my.canva.site" crossorigin><link rel="dns-prefetch" href="https://worldwidewmal.my.canva.site"><!-- Form hardening: sanitising, email validation, and submit rate-limiting.
+       Client-side only; it complements, and does not replace, server checks. --><script src="/js/security.js"></script><script>(function(){const portfolioOrigin = "https://worldwidewmal.my.canva.site";
+
+    /* Warm the Canva connection on intent — hover, keyboard focus, or the
+       touchstart that precedes a tap — so the click has nothing left to set up.
+       Fires once; the click itself is a plain navigation and is never delayed
+       or intercepted, which also keeps the Back button behaving normally. */
+    (function () {
+      var warmed = false;
+      function warm() {
+        if (warmed) return;
+        warmed = true;
+        var l = document.createElement('link');
+        l.rel = 'preconnect';
+        l.href = portfolioOrigin;
+        l.crossOrigin = '';
+        document.head.appendChild(l);
+      }
+      ['pointerenter', 'focusin', 'touchstart'].forEach(function (evt) {
+        document.addEventListener(
+          evt,
+          function (e) {
+            var t = e.target;
+            if (t && t.closest && t.closest('a[href^="' + portfolioOrigin + '"]')) warm();
+          },
+          { capture: true, passive: true }
+        );
+      });
+    })();
+  })();</script><link rel="stylesheet" href="/assets/_astro/index.ClcErsmf.css">
 <link rel="stylesheet" href="/assets/_astro/travel.ce6LKwLj.css"></head> <body>   
 <div id="pb"></div>
 
@@ -1041,8 +1070,30 @@ function wireNativePay(key){
 /* ── DOM Ready ──────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded',function(){
 
-  /* Lock body scroll on load — UGC page is the visible landing view */
-  document.body.style.overflow = 'hidden';
+  /* Travel is its own page now, so nothing may lock the document. The old
+     build locked body scroll here because the UGC landing view sat on top of
+     this page and scrolled internally; with that overlay gone the lock was
+     never released and the page could not scroll past the first viewport.
+     Clearing the inline styles also recovers from a modal that was mid-open
+     during a back/forward navigation. */
+  document.documentElement.style.overflow = '';
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.height = '';
+  document.body.style.maxHeight = '';
+
+  /* Restoring from the back/forward cache replays the DOM exactly as it was,
+     inline styles included — so a page left with a modal open comes back
+     locked. Re-clear on every show, not just the first load. */
+  window.addEventListener('pageshow', function () {
+    var open = document.querySelector('#modal-overlay[style*="flex"], .ww-cart.open');
+    if (open) return;
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.height = '';
+    document.body.style.maxHeight = '';
+  });
 
   /* Show all sections immediately */
   document.querySelectorAll('.rv,.sr').forEach(function(e){ e.classList.add('on'); });
@@ -1195,7 +1246,6 @@ document.addEventListener('DOMContentLoaded',function(){
   var _rawPp=new URLSearchParams(window.location.search).get('plan');
   var pp=['starter','core','concierge'].indexOf(_rawPp)!==-1?_rawPp:null;
   if(pp){
-    if(typeof closeUGC==='function') closeUGC();
     if(window.WW_AVAIL) WW_AVAIL.record(pp);
     var pn={starter:'Starter Plan',core:'Core Plan',concierge:'Concierge Plan'};
     window._purchasedPlan=pn[pp]||'Your Plan';

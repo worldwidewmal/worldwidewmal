@@ -18,7 +18,7 @@ const DIST = path.join(ROOT, 'dist');
 const KEEP = new Set([
   '.git', '.github', '.gitignore', 'node_modules', 'dist', 'src', 'scripts',
   'public', 'package.json', 'package-lock.json', 'astro.config.mjs',
-  'tsconfig.json', '.astro', 'README.md', 'CNAME', '_config.yml', 'portfolio',
+  'tsconfig.json', '.astro', 'README.md', 'CNAME', '_config.yml',
 ]);
 
 if (!existsSync(DIST)) {

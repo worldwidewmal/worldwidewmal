@@ -1,6 +1,6 @@
 ---
 import '../styles/global.css';
-import { site } from '../data/site';
+import { site, links } from '../data/site';
 
 export interface Props {
   title: string;
@@ -29,7 +29,7 @@ const canonical = new URL(path, site.url).href;
 
   <meta
     http-equiv="Content-Security-Policy"
-    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com; frame-src https://www.canva.com https://*.canva.com; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"
+    content="default-src 'self'; script-src 'self' 'unsafe-inline'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self' data: https://a0.muscache.com; frame-src 'none'; connect-src 'self' https://api.web3forms.com; form-action 'self' https://api.web3forms.com; base-uri 'self'; object-src 'none'; worker-src 'none'; manifest-src 'self'; upgrade-insecure-requests;"
   />
   <meta
     http-equiv="Permissions-Policy"
@@ -56,14 +56,47 @@ const canonical = new URL(path, site.url).href;
 
   {schema && <script type="application/ld+json" set:html={JSON.stringify(schema)} />}
 
-  <script is:inline type="speculationrules">
-    { "prerender": [ { "where": { "href_matches": "/portfolio*" }, "eagerness": "moderate" } ] }
-  </script>
+  <!-- Portfolio lives on Canva. Resolve DNS and open the TLS connection up
+       front so the click itself is the only thing left to do. Speculation
+       rules can't prerender a cross-origin document without the destination
+       opting in, so warming the connection is the real win here. -->
+  <link rel="preconnect" href={links.portfolioOrigin} crossorigin />
+  <link rel="dns-prefetch" href={links.portfolioOrigin} />
 
   <!-- Form hardening: sanitising, email validation, and submit rate-limiting.
        Client-side only; it complements, and does not replace, server checks. -->
   <script is:inline src="/js/security.js"></script>
+
+  <script is:inline define:vars={{ portfolioOrigin: links.portfolioOrigin }}>
+    /* Warm the Canva connection on intent — hover, keyboard focus, or the
+       touchstart that precedes a tap — so the click has nothing left to set up.
+       Fires once; the click itself is a plain navigation and is never delayed
+       or intercepted, which also keeps the Back button behaving normally. */
+    (function () {
+      var warmed = false;
+      function warm() {
+        if (warmed) return;
+        warmed = true;
+        var l = document.createElement('link');
+        l.rel = 'preconnect';
+        l.href = portfolioOrigin;
+        l.crossOrigin = '';
+        document.head.appendChild(l);
+      }
+      ['pointerenter', 'focusin', 'touchstart'].forEach(function (evt) {
+        document.addEventListener(
+          evt,
+          function (e) {
+            var t = e.target;
+            if (t && t.closest && t.closest('a[href^="' + portfolioOrigin + '"]')) warm();
+          },
+          { capture: true, passive: true }
+        );
+      });
+    })();
+  </script>
 </head>
+
 <body>
   <slot />
 </body>

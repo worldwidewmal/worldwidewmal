@@ -52,3 +52,19 @@ const faqs = [
     </div>
   </div>
 </section>
+
+<script is:inline>
+  (function () {
+    /* Scoped to this section so the component owns its own behaviour. Each
+       control is a real <button>, so pointer and keyboard both work without
+       extra key handling. */
+    var wrap = document.querySelector('#faq .faqwrap');
+    if (!wrap) return;
+    wrap.addEventListener('click', function (e) {
+      var btn = e.target.closest ? e.target.closest('.js-panel') : null;
+      if (!btn) return;
+      var open = btn.parentElement.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>

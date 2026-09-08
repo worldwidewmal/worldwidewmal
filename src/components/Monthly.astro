@@ -1,0 +1,44 @@
+---
+import { monthly } from '../data/brand-pricing';
+import { cta } from '../data/site';
+
+/**
+ * Ongoing production, kept as a single collapsed row. Retainers are a
+ * conversation rather than a checkout, so this stays quiet and sits below the
+ * one-off packages instead of competing with them.
+ */
+---
+
+<section id="ongoing" class="sec alt">
+  <div class="wrap">
+    <div class="detail-col">
+      <div class="panel rv" id="monthly">
+        <button type="button" class="panel-q js-panel" aria-expanded="false" aria-controls="mo-a">
+          <span>
+            <span class="panel-kicker">{monthly.label}</span>
+            {monthly.title}
+          </span>
+          <span class="panel-ic" aria-hidden="true">+</span>
+        </button>
+        <div class="panel-a" id="mo-a">
+          <p>{monthly.copy}</p>
+          <ul class="plainlist">
+            {monthly.detail.map((d) => <li>{d}</li>)}
+          </ul>
+          <a class="btn btn-o btn-sm" href="#start">{cta.askMonthly}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script is:inline>
+  (function () {
+    var panel = document.querySelector('#ongoing .js-panel');
+    if (!panel) return;
+    panel.addEventListener('click', function () {
+      var open = panel.parentElement.classList.toggle('open');
+      panel.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  })();
+</script>

@@ -12,10 +12,20 @@ export const site = {
   tagline: 'Creator-led content production for brands.',
 } as const;
 
-/** External destinations. The portfolio stays on Canva so it can be updated
- *  without a site deployment. */
+/**
+ * External destinations. The portfolio stays on Canva so it can be updated
+ * without a site deployment.
+ *
+ * Portfolio links point straight at the published Canva site rather than at
+ * the local /portfolio route. Routing through our own page cost a full extra
+ * navigation and a loading screen before Canva even started fetching. Going
+ * direct is one hop, and the browser Back button returns here normally.
+ * /portfolio is kept as an instant redirect so old links and bookmarks work.
+ */
 export const links = {
-  portfolio: '/portfolio',
+  portfolio: 'https://worldwidewmal.my.canva.site',
+  portfolioOrigin: 'https://worldwidewmal.my.canva.site',
+  portfolioPath: '/portfolio',
   travel: '/travel',
   tiktok: 'https://tiktok.com/@worldwidewmal',
   instagram: 'https://instagram.com/malachi.mh',
@@ -28,13 +38,8 @@ export const cta = {
   start: 'Start a Project',
   viewPortfolio: 'View Portfolio',
   viewFullPortfolio: 'View Full Portfolio',
-  viewPricing: 'View Pricing',
   getQuote: 'Get My Project Quote',
   fullInclusions: 'View Full Inclusions',
-  addOnDetails: 'View Add-On Details',
-  campaignOptions: 'View Campaign Options',
-  addToProject: 'Add to My Project',
-  addSocial: 'Add Social Distribution',
   askMonthly: 'Ask About Monthly Production',
   onLocationPricing: 'View On-Location Pricing',
   ugcPricing: 'View UGC Pricing',
@@ -54,7 +59,7 @@ export const stats = [
   { value: '48K+', label: 'TikTok' },
   { value: '10K+', label: 'Instagram' },
   { value: '1.2M+', label: 'Top Video Views' },
-  { value: '4K', label: 'Production Quality' },
+  { value: '4K', label: '4K Production' },
 ] as const;
 
 export const seo = {

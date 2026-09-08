@@ -1,0 +1,43 @@
+---
+import { postingRates } from '../data/brand-pricing';
+import { cta } from '../data/site';
+
+/**
+ * Posting is a standalone section, deliberately not an accordion. It is a
+ * different product from content delivery — the brand is buying access to an
+ * audience, not assets — so it gets its own full-width pricing block rather
+ * than being filed under add-ons.
+ */
+---
+
+<section id="posting" class="sec">
+  <div class="wrap center">
+    <p class="eyebrow center rv">Posting Rates</p>
+    <h2 class="h2 rv">Want the content posted on <i>my channels?</i></h2>
+    <p class="lede rv">
+      UGC is content delivered for your brand to use. Posting is separate and includes access to my audience.
+    </p>
+  </div>
+
+  <div class="wrap">
+    <div class="post-grid">
+      {postingRates.map((p) => (
+        <article class="post-card rv" id={`posting-${p.id}`}>
+          <h3 class="post-t">{p.title}</h3>
+          <div class="post-p">{p.price}</div>
+          <ul class="post-list">
+            {p.includes.map((i) => (
+              <li>
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <polyline points="20 6 9 17 4 12" />
+                </svg>
+                <span>{i}</span>
+              </li>
+            ))}
+          </ul>
+          <a class="btn btn-o btn-sm post-cta" href="#start">{cta.start}</a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>

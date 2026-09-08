@@ -1,15 +1,6 @@
 ---
 import { cta } from '../data/site';
-import {
-  onLocation,
-  ugcProduct,
-  usageAddOns,
-  usageNote,
-  droneOptions,
-  postingRates,
-  monthly,
-  type Package,
-} from '../data/brand-pricing';
+import { onLocation, ugcProduct, type Package } from '../data/brand-pricing';
 
 const groups: { id: string; heading: string; note: string; packages: Package[] }[] = [
   {
@@ -70,85 +61,14 @@ const groups: { id: string; heading: string; note: string; packages: Package[] }
       </Fragment>
     ))}
 
-    {/* Commercial terms — progressively disclosed, deliberately lighter weight
-        than the two core service categories. */}
-    <div class="detail-col">
-      <div class="rv">
-        <h3 class="detail-h">Usage + Production Add-Ons</h3>
-        <p class="lede center" style="margin:12px auto 0">
-          Need additional rights, assets, or turnaround options? Add them to any eligible production package.
-        </p>
-      </div>
-      <div class="taglist rv" style="justify-content:center;margin-top:24px">
-        {usageAddOns.map((u) => <span class="tag">{u}</span>)}
-      </div>
-      <p class="note center rv">{usageNote}</p>
-
-      <div class="panel rv" id="drone-photography">
-        <button type="button" class="panel-q js-panel" aria-expanded="false" aria-controls="dp-a">
-          Drone + Photography<span class="panel-ic" aria-hidden="true">+</span>
-        </button>
-        <div class="panel-a" id="dp-a">
-          <p>Add aerial footage, still photography, or additional visual assets to an on-location or product production.</p>
-          <div class="taglist">
-            {droneOptions.map((d) => <span class="tag">{d}</span>)}
-          </div>
-          <a class="btn btn-o btn-sm" href="#start">{cta.addToProject}</a>
-        </div>
-      </div>
-
-      <div class="panel rv" id="social-campaigns">
-        <button type="button" class="panel-q js-panel" aria-expanded="false" aria-controls="sc-a">
-          Social Campaigns<span class="panel-ic" aria-hidden="true">+</span>
-        </button>
-        <div class="panel-a" id="sc-a">
-          <p>Pair your production with creator distribution when you want the content shared with my audience.</p>
-          <div class="rates">
-            {postingRates.map((r) => (
-              <div class="rate">
-                <div class="rate-l">{r.label}</div>
-                <div class="rate-p">{r.price}</div>
-              </div>
-            ))}
-          </div>
-          <p class="note" style="margin-bottom:16px">
-            Campaign posting is available as an add-on to qualifying production projects.
-          </p>
-          <a class="btn btn-o btn-sm" href="#start">{cta.addSocial}</a>
-        </div>
-      </div>
-
-      <div class="panel rv" id="monthly">
-        <button type="button" class="panel-q js-panel" aria-expanded="false" aria-controls="mo-a">
-          <span>
-            <span class="panel-kicker">{monthly.label}</span>
-            {monthly.title}
-          </span>
-          <span class="panel-ic" aria-hidden="true">+</span>
-        </button>
-        <div class="panel-a" id="mo-a">
-          <p>{monthly.copy}</p>
-          <ul class="plainlist">
-            {monthly.detail.map((d) => <li>{d}</li>)}
-          </ul>
-          <a class="btn btn-o btn-sm" href="#start">{cta.askMonthly}</a>
-        </div>
-      </div>
-    </div>
   </div>
 </section>
 
 <script is:inline>
   (function () {
-    /* Expandable panels (add-ons, monthly, FAQ) — click and keyboard both work
-       natively because every control is a real <button>. */
+    /* "View Full Inclusions" expanders. Each control is a real <button>, so
+       click and keyboard both work without extra key handling. */
     document.addEventListener('click', function (e) {
-      var panelBtn = e.target.closest ? e.target.closest('.js-panel') : null;
-      if (panelBtn) {
-        var open = panelBtn.parentElement.classList.toggle('open');
-        panelBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
-        return;
-      }
       var inclBtn = e.target.closest ? e.target.closest('.js-incl') : null;
       if (inclBtn) {
         var target = document.getElementById(inclBtn.getAttribute('aria-controls'));

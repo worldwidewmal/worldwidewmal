@@ -47,7 +47,7 @@ export const onLocation: Package[] = [
     price: '$1,150',
     summary: 'A multi-video content package built for a larger campaign or experience.',
     visible: [
-      'Multiple vertical videos',
+      '3 vertical videos',
       'Creative planning',
       'On-location production',
       'Professional editing',
@@ -73,7 +73,7 @@ export const onLocation: Package[] = [
     price: '$1,750',
     summary: 'A dedicated production day designed to capture a larger library of campaign assets.',
     visible: [
-      'Full production session',
+      '5 vertical videos',
       'Multiple content concepts',
       'Expanded asset capture',
       'Professional editing',
@@ -168,35 +168,166 @@ export const ugcProduct: Package[] = [
   },
 ];
 
-/** Commercial terms — named only, priced on scope (progressive disclosure). */
-export const usageAddOns = [
-  'Paid Usage',
-  'Whitelisting',
-  'Raw Footage',
-  'Secondary Editing Rights',
-  'Exclusivity',
-  'Rush Turnaround',
-] as const;
+/**
+ * A single priced row inside an add-on accordion.
+ *
+ * `price: null` means the rate has not been set yet. The row still renders so
+ * the layout is final, but the price column shows a "Rate on request" slot
+ * rather than a number. Nothing here is ever invented — every figure below is
+ * carried over from the existing published rate card.
+ */
+export interface AddOnRow {
+  label: string;
+  /** Optional qualifier shown under the label. */
+  note?: string;
+  price: string | null;
+}
+
+export interface AddOnGroup {
+  id: string;
+  title: string;
+  /** Parenthetical scope shown beside the title. */
+  scope?: string;
+  rows: AddOnRow[];
+  /** Explanatory copy shown under the rows when expanded. */
+  footnote?: string;
+}
+
+export const productionAddOns: AddOnGroup = {
+  id: 'production',
+  title: 'Production Add-Ons',
+  rows: [
+    {
+      label: 'Edited short-form cutdown',
+      note: '15 to 30 second alternate edit created from footage captured for the project',
+      price: '$125',
+    },
+    { label: 'Additional hook variation', price: '$75' },
+    {
+      label: 'Raw footage access',
+      note: 'Per video, on packages that do not already include it',
+      price: '$125',
+    },
+    { label: 'Additional video added to an existing production package', price: '$325' },
+    { label: 'Secondary editing rights', note: 'Per video', price: '$150' },
+    // Drone and photography are production add-ons, not a service category of
+    // their own. No rate exists for either in the current rate card, so the
+    // slot is held open rather than filled with a guess.
+    { label: 'Drone footage', note: 'When legally permitted and operationally appropriate', price: null },
+    { label: 'Photography', note: 'Property, product, or lifestyle stills', price: null },
+  ],
+  footnote:
+    'Secondary editing rights allow the brand to create alternate edits, cutdowns, crops, hook and call-to-action variations, and derivative versions from the delivered content. They do not extend the original usage term and do not include raw footage unless raw footage is purchased separately.',
+};
+
+/** Usage and licensing terms — one collapsible row each. */
+export const licensingAddOns: AddOnGroup[] = [
+  {
+    id: 'paid-ad-usage',
+    title: 'Paid Ad Usage',
+    scope: 'Run as paid ads, per video',
+    rows: [
+      { label: '30 days', price: '$175' },
+      { label: '3 months', price: '$300' },
+      { label: '6 months', price: '$450' },
+      { label: '12 months', price: '$650' },
+      { label: 'Perpetual paid-social buyout', price: 'Starting at $1,000' },
+    ],
+    footnote:
+      'Paid Ad Usage covers advertising from the brand’s own advertising accounts on agreed social platforms. It does not include advertising through the creator’s handle, broadcast, print, out-of-home media, unrestricted all-media ownership, or raw footage.',
+  },
+  {
+    id: 'whitelisting',
+    title: 'Whitelisting / Spark Ads',
+    scope: 'Ads through my handle, per video, per platform',
+    rows: [
+      { label: '30 days', price: '$200' },
+      { label: '60 days', price: '$350' },
+      { label: '90 days', price: '$450' },
+      { label: '6 months', price: '$700' },
+    ],
+    footnote:
+      'Whitelisting, Spark Ads, and partnership ads allow approved advertising to run through the creator’s social identity or handle. These rights are separate from standard paid usage through the brand’s own account.',
+  },
+  {
+    id: 'exclusivity',
+    title: 'Brand Exclusivity',
+    scope: '% of package, no direct competitors',
+    rows: [
+      { label: '30 days', price: '25%' },
+      { label: '60 days', price: '40%' },
+      { label: '90 days', price: '60%' },
+      { label: '6 months', price: '90%' },
+      { label: '12 months', price: '150%' },
+    ],
+  },
+  {
+    id: 'business-licensing',
+    title: 'Business Licensing',
+    scope: 'Commercial use beyond paid social',
+    rows: [
+      {
+        label: 'Website, email, in-store, sales decks, and other non-social owned channels',
+        price: '$250',
+      },
+      {
+        label:
+          'Full commercial all-media buyout — broadcast, print, out-of-home advertising, and other agreed commercial media',
+        price: 'Starting at $1,000',
+      },
+    ],
+  },
+  {
+    id: 'rush',
+    title: 'Rush Turnaround',
+    scope: '% of project',
+    rows: [
+      { label: '48 to 72 hours', price: '20%' },
+      { label: '24 hours', price: '35%' },
+    ],
+  },
+];
 
 export const usageNote =
-  'Final pricing depends on scope, usage period, campaign needs, and deliverables.';
+  'Every add-on is optional. Usage and licensing are per video unless a written package or campaign agreement states otherwise.';
 
-/** Drone + photography options. */
-export const droneOptions = [
-  'Drone video',
-  'Aerial photography',
-  'Property photography',
-  'Lifestyle photography',
-  'Product photography',
-  'Raw asset delivery',
-] as const;
+/**
+ * Creator posting rates — a standalone section, not an accordion. Posting is
+ * access to my audience, which is a different product from content delivery.
+ */
+export interface PostingCard {
+  id: string;
+  title: string;
+  price: string;
+  includes: string[];
+}
 
-/** Creator posting rates, shown inside the Social Campaigns add-on. */
-export const postingRates = [
-  { label: 'TikTok Post', price: '$450' },
-  { label: 'Instagram Reel', price: '$350' },
-  { label: 'TikTok + Instagram', price: '$700' },
-] as const;
+export const postingRates: PostingCard[] = [
+  {
+    id: 'tiktok',
+    title: 'TikTok Posting',
+    price: '$450',
+    includes: ['1 cinematic 4K video posted to my audience'],
+  },
+  {
+    id: 'instagram',
+    title: 'Instagram Reel Posting',
+    price: '$350',
+    includes: [
+      '1 cinematic 4K video posted to my audience',
+      'Invited as collaborator on the final post',
+    ],
+  },
+  {
+    id: 'cross-post',
+    title: 'TikTok + Instagram Cross-Post',
+    price: '$700',
+    includes: [
+      'The same approved campaign video posted across both TikTok and Instagram',
+      'Invited as collaborator on the Instagram post',
+    ],
+  },
+];
 
 /** Monthly retainers, demoted into pricing rather than a standalone section. */
 export const monthly = {

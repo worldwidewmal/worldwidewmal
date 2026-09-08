@@ -1032,8 +1032,30 @@ function wireNativePay(key){
 /* ── DOM Ready ──────────────────────────────────────────── */
 document.addEventListener('DOMContentLoaded',function(){
 
-  /* Lock body scroll on load — UGC page is the visible landing view */
-  document.body.style.overflow = 'hidden';
+  /* Travel is its own page now, so nothing may lock the document. The old
+     build locked body scroll here because the UGC landing view sat on top of
+     this page and scrolled internally; with that overlay gone the lock was
+     never released and the page could not scroll past the first viewport.
+     Clearing the inline styles also recovers from a modal that was mid-open
+     during a back/forward navigation. */
+  document.documentElement.style.overflow = '';
+  document.body.style.overflow = '';
+  document.body.style.position = '';
+  document.body.style.height = '';
+  document.body.style.maxHeight = '';
+
+  /* Restoring from the back/forward cache replays the DOM exactly as it was,
+     inline styles included — so a page left with a modal open comes back
+     locked. Re-clear on every show, not just the first load. */
+  window.addEventListener('pageshow', function () {
+    var open = document.querySelector('#modal-overlay[style*="flex"], .ww-cart.open');
+    if (open) return;
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    document.body.style.position = '';
+    document.body.style.height = '';
+    document.body.style.maxHeight = '';
+  });
 
   /* Show all sections immediately */
   document.querySelectorAll('.rv,.sr').forEach(function(e){ e.classList.add('on'); });
@@ -1186,7 +1208,6 @@ document.addEventListener('DOMContentLoaded',function(){
   var _rawPp=new URLSearchParams(window.location.search).get('plan');
   var pp=['starter','core','concierge'].indexOf(_rawPp)!==-1?_rawPp:null;
   if(pp){
-    if(typeof closeUGC==='function') closeUGC();
     if(window.WW_AVAIL) WW_AVAIL.record(pp);
     var pn={starter:'Starter Plan',core:'Core Plan',concierge:'Concierge Plan'};
     window._purchasedPlan=pn[pp]||'Your Plan';
